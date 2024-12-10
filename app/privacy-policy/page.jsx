@@ -1,16 +1,16 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Flexpoint - Terms",
-  description: "Terms of Flexpoint",
+  title: "Flexpoint - Privacy Policy",
+  description: "Privacy Policy of Flexpoint",
 };
 
-const TermsPage = () => {
+const PrivacyPolicyPage = () => {
   return (
     <div className="min-h-screen bg-auth-gradient pt-28">
       <article className="max-w-3xl mx-auto px-6 text-para">
         <h1 className="text-heading font-semibold text-4xl md:text-5xl lg:text-6xl mb-8">
-          TERMS OF SERVICE
+          PRIVACY POLICY
         </h1>
 
         <section className="pb-9 border-b border-border/5">
@@ -473,4 +473,4 @@ const TermsPage = () => {
   );
 };
 
-export default TermsPage;
+export default PrivacyPolicyPage;

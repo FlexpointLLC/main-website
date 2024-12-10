@@ -1,18 +1,12 @@
-"use client";
-
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+export const metadata = {
+  title: "Flexpoint - Home",
+  description: "Flexpoint Home",
+};
 
 export default function Home() {
-  const router = useRouter();
-
-  useEffect(() => {
-    router.push("/terms");
-  }, []);
-
   return (
-    <main>
-      <h1>Hello World!</h1>
+    <main className="min-h-screen bg-auth-gradient flex flex-col items-center justify-center text-4xl md:text-5xl lg:text-6xl">
+      <h1>Coming Soon...</h1>
     </main>
   );
 }
