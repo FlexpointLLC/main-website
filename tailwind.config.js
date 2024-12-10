@@ -14,6 +14,7 @@ module.exports = {
         },
         heading: "#0E121B",
         para: "#525866 ",
+        border: "#1c1c1c",
       },
       backgroundImage: {
         "auth-gradient":

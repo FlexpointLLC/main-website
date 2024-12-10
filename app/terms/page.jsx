@@ -9,11 +9,11 @@ const TermsPage = () => {
   return (
     <div className="min-h-screen bg-auth-gradient pt-28">
       <article className="max-w-5xl mx-auto px-6 text-para">
-        <h1 className="text-heading font-semibold text-6xl mb-8">
+        <h1 className="text-heading font-semibold text-4xl md:text-5xl lg:text-6xl mb-8">
           TERMS OF SERVICE
         </h1>
 
-        <section className="pb-9 border-b border-gray-300">
+        <section className="pb-9 border-b border-border/5">
           <h3 className="mb-3">Welcome to Flexpoint!</h3>
           <div className="flex flex-col gap-8">
             <p>
@@ -69,7 +69,7 @@ const TermsPage = () => {
           </div>
         </section>
 
-        <section className="py-9 border-b border-gray-300">
+        <section className="py-9 border-b border-border/5">
           <h3 className="font-semibold text-lg mb-3">
             Access and Use of the Service
           </h3>
@@ -197,7 +197,7 @@ const TermsPage = () => {
           </div>
         </section>
 
-        <section className="py-9 border-b border-gray-300">
+        <section className="py-9 border-b border-border/5">
           <div className="flex flex-col gap-8">
             <div>
               <p>
@@ -270,7 +270,7 @@ const TermsPage = () => {
           </div>
         </section>
 
-        <section className="py-9 border-b border-gray-300">
+        <section className="py-9 border-b border-border/5">
           <h3 className="text-lg font-semibold mb-3">Conditions of Use</h3>
           <div className="flex flex-col gap-8">
             <div>
@@ -359,7 +359,7 @@ const TermsPage = () => {
           </div>
         </section>
 
-        <section className="py-9 border-b border-gray-300">
+        <section className="py-9 border-b border-border/5">
           <p>
             <span className="font-semibold">
               Special Notice for International Use; Export Controls:
@@ -370,7 +370,7 @@ const TermsPage = () => {
           </p>
         </section>
 
-        <section className="py-9 border-b border-gray-300">
+        <section className="py-9 border-b border-border/5">
           <h3 className="font-semibold text-lg mb-3">
             Intellectual Property Rights
           </h3>
@@ -403,7 +403,7 @@ const TermsPage = () => {
           </div>
         </section>
 
-        <section className="py-9 border-b border-gray-300 space-y-8">
+        <section className="py-9 border-b border-border/5 space-y-8">
           <p>
             <span className="font-semibold">Indemnity and Release:</span> You
             agree to indemnify and hold Flexpoint and its affiliates harmless
@@ -435,7 +435,7 @@ const TermsPage = () => {
           </p>
         </section>
 
-        <section className="py-9 border-b border-gray-300 space-y-8">
+        <section className="py-9 border-b border-border/5 space-y-8">
           <p>
             <span className="font-semibold">Termination:</span> Flexpoint
             reserves the right to terminate your account or access to the
@@ -457,7 +457,7 @@ const TermsPage = () => {
           </p>
         </section>
 
-        <section className="py-9 border-b border-gray-300">
+        <section className="py-9 border-b border-border/5">
           <h3 className="text-lg font-semibold mb-3">Contact Information</h3>
           <p className="font-semibold mb-8">
             For questions or concerns, please reach out to info@flexpoint.store.
