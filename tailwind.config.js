@@ -8,8 +8,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        brand: "#37C390",
+        success: {
+          base: "#1FC16B",
+        },
+        heading: "#0E121B",
+        para: "#525866 ",
+      },
+      backgroundImage: {
+        "auth-gradient":
+          "linear-gradient(179.94deg, #CAE7FF 0.18%, #E1F2FE 35.54%, #FFFFFF 100.03%)",
       },
     },
   },
