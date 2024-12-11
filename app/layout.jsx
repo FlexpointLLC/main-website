@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Footer from "@/components/global/footer/footer";
+import Navbar from "@/components/global/navbar/navbar";
 
 const inter = Inter({
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -20,7 +21,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, "scroll-smooth")}>
+      <body
+        className={cn(
+          inter.className,
+          "scroll-smooth bg-gradient-primary-from-top",
+        )}
+      >
+        <Navbar />
         {children}
         <Footer />
       </body>

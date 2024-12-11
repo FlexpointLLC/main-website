@@ -6,8 +6,8 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-primary-from-top flex flex-col items-center justify-center text-heading font-semibold text-4xl md:text-5xl lg:text-6xl">
-      <h1>Coming Soon...</h1>
+    <main className="flex min-h-[calc(100vh-145px)] flex-col items-center justify-center bg-gradient-primary-from-top text-4xl font-semibold text-heading md:text-5xl lg:text-6xl">
+      <h1>Coming Soon!</h1>
     </main>
   );
 }

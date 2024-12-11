@@ -1,0 +1,102 @@
+import { Button } from "@/components/ui/button";
+import vectorLeft from "@/public/assets/img/vector-left.svg";
+import vectorRight from "@/public/assets/img/vector-right.svg";
+import navLogo from "@/public/assets/img/navbar-logo.svg";
+import logoIcon from "@/public/assets/img/logo-icon.svg";
+import Image from "next/image";
+import Link from "next/link";
+import { Menu } from "lucide-react";
+
+const navOptions = [
+  {
+    name: "Features",
+    href: "/#",
+  },
+  {
+    name: "Pricing",
+    href: "/#",
+  },
+  {
+    name: "How it works",
+    href: "/#",
+  },
+  {
+    name: "FAQ",
+    href: "/#",
+  },
+];
+
+export default function Navbar() {
+  return (
+    <header className="sticky top-0">
+      <div className="relative mx-auto w-full max-w-5xl">
+        <div
+          className="flex w-full items-center justify-between rounded-bl-[20px] rounded-br-[20px] bg-white px-4 py-[13px] max-md:rounded-bl-[12px] max-md:rounded-br-[12px] max-md:rounded-tl-[12px] max-md:rounded-tr-[12px]"
+          role="banner"
+        >
+          <Link href="/" className="hidden md:block">
+            <Image
+              src={navLogo}
+              alt="Flexpoint Logo"
+              priority
+              loading="eager"
+              className="h-auto w-auto"
+            />
+          </Link>
+          <Link href="/" className="md:hidden">
+            <Image
+              src={logoIcon}
+              alt="Flexpoint Logo"
+              priority
+              loading="eager"
+              className="h-auto w-auto"
+            />
+          </Link>
+
+          <nav aria-label="Main navigation" className="hidden md:block">
+            <ul className="flex items-center space-x-10">
+              {navOptions.map((option, index) => (
+                <li key={index}>
+                  <Link
+                    href={option.href}
+                    className="text-sm font-medium text-para hover:text-primary"
+                  >
+                    {option.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div>
+            <Menu
+              size="24"
+              className="md:hidden"
+              aria-label="Open navigation menu"
+            />
+          </div>
+          <Button
+            variant="secondary"
+            aria-label="Login button"
+            className={"max-md:hidden"}
+          >
+            Login
+          </Button>
+        </div>
+
+        <Image
+          src={vectorLeft}
+          alt="Decorative graphic on the left"
+          className="absolute left-[-45px] top-0 hidden xl:block"
+          role="presentation"
+        />
+        <Image
+          src={vectorRight}
+          alt="Decorative graphic on the right"
+          className="absolute right-[-45px] top-0 hidden xl:block"
+          role="presentation"
+        />
+      </div>
+    </header>
+  );
+}
