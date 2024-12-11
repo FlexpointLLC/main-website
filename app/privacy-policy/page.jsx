@@ -13,7 +13,7 @@ const PrivacyPolicyPage = () => {
           Privacy and Policy
         </h1>
 
-        <section className="border-b border-black pb-9">
+        <section className="border-fl-border/5 border-b pb-9">
           <div className="flex flex-col gap-8">
             <p>
               Welcome to Flexpoint (&quot;we&quot;, &quot;our,&quot; or

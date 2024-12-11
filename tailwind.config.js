@@ -15,6 +15,7 @@ module.exports = {
         },
         heading: "#0E121B",
         para: "#525866 ",
+        "fl-border": "#1c1c1c",
         border: "hsl(var(--border))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
