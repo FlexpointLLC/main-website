@@ -2,7 +2,8 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Flexpoint - Terms",
-  description: "Terms of Flexpoint",
+  description:
+    "Learn about Flexpoint’s Terms of Service, including account guidelines, service policies, intellectual property rights, and arbitration details.",
 };
 
 const TermsPage = () => {

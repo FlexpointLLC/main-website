@@ -1,6 +1,7 @@
 export const metadata = {
   title: "Flexpoint - Home",
-  description: "Flexpoint Home",
+  description:
+    "Stay tuned! Flexpoint is launching soon with innovative solutions to empower creators and elevate their digital businesses.",
 };
 
 export default function Home() {
