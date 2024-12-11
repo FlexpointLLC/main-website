@@ -7,7 +7,7 @@ export const metadata = {
 
 const PrivacyPolicyPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-primary-from-top pt-28">
+    <div className="min-h-screen pt-28">
       <article className="mx-auto max-w-3xl px-6 text-para">
         <h1 className="mb-8 text-4xl font-semibold uppercase text-heading md:text-5xl lg:text-6xl">
           Privacy and Policy

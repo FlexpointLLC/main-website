@@ -8,7 +8,7 @@ export const metadata = {
 
 const TermsPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-primary-from-top pt-28">
+    <div className="min-h-screen pt-28">
       <article className="mx-auto max-w-3xl px-6 text-para">
         <h1 className="mb-8 text-4xl font-semibold text-heading md:text-5xl lg:text-6xl">
           TERMS OF SERVICE
