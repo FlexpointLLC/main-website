@@ -9,12 +9,12 @@ export const metadata = {
 const TermsPage = () => {
   return (
     <div className="min-h-screen bg-gradient-primary-from-top pt-28">
-      <article className="max-w-3xl mx-auto px-6 text-para">
-        <h1 className="text-heading font-semibold text-4xl md:text-5xl lg:text-6xl mb-8">
+      <article className="mx-auto max-w-3xl px-6 text-para">
+        <h1 className="mb-8 text-4xl font-semibold text-heading md:text-5xl lg:text-6xl">
           TERMS OF SERVICE
         </h1>
 
-        <section className="pb-9 border-b border-border/5">
+        <section className="border-fl-border/5 border-b pb-9">
           <h3 className="mb-3">Welcome to Flexpoint!</h3>
           <div className="flex flex-col gap-8">
             <p>
@@ -70,8 +70,8 @@ const TermsPage = () => {
           </div>
         </section>
 
-        <section className="py-9 border-b border-border/5">
-          <h3 className="font-semibold text-lg mb-3">
+        <section className="border-fl-border/5 border-b py-9">
+          <h3 className="mb-3 text-lg font-semibold">
             Access and Use of the Service
           </h3>
 
@@ -105,11 +105,11 @@ const TermsPage = () => {
             </p>
 
             <div>
-              <h3 className="font-semibold mb-3">
+              <h3 className="mb-3 font-semibold">
                 Flexpoint has no control over and does not guarantee:
               </h3>
 
-              <ul className="list-disc list-inside ml-2">
+              <ul className="ml-2 list-inside list-disc">
                 <li>
                   the existence, quality, safety, suitability, or legality of
                   Creator Content made available through the Services;
@@ -198,7 +198,7 @@ const TermsPage = () => {
           </div>
         </section>
 
-        <section className="py-9 border-b border-border/5">
+        <section className="border-fl-border/5 border-b py-9">
           <div className="flex flex-col gap-8">
             <div>
               <p>
@@ -206,7 +206,7 @@ const TermsPage = () => {
                 Service includes certain services that are available via a
                 mobile device, including
               </p>
-              <ol className="list-[upper-roman] list-inside ml-2">
+              <ol className="ml-2 list-inside list-[upper-roman]">
                 <li>
                   the ability to upload content to the Service via a mobile
                   device,
@@ -271,8 +271,8 @@ const TermsPage = () => {
           </div>
         </section>
 
-        <section className="py-9 border-b border-border/5">
-          <h3 className="text-lg font-semibold mb-3">Conditions of Use</h3>
+        <section className="border-fl-border/5 border-b py-9">
+          <h3 className="mb-3 text-lg font-semibold">Conditions of Use</h3>
           <div className="flex flex-col gap-8">
             <div>
               <p className="mb-3">
@@ -290,7 +290,7 @@ const TermsPage = () => {
                 to:
               </p>
 
-              <ul className="list-disc list-inside ml-2">
+              <ul className="ml-2 list-inside list-disc">
                 <li>
                   Upload any Materials that infringe any intellectual property
                   or other proprietary rights of any party;
@@ -360,7 +360,7 @@ const TermsPage = () => {
           </div>
         </section>
 
-        <section className="py-9 border-b border-border/5">
+        <section className="border-fl-border/5 border-b py-9">
           <p>
             <span className="font-semibold">
               Special Notice for International Use; Export Controls:
@@ -371,8 +371,8 @@ const TermsPage = () => {
           </p>
         </section>
 
-        <section className="py-9 border-b border-border/5">
-          <h3 className="font-semibold text-lg mb-3">
+        <section className="border-fl-border/5 border-b py-9">
+          <h3 className="mb-3 text-lg font-semibold">
             Intellectual Property Rights
           </h3>
           <div className="flex flex-col gap-8">
@@ -404,7 +404,7 @@ const TermsPage = () => {
           </div>
         </section>
 
-        <section className="py-9 border-b border-border/5 space-y-8">
+        <section className="border-fl-border/5 space-y-8 border-b py-9">
           <p>
             <span className="font-semibold">Indemnity and Release:</span> You
             agree to indemnify and hold Flexpoint and its affiliates harmless
@@ -436,7 +436,7 @@ const TermsPage = () => {
           </p>
         </section>
 
-        <section className="py-9 border-b border-border/5 space-y-8">
+        <section className="border-fl-border/5 space-y-8 border-b py-9">
           <p>
             <span className="font-semibold">Termination:</span> Flexpoint
             reserves the right to terminate your account or access to the
@@ -459,8 +459,8 @@ const TermsPage = () => {
         </section>
 
         <section className="py-9">
-          <h3 className="text-lg font-semibold mb-3">Contact Information</h3>
-          <p className="font-semibold mb-8">
+          <h3 className="mb-3 text-lg font-semibold">Contact Information</h3>
+          <p className="mb-8 font-semibold">
             For questions or concerns, please reach out to info@flexpoint.store.
           </p>
           <p>
