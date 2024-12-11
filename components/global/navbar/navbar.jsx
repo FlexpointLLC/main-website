@@ -5,7 +5,7 @@ import navLogo from "@/public/assets/img/navbar-logo.svg";
 import logoIcon from "@/public/assets/img/logo-icon.svg";
 import Image from "next/image";
 import Link from "next/link";
-import MenuButton from "./menu-button";
+import MobileMenu from "./mobile-menu";
 
 const navOptions = [
   {
@@ -30,33 +30,38 @@ export default function Navbar() {
   return (
     <header className="sticky top-0" role="banner">
       <div className="relative max-md:p-4 md:mx-auto md:w-full md:max-w-5xl">
-        <div className="max-md:border-[rgba(255, 255, 255, 0.30)] flex w-full items-center justify-between rounded-bl-[20px] rounded-br-[20px] px-4 py-[13px] max-md:rounded-bl-[12px] max-md:rounded-br-[12px] max-md:rounded-tl-[12px] max-md:rounded-tr-[12px] max-md:border max-md:bg-[#D6EDFE] max-md:shadow max-md:backdrop-blur-[20px] md:bg-white">
-          <Link href="/" aria-label="Homepage" className="hidden md:block">
-            <Image
-              src={navLogo}
-              alt="Flexpoint Logo"
-              priority
-              loading="eager"
-              className="h-auto w-auto"
-            />
-          </Link>
-          <Link href="/" aria-label="Homepage" className="md:hidden">
-            <Image
-              src={logoIcon}
-              alt="Flexpoint Logo Icon"
-              priority
-              loading="eager"
-              className="h-auto w-auto"
-            />
-          </Link>
+        <div className="max-md:border-[rgba(255, 255, 255, 0.30)] grid w-full grid-cols-12 items-center justify-between rounded-bl-[20px] rounded-br-[20px] px-4 py-[13px] max-md:rounded-bl-[12px] max-md:rounded-br-[12px] max-md:rounded-tl-[12px] max-md:rounded-tr-[12px] max-md:border max-md:bg-[#D6EDFE] max-md:shadow max-md:backdrop-blur-[20px] md:bg-white">
+          <div className="col-span-6 md:col-span-2">
+            <Link href="/" aria-label="Homepage" className="hidden md:block">
+              <Image
+                src={navLogo}
+                alt="Flexpoint Logo"
+                priority
+                loading="eager"
+                className="h-auto w-auto"
+              />
+            </Link>
+            <Link href="/" aria-label="Homepage" className="md:hidden">
+              <Image
+                src={logoIcon}
+                alt="Flexpoint Logo Icon"
+                priority
+                loading="eager"
+                className="h-auto w-auto"
+              />
+            </Link>
+          </div>
 
-          <nav aria-label="Main navigation" className="hidden md:block">
+          <nav
+            aria-label="Main navigation"
+            className="col-span-8 hidden items-center justify-center md:flex"
+          >
             <ul className="flex items-center space-x-10">
               {navOptions.map((option, index) => (
                 <li key={index}>
                   <Link
                     href={option.href}
-                    className="text-sm font-medium text-para hover:text-primary"
+                    className="text-center text-sm font-medium text-para hover:text-primary"
                   >
                     {option.name}
                   </Link>
@@ -65,8 +70,8 @@ export default function Navbar() {
             </ul>
           </nav>
 
-          <div>
-            <MenuButton />
+          <div className="col-span-6 flex justify-end md:col-span-2">
+            <MobileMenu />
             <Button
               variant="secondary"
               aria-label="Login button"

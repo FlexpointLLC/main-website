@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import Link from "next/link";
 
-export default function MenuButton() {
+export default function MobileMenu() {
   const [openMenuBar, setOpenMenuBar] = useState(false);
 
   const mobileNavOptions = [
