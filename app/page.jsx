@@ -6,7 +6,7 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-auth-gradient flex flex-col items-center justify-center text-heading font-semibold text-4xl md:text-5xl lg:text-6xl">
+    <main className="min-h-screen bg-gradient-primary-from-top flex flex-col items-center justify-center text-heading font-semibold text-4xl md:text-5xl lg:text-6xl">
       <h1>Coming Soon...</h1>
     </main>
   );

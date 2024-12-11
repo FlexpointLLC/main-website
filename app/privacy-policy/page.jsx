@@ -7,7 +7,7 @@ export const metadata = {
 
 const PrivacyPolicyPage = () => {
   return (
-    <div className="min-h-screen bg-auth-gradient pt-28">
+    <div className="min-h-screen bg-gradient-primary-from-top pt-28">
       <article className="max-w-3xl mx-auto px-6 text-para">
         <h1 className="text-heading font-semibold text-4xl md:text-5xl lg:text-6xl mb-8">
           PRIVACY POLICY
@@ -457,7 +457,7 @@ const PrivacyPolicyPage = () => {
           </p>
         </section>
 
-        <section className="py-9 border-b border-border/5">
+        <section className="py-9">
           <h3 className="text-lg font-semibold mb-3">Contact Information</h3>
           <p className="font-semibold mb-8">
             For questions or concerns, please reach out to info@flexpoint.store.
