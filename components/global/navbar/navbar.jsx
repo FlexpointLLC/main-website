@@ -31,14 +31,13 @@ export default function Navbar() {
     <header className="sticky top-0" role="banner">
       <div className="relative max-md:p-4 md:mx-auto md:w-full md:max-w-5xl">
         <div className="max-md:border-[rgba(255, 255, 255, 0.30)] grid w-full grid-cols-12 items-center justify-between rounded-bl-[20px] rounded-br-[20px] px-4 py-[13px] max-md:rounded-bl-[12px] max-md:rounded-br-[12px] max-md:rounded-tl-[12px] max-md:rounded-tr-[12px] max-md:border max-md:bg-[#D6EDFE] max-md:shadow max-md:backdrop-blur-[20px] md:bg-white">
-          <div className="col-span-6 md:col-span-2">
-            <Link href="/" aria-label="Homepage" className="hidden md:block">
+          <div className="col-span-2">
+            <Link href="/" aria-label="Homepage" className="max-md:hidden">
               <Image
                 src={navLogo}
                 alt="Flexpoint Logo"
                 priority
                 loading="eager"
-                className="h-auto w-auto"
               />
             </Link>
             <Link href="/" aria-label="Homepage" className="md:hidden">
@@ -47,7 +46,6 @@ export default function Navbar() {
                 alt="Flexpoint Logo Icon"
                 priority
                 loading="eager"
-                className="h-auto w-auto"
               />
             </Link>
           </div>
@@ -70,7 +68,9 @@ export default function Navbar() {
             </ul>
           </nav>
 
-          <div className="col-span-6 flex justify-end md:col-span-2">
+          <div className="col-span-8 md:hidden"></div>
+
+          <div className="col-span-2 flex justify-end">
             <MobileMenu />
             <Button
               variant="secondary"
