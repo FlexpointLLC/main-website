@@ -10,31 +10,28 @@ import { Menu } from "lucide-react";
 const navOptions = [
   {
     name: "Features",
-    href: "/#",
+    href: "/#features",
   },
   {
     name: "Pricing",
-    href: "/#",
+    href: "/#pricing",
   },
   {
     name: "How it works",
-    href: "/#",
+    href: "/#how-it-works",
   },
   {
     name: "FAQ",
-    href: "/#",
+    href: "/#faq",
   },
 ];
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0">
+    <header className="sticky top-0" role="banner">
       <div className="relative max-md:p-4 md:mx-auto md:w-full md:max-w-5xl">
-        <div
-          className="max-md:border-[rgba(255, 255, 255, 0.30)] flex w-full items-center justify-between rounded-bl-[20px] rounded-br-[20px] px-4 py-[13px] max-md:rounded-bl-[12px] max-md:rounded-br-[12px] max-md:rounded-tl-[12px] max-md:rounded-tr-[12px] max-md:border max-md:bg-[#D6EDFE] max-md:shadow max-md:backdrop-blur-[20px] md:bg-white"
-          role="banner"
-        >
-          <Link href="/" className="hidden md:block">
+        <div className="max-md:border-[rgba(255, 255, 255, 0.30)] flex w-full items-center justify-between rounded-bl-[20px] rounded-br-[20px] px-4 py-[13px] max-md:rounded-bl-[12px] max-md:rounded-br-[12px] max-md:rounded-tl-[12px] max-md:rounded-tr-[12px] max-md:border max-md:bg-[#D6EDFE] max-md:shadow max-md:backdrop-blur-[20px] md:bg-white">
+          <Link href="/" aria-label="Homepage" className="hidden md:block">
             <Image
               src={navLogo}
               alt="Flexpoint Logo"
@@ -43,10 +40,10 @@ export default function Navbar() {
               className="h-auto w-auto"
             />
           </Link>
-          <Link href="/" className="md:hidden">
+          <Link href="/" aria-label="Homepage" className="md:hidden">
             <Image
               src={logoIcon}
-              alt="Flexpoint Logo"
+              alt="Flexpoint Logo Icon"
               priority
               loading="eager"
               className="h-auto w-auto"
