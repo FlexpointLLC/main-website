@@ -29,9 +29,9 @@ const navOptions = [
 export default function Navbar() {
   return (
     <header className="sticky top-0">
-      <div className="relative mx-auto w-full max-w-5xl max-md:p-4">
+      <div className="relative max-md:p-4 md:mx-auto md:w-full md:max-w-5xl">
         <div
-          className="max-md:bg-[rgba(255, 255, 255, 0.20)] max-md:border-[rgba(255, 255, 255, 0.30)] flex w-full items-center justify-between rounded-bl-[20px] rounded-br-[20px] px-4 py-[13px] max-md:rounded-bl-[12px] max-md:rounded-br-[12px] max-md:rounded-tl-[12px] max-md:rounded-tr-[12px] max-md:border max-md:shadow max-md:backdrop-blur-sm md:bg-white"
+          className="max-md:border-[rgba(255, 255, 255, 0.30)] flex w-full items-center justify-between rounded-bl-[20px] rounded-br-[20px] px-4 py-[13px] max-md:rounded-bl-[12px] max-md:rounded-br-[12px] max-md:rounded-tl-[12px] max-md:rounded-tr-[12px] max-md:border max-md:bg-[#D6EDFE] max-md:shadow max-md:backdrop-blur-[20px] md:bg-white"
           role="banner"
         >
           <Link href="/" className="hidden md:block">
