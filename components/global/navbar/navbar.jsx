@@ -5,7 +5,7 @@ import navLogo from "@/public/assets/img/navbar-logo.svg";
 import logoIcon from "@/public/assets/img/logo-icon.svg";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import MenuButton from "./menu-button";
 
 const navOptions = [
   {
@@ -66,13 +66,7 @@ export default function Navbar() {
           </nav>
 
           <div>
-            <div>
-              <Menu
-                size="24"
-                className="md:hidden"
-                aria-label="Open navigation menu"
-              />
-            </div>
+            <MenuButton />
             <Button
               variant="secondary"
               aria-label="Login button"
