@@ -8,10 +8,11 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "run-s build-only",
+    "build": "run-s build-only post-build",
     "build-only": "next build",
     "start": "next start",
     "lint": "next lint",
+    "post-build": "cp .htaccess dist/.htaccess",
     "prepare": "husky"
   },
   "dependencies": {
