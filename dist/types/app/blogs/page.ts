@@ -1,4 +1,4 @@
-// File: /home/sakib/work/main-website/app/blogs/page.jsx
+// File: /Volumes/www/main-website/app/blogs/page.jsx
 import * as entry from '../../../../app/blogs/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
