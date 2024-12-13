@@ -12,8 +12,8 @@ const footerLinks = [
 const Footer = () => {
   return (
     <footer className="relative bg-gradient-secondary-from-bottom py-12 text-para">
-      <div className="mx-auto grid max-w-5xl grid-cols-12 items-center gap-8 px-4 md:justify-between md:gap-0 lg:px-0">
-        <figure className="lg:col-span-2">
+      <div className="mx-auto flex max-w-5xl flex-col items-center gap-8 px-4 md:flex-row md:justify-between md:gap-0 lg:px-0">
+        <figure className="col-span-2">
           <Image
             src="/assets/img/flexpoint-logo.svg"
             width={250}
@@ -22,7 +22,7 @@ const Footer = () => {
             className="h-12 w-32"
           />
         </figure>
-        <ul className="z-10 flex flex-col items-center justify-center gap-8 sm:flex-row sm:gap-10 lg:col-span-8">
+        <ul className="z-10 col-span-8 flex flex-col items-center justify-center gap-8 sm:flex-row sm:gap-10">
           {footerLinks.map((link) => (
             <li key={link.href}>
               <Link
@@ -35,7 +35,7 @@ const Footer = () => {
           ))}
         </ul>
 
-        <p className="lg:col-span-2">Copyright © {new Date().getFullYear()}</p>
+        <p className="col-span-2">Copyright © {new Date().getFullYear()}</p>
       </div>
       <Image
         src={footerBg}
