@@ -1,5 +1,7 @@
-import Hero from "./components/hero/hero";
+import FlexpointDescription from "./components/flexpoint-description/flexpoint-description";
 import HowItWorks from "./components/how-it-works/how-it-works";
+import Hero from "./components/hero/hero";
+import Features from "./components/features/features";
 
 // test
 export const metadata = {
@@ -12,7 +14,8 @@ export default function Home() {
   return (
     <div className="min-h-[calc(100vh-210px)]">
       <Hero />
-      <HowItWorks />
+      <FlexpointDescription />
+      <Features />
     </div>
   );
 }
