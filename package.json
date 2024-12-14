@@ -8,7 +8,8 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "run-s build-only",
+    "build": "run-s pre-build build-only",
+    "pre-build": "rm -rf .next",
     "build-only": "next build",
     "start": "next start",
     "lint": "next lint",
