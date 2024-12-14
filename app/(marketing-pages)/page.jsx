@@ -1,10 +1,10 @@
+import CTA from "./components/cta/cta";
+import Features from "./components/features/features";
 import FlexpointDescription from "./components/flexpoint-description/flexpoint-description";
 import HowItWorks from "./components/how-it-works/how-it-works";
 import Hero from "./components/hero/hero";
-import Features from "./components/features/features";
 import PricingPlans from "./components/pricing-plans/pricing-plans";
 
-// test
 export const metadata = {
   title: "Flexpoint - Home",
   description:
@@ -18,6 +18,8 @@ export default function Home() {
       <FlexpointDescription />
       <Features />
       <PricingPlans />
+      <HowItWorks />
+      <CTA />
     </div>
   );
 }
