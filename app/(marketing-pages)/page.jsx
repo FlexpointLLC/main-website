@@ -1,3 +1,5 @@
+import Hero from "./components/hero/hero";
+
 // test
 export const metadata = {
   title: "Flexpoint - Home",
@@ -7,8 +9,8 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <div className="flex min-h-[calc(100vh-210px)] flex-col items-center justify-center text-4xl font-semibold text-heading md:text-5xl lg:text-6xl">
-      <h1>Working on it!</h1>
+    <div className="min-h-[calc(100vh-210px)]">
+      <Hero />
     </div>
   );
 }
