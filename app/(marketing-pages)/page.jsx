@@ -1,4 +1,5 @@
 import Hero from "./components/hero/hero";
+import HowItWorks from "./components/how-it-works/how-it-works";
 
 // test
 export const metadata = {
@@ -11,6 +12,7 @@ export default function Home() {
   return (
     <div className="min-h-[calc(100vh-210px)]">
       <Hero />
+      <HowItWorks />
     </div>
   );
 }

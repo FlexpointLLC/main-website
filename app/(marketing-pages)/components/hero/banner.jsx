@@ -1,6 +1,6 @@
 const Banner = () => {
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-7 px-4 text-center md:mx-auto md:max-w-xl">
+    <div className="flex w-full flex-col items-center justify-center gap-7 px-4 pb-24 text-center md:mx-auto md:max-w-xl md:pb-36">
       <h1 className="text-5xl font-semibold text-heading md:text-6xl">
         The All-in-one Creator Platform.
       </h1>
