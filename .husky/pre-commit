@@ -1,3 +1,0 @@
-npm run build
-# Stage the build files
-git add .next
