@@ -2,6 +2,7 @@ import FlexpointDescription from "./components/flexpoint-description/flexpoint-d
 import HowItWorks from "./components/how-it-works/how-it-works";
 import Hero from "./components/hero/hero";
 import Features from "./components/features/features";
+import PricingPlans from "./components/pricing-plans/pricing-plans";
 
 // test
 export const metadata = {
@@ -16,6 +17,7 @@ export default function Home() {
       <Hero />
       <FlexpointDescription />
       <Features />
+      <PricingPlans />
     </div>
   );
 }
