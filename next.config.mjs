@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    domains: ["dev-api.flexpoint.store"],
+  },
+};
 
 export default nextConfig;

@@ -64,6 +64,7 @@ module.exports = {
           "linear-gradient(0deg, #CAE7FF 0.18%, #E1F2FE 35.54%, #FFFFFF 100.03%)",
         "gradient-secondary-from-bottom":
           "linear-gradient(0deg, #CAFFE4 -10.26%, #FFF 73.88%)",
+        "store-texture": "url('/assets/img/store-bg.svg')",
       },
       borderRadius: {
         lg: "var(--radius)",

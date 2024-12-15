@@ -11,8 +11,11 @@ const buttonVariants = cva(
       variant: {
         primary:
           "bg-[#37C390] text-white shadow-[0px_0px_0px_1px_#2FA67B,0px_1px_3px_0px_rgba(44,159,117,0.20),0px_-2.4px_0px_0px_#4BD2A0_inset] hover:bg-[#37C390]/90",
+        primaryDefault:
+          "bg-[#383838] text-white shadow-[0px_0px_0px_1px_#2D2D2D,0px_1px_3px_0px_rgba(40,40,40,0.20),0px_-2.4px_0px_0px_#494949_inset] hover:bg-[#383838]/90",
         secondary:
           "bg-white text-black shadow-[0px_0px_0px_1px_#EBEBEB,0px_1px_3px_0px_rgba(143,143,143,0.20),0px_-2.4px_0px_0px_rgba(62,62,62,0.04)_inset] hover:bg-gray-50",
+        secondaryDefault: "bg-accent hover:text-accent-foreground",
         destructive: "bg-[#FB3748] text-white hover:bg-[#FB3748]/90",
         outline: "border border-[#E1E4EA] bg-white text-black hover:bg-gray-50",
         ghost: "hover:bg-accent hover:text-accent-foreground",
@@ -29,12 +32,12 @@ const buttonVariants = cva(
       variant: "primary",
       size: "default",
     },
-  }
+  },
 );
 
 const Button = (
   { className, variant, size, asChild = false, ...props },
-  ref
+  ref,
 ) => {
   const Comp = asChild ? Slot : "button";
   return (
