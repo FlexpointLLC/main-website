@@ -1,4 +1,5 @@
 import SectionHeading from "../section-heading/section-heading";
+import TotalPricingCard from "./total-pricing-card";
 
 const PricingPlans = () => {
   return (
@@ -10,7 +11,7 @@ const PricingPlans = () => {
           headingPara="See how Flexpoint brings together 5+ services in one, helping you save big."
         />
 
-        <div>Pricing Plans</div>
+        <TotalPricingCard />
       </section>
     </div>
   );
