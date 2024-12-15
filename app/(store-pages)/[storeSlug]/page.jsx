@@ -11,32 +11,36 @@ export async function generateMetadata({ params }) {
   const response = await fetch(`${base_url}/${storeSlug}`, {
     cache: "no-store",
   })
-    .then((res) => res.json())
-    .catch((err) => console.error(err));
+    .then((res) => (res.ok ? res.json() : Promise.reject(res.statusText)))
+    .catch((err) => {
+      console.error("Error fetching store data:", err);
+      return null;
+    });
 
-  if (response?.message === "Store not found") {
+  if (!response || response?.message === "Store not found") {
     return redirect("/");
   }
 
-  const store = response?.data;
+  const store = response?.data || {};
+  const user = store?.user || {};
 
   return {
-    title: `${store?.user?.name} | Flexpoint`,
+    title: `${user?.name || "Unknown Store"} | Flexpoint`,
     openGraph: {
-      title: `${store?.user?.name}'s Store | Flexpoint`,
+      title: `${user?.name || "Unknown"}'s Store | Flexpoint`,
       images: [
         {
-          url: store?.user?.avatar,
-          alt: store?.user?.name,
+          url: user?.avatar || "/default-og-image.png",
+          alt: user?.name || "Default User",
         },
       ],
-      url: `https://flexpoint.store/${store?.user?.store_name}`,
+      url: `https://flexpoint.store/${user?.store_name || ""}`,
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title: `${store?.user?.name}'s Store | Flexpoint`,
-      image: store?.user?.avatar,
+      title: `${user?.name || "Unknown"}'s Store | Flexpoint`,
+      image: user?.avatar || "/default-avatar.png",
     },
   };
 }
@@ -48,10 +52,13 @@ export default async function StorePage({ params }) {
   const response = await fetch(`${base_url}/${storeSlug}`, {
     cache: "no-store",
   })
-    .then((res) => res.json())
-    .catch((err) => console.error(err));
+    .then((res) => (res.ok ? res.json() : Promise.reject(res.statusText)))
+    .catch((err) => {
+      console.error("Error fetching store data:", err);
+      return null;
+    });
 
-  if (response?.message === "Store not found") {
+  if (!response || response?.message === "Store not found") {
     return redirect("/");
   }
 
