@@ -19,9 +19,9 @@ export default function ProfileCard({ store }) {
         />
 
         <div className="space-y-1">
-          <h3 className="w-full break-all text-2xl font-medium text-[#111928]">
+          <h1 className="w-full break-all text-2xl font-medium text-[#111928]">
             {store?.user?.name}
-          </h3>
+          </h1>
           {store?.user?.details?.occupation && (
             <p className="text-sm text-[#6B7280]">
               {store?.user?.details?.occupation}
@@ -33,6 +33,7 @@ export default function ProfileCard({ store }) {
               {Object.keys(store?.user?.details?.social_links).length !== 0 &&
                 store?.user?.details?.social_links?.tiktok && (
                   <Link
+                    aria-label="Visit TikTok"
                     target="_blank"
                     href={store?.user?.details?.social_links?.tiktok}
                   >
@@ -42,6 +43,7 @@ export default function ProfileCard({ store }) {
               {Object.keys(store?.user?.details?.social_links).length !== 0 &&
                 store?.user?.details?.social_links?.instagram && (
                   <Link
+                    aria-label="Visit Instagram"
                     target="_blank"
                     href={store?.user?.details?.social_links?.instagram}
                   >
@@ -51,6 +53,7 @@ export default function ProfileCard({ store }) {
               {Object.keys(store?.user?.details?.social_links).length !== 0 &&
                 store?.user?.details?.social_links?.facebook && (
                   <Link
+                    aria-label="Visit Facebook"
                     target="_blank"
                     href={store?.user?.details?.social_links?.facebook}
                   >
@@ -60,6 +63,7 @@ export default function ProfileCard({ store }) {
               {Object.keys(store?.user?.details?.social_links).length !== 0 &&
                 store?.user?.details?.social_links?.youtube && (
                   <Link
+                    aria-label="Visit YouTube"
                     target="_blank"
                     href={store?.user?.details?.social_links?.youtube}
                   >

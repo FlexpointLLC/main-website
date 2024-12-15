@@ -37,9 +37,9 @@ export default function ProductList({ store }) {
                 />
 
                 <div className="space-y-1">
-                  <h3 className="text-sm font-semibold text-[#0E121B]">
+                  <p className="text-sm font-semibold text-[#0E121B]">
                     {product?.title}
-                  </h3>
+                  </p>
                   <div className="flex items-center gap-2">
                     <p
                       className={`text-sm ${acutalPrice === "Free" ? "font-medium text-[#FF8447]" : "font-semibold text-[#1FC16B]"}`}
@@ -62,7 +62,10 @@ export default function ProductList({ store }) {
               </div>
 
               <div className="mt-3">
-                <Link href={`/${store?.user?.store_name}/${product?.slug}`}>
+                <Link
+                  href={`/${store?.user?.store_name}/${product?.slug}`}
+                  aria-label="View Product"
+                >
                   <Button
                     variant={
                       index === 0 ? "primaryDefault" : "secondaryDefault"

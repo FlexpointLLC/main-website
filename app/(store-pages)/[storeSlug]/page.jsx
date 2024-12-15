@@ -26,12 +26,16 @@ export async function generateMetadata({ params }) {
 
   return {
     title: `${user?.name || "Unknown Store"} | Flexpoint`,
+    description:
+      store?.description || "Discover amazing products at unbeatable prices.",
     openGraph: {
       title: `${user?.name || "Unknown"}'s Store | Flexpoint`,
+      description:
+        store?.description || "Explore a variety of high-quality products.",
       images: [
         {
           url: user?.avatar || "/default-og-image.png",
-          alt: user?.name || "Default User",
+          alt: `${user?.name || "Default User"} Logo`,
         },
       ],
       url: `https://flexpoint.store/${user?.store_name || ""}`,
@@ -40,6 +44,8 @@ export async function generateMetadata({ params }) {
     twitter: {
       card: "summary_large_image",
       title: `${user?.name || "Unknown"}'s Store | Flexpoint`,
+      description:
+        store?.description || "Explore a variety of high-quality products.",
       image: user?.avatar || "/default-avatar.png",
     },
   };
@@ -69,10 +75,10 @@ export default async function StorePage({ params }) {
       <ProfileCard store={store} />
       <ProductList store={store} />
 
-      <div className="mt-6 flex items-center justify-center gap-[7px]">
+      <footer className="mt-6 flex items-center justify-center gap-[7px]">
         <p className="pl-4 text-xs font-medium text-para">Powered by</p>
-        <Image src={storeFooterLogo} alt="logo" />
-      </div>
+        <Image src={storeFooterLogo} alt="store footer logo" />
+      </footer>
     </div>
   );
 }
