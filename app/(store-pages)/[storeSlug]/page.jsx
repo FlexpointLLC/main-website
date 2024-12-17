@@ -4,10 +4,10 @@ import ProfileCard from "./_components/profile-card";
 import Image from "next/image";
 import storeFooterLogo from "@/public/assets/img/store-footer-logo.svg";
 
+const base_url = process.env.NEXT_PUBLIC_API_URL;
+
 export async function generateMetadata({ params }) {
   const storeSlug = params.storeSlug;
-  const base_url = process.env.NEXT_PUBLIC_API_URL;
-
   const response = await fetch(`${base_url}/${storeSlug}`, {
     cache: "no-store",
   })
@@ -25,27 +25,24 @@ export async function generateMetadata({ params }) {
   const user = store?.user || {};
 
   return {
-    title: `${user?.name || "Unknown Store"} | Flexpoint`,
-    description:
-      store?.description || "Discover amazing products at unbeatable prices.",
+    title: `${user?.name}'s Store | Flexpoint`,
+    description: "The All-in-one Creator Platform.",
     openGraph: {
-      title: `${user?.name || "Unknown"}'s Store | Flexpoint`,
-      description:
-        store?.description || "Explore a variety of high-quality products.",
+      title: `${user?.name}'s Store | Flexpoint`,
+      description: "The All-in-one Creator Platform.",
       images: [
         {
           url: user?.avatar || "/default-og-image.png",
-          alt: `${user?.name || "Default User"} Logo`,
+          alt: `${user?.name} Logo`,
         },
       ],
-      url: `https://flexpoint.store/${user?.store_name || ""}`,
+      url: `https://flexpoint.store/${user?.store_name}`,
       type: "website",
     },
     twitter: {
-      card: "summary_large_image",
-      title: `${user?.name || "Unknown"}'s Store | Flexpoint`,
-      description:
-        store?.description || "Explore a variety of high-quality products.",
+      card: "summary",
+      title: `${user?.name}'s Store | Flexpoint`,
+      description: "The All-in-one Creator Platform.",
       image: user?.avatar || "/default-avatar.png",
     },
   };
@@ -53,7 +50,6 @@ export async function generateMetadata({ params }) {
 
 export default async function StorePage({ params }) {
   const storeSlug = params.storeSlug;
-  const base_url = process.env.NEXT_PUBLIC_API_URL;
 
   const response = await fetch(`${base_url}/${storeSlug}`, {
     cache: "no-store",
