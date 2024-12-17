@@ -12,7 +12,7 @@ export default async function ProductPage({ params }) {
   const response = await fetch(
     `${base_url}/${storeSlug}/product/${productSlug}`,
     {
-      cache: "no-store",
+      next: { revalidate: 3600 },
     },
   )
     .then((res) => (res.ok ? res.json() : Promise.reject(res.statusText)))
@@ -27,7 +27,7 @@ export default async function ProductPage({ params }) {
 
   const product = response?.data || {};
 
-  console.dir(product, { depth: null });
+  // console.dir(product, { depth: null });
 
   return (
     <div className="mx-auto max-w-[375px] px-4 py-12">
