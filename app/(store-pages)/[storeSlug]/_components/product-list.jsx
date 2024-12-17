@@ -11,20 +11,22 @@ export default function ProductList({ store }) {
 
   return (
     <div className="mt-6 space-y-3">
-      {products.length > 0 &&
-        products.map((product, index) => {
-          const acutalPrice = parseFloat(product.discount_price)
-            ? parseFloat(product.discount_price)
-            : !parseFloat(product.discount_price) && parseFloat(product.price)
-              ? parseFloat(product.price)
+      {products?.length > 0 &&
+        products?.map((product, index) => {
+          const acutalPrice = parseFloat(product?.discount_price)
+            ? parseFloat(product?.discount_price)
+            : !parseFloat(product?.discount_price) && parseFloat(product?.price)
+              ? parseFloat(product?.price)
               : "Free";
 
-          const hasDiscount = parseFloat(product.discount_price) ? true : false;
+          const hasDiscount = parseFloat(product?.discount_price)
+            ? true
+            : false;
 
           return (
             <div
               className="rounded-[12px] bg-white p-3 shadow-md"
-              key={product.product_id}
+              key={product?.product_id}
             >
               <div className="flex items-center gap-1">
                 <Image
@@ -53,7 +55,7 @@ export default function ProductList({ store }) {
                       <div className="flex items-center justify-between gap-2">
                         <p className="text-sm text-[#99A0AE] line-through">
                           {store?.user?.currency_symbol}
-                          {parseFloat(product.price)}
+                          {parseFloat(product?.price)}
                         </p>
                       </div>
                     )}
