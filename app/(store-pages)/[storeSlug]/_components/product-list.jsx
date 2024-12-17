@@ -14,9 +14,9 @@ export default function ProductList({ store }) {
       {products?.length > 0 &&
         products?.map((product, index) => {
           const acutalPrice = parseFloat(product?.discount_price)
-            ? parseFloat(product?.discount_price)
+            ? parseFloat(product?.discount_price).toFixed(2)
             : !parseFloat(product?.discount_price) && parseFloat(product?.price)
-              ? parseFloat(product?.price)
+              ? parseFloat(product?.price).toFixed(2)
               : "Free";
 
           const hasDiscount = parseFloat(product?.discount_price)
@@ -48,14 +48,14 @@ export default function ProductList({ store }) {
                     >
                       {acutalPrice === "Free"
                         ? null
-                        : store?.user?.currency_symbol}
+                        : store?.user?.currency_symbol}{" "}
                       {acutalPrice}
                     </p>
                     {hasDiscount && (
                       <div className="flex items-center justify-between gap-2">
                         <p className="text-sm text-[#99A0AE] line-through">
-                          {store?.user?.currency_symbol}
-                          {parseFloat(product?.price)}
+                          {store?.user?.currency_symbol}{" "}
+                          {parseFloat(product?.price).toFixed(2)}
                         </p>
                       </div>
                     )}

@@ -52,7 +52,7 @@ export default async function StorePage({ params }) {
   const storeSlug = params.storeSlug;
 
   const response = await fetch(`${base_url}/${storeSlug}`, {
-    next: { revalidate: 3600 },
+    cache: "no-store",
   })
     .then((res) => (res.ok ? res.json() : Promise.reject(res.statusText)))
     .catch((err) => {
