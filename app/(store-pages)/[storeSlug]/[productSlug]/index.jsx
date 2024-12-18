@@ -20,9 +20,9 @@ export default function ProductDetails({ product, storeSlug }) {
   return (
     <div>
       <div className="relative">
-        {product?.get_header_image && (
+        {product?.header_image && (
           <Image
-            src={product.get_header_image}
+            src={product.header_image}
             alt={product?.title || "Product Image"}
             width={375}
             height={250}

@@ -66,23 +66,16 @@ export default function ProductList({ store }) {
               </div>
 
               <div className="mt-3">
-                <Link
-                  href={`/${store?.user?.store_name}/${product?.slug}`}
-                  aria-label="View Product"
+                <Button
+                  variant={index === 0 ? "primaryDefault" : "secondaryDefault"}
+                  size={"sm"}
+                  className="flex h-7 w-full items-center justify-between"
                 >
-                  <Button
-                    variant={
-                      index === 0 ? "primaryDefault" : "secondaryDefault"
-                    }
-                    size={"sm"}
-                    className="flex h-7 w-full items-center justify-between"
-                  >
-                    <p className="text-xs">{product?.button_text}</p>
-                    <div>
-                      <ArrowRight size={16} />
-                    </div>
-                  </Button>
-                </Link>
+                  <p className="text-xs">{product?.button_text}</p>
+                  <div>
+                    <ArrowRight size={16} />
+                  </div>
+                </Button>
               </div>
             </Link>
           );
