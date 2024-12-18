@@ -24,9 +24,13 @@ export default function ProductList({ store }) {
             : false;
 
           return (
-            <Link
-              href={`/${store?.user?.store_name}/${product?.slug}`}
-              aria-label="View Product"
+            // <Link
+            //   href={`/${store?.user?.store_name}/${product?.slug}`}
+            //   aria-label="View Product"
+            //   className="block rounded-[12px] bg-white p-3 shadow-md"
+            //   key={product?.product_id}
+            // >
+            <div
               className="block rounded-[12px] bg-white p-3 shadow-md"
               key={product?.product_id}
             >
@@ -77,7 +81,7 @@ export default function ProductList({ store }) {
                   </div>
                 </Button>
               </div>
-            </Link>
+            </div>
           );
         })}
     </div>

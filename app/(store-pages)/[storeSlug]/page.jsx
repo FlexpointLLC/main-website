@@ -51,9 +51,7 @@ export async function generateMetadata({ params }) {
 export default async function StorePage({ params }) {
   const storeSlug = params.storeSlug;
 
-  const response = await fetch(`${base_url}/${storeSlug}`, {
-    cache: "no-store",
-  })
+  const response = await fetch(`${base_url}/${storeSlug}`)
     .then((res) => (res.ok ? res.json() : Promise.reject(res.statusText)))
     .catch((err) => {
       console.error("Error fetching store data:", err);
