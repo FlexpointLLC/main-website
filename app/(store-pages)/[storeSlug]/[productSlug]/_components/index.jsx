@@ -1,12 +1,53 @@
 "use client";
 
-import { Calendar } from "@/components/ui/calendar";
-import { ArrowLeft } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import { useFormik } from "formik";
+import { object, string, number, date } from "yup";
+
+import { ArrowLeft } from "lucide-react";
+
+import { Calendar } from "@/components/ui/calendar";
+import CustomerInfo from "./customer-info";
+import { Button } from "@/components/ui/button";
+
+const generateInitialValues = (formFields) => {
+  const initialValues = {};
+
+  formFields.forEach((field) => {
+    initialValues[field.name] = "";
+  });
+
+  return initialValues;
+};
+
+const generateValidationSchema = (formFields) => {
+  const validators = {};
+
+  formFields.forEach((field) => {
+    if (field.is_required) {
+      validators[field.name] = string().required(`${field.name} is required`);
+    }
+  });
+
+  const validationSchema = object({
+    ...validators,
+  });
+
+  return validationSchema;
+};
 
 export default function ProductDetails({ product, storeSlug }) {
+  const { fields } = product;
   console.log(product);
+
+  const formik = useFormik({
+    initialValues: generateInitialValues(fields),
+    validationSchema: generateValidationSchema(fields),
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
 
   // Display product price logic
   const acutalPrice = parseFloat(product?.discount_price)
@@ -78,6 +119,14 @@ export default function ProductDetails({ product, storeSlug }) {
 
         <Calendar mode="single" className="rounded-[16px] border bg-white" />
       </div>
+
+      <hr className="h-[2px] bg-black/5" />
+
+      <CustomerInfo formik={formik} fields={fields} />
+
+      <button onClick={formik.handleSubmit} type="submit">
+        Submit
+      </button>
     </div>
   );
 }

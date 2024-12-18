@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import Image from "next/image";
 import storeFooterLogo from "@/public/assets/img/store-footer-logo.svg";
-import ProductDetails from ".";
+import ProductDetails from "./_components";
 
 const base_url = process.env.NEXT_PUBLIC_API_URL;
 
