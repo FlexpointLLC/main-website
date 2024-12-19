@@ -3,13 +3,16 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useFormik } from "formik";
-import { object, string, number, date } from "yup";
+import { object, string } from "yup";
 
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ChevronLeft } from "lucide-react";
 
 import { Calendar } from "@/components/ui/calendar";
 import CustomerInfo from "./customer-info";
 import { Button } from "@/components/ui/button";
+import SlotPicker from "./slot-picker";
+import SelectedSlotCard from "./seleted-slot-card";
+import { useState } from "react";
 
 const generateInitialValues = (formFields) => {
   const initialValues = {};
@@ -39,10 +42,14 @@ const generateValidationSchema = (formFields) => {
 
 export default function ProductDetails({ product, storeSlug }) {
   const { fields } = product;
-  console.log(product);
+  const [dateAndSlotContent, setDateAndSlotContent] = useState("CALENDER");
 
   const formik = useFormik({
-    initialValues: generateInitialValues(fields),
+    initialValues: {
+      ...generateInitialValues(fields),
+      picked_slot: "",
+      picked_date: new Date(),
+    },
     validationSchema: generateValidationSchema(fields),
     onSubmit: (values) => {
       console.log(values);
@@ -57,6 +64,42 @@ export default function ProductDetails({ product, storeSlug }) {
       : "Free";
 
   const hasDiscount = parseFloat(product?.discount_price) ? true : false;
+
+  let currentDateSlowView;
+
+  switch (dateAndSlotContent) {
+    case "CALENDER":
+      currentDateSlowView = (
+        <Calendar
+          mode="single"
+          className="rounded-[16px] border bg-white"
+          selected={formik.values.picked_date}
+          onSelect={(date) => {
+            formik.setFieldValue("picked_date", date);
+            setDateAndSlotContent("SLOT");
+          }}
+          fromDate={new Date("2024-12-10")}
+          toDate={new Date("2024-12-31")}
+        />
+      );
+      break;
+    case "SLOT":
+      currentDateSlowView = (
+        <SlotPicker
+          picked_slot={formik.values.picked_slot}
+          onSlotChange={formik.setFieldValue}
+          setDateAndSlotContent={setDateAndSlotContent}
+        />
+      );
+      break;
+    case "RESULT":
+      currentDateSlowView = (
+        <SelectedSlotCard
+          handleChangeDate={setDateAndSlotContent.bind(null, "CALENDER")}
+        />
+      );
+      break;
+  }
 
   return (
     <div>
@@ -111,13 +154,23 @@ export default function ProductDetails({ product, storeSlug }) {
 
       <div className="space-y-4 py-6">
         <div className="flex items-center justify-between">
-          <h3 className="text-sm font-semibold text-fl-border">
-            {product?.bottom_title}
-          </h3>
+          <div className="flex items-center gap-[2px]">
+            {dateAndSlotContent === "SLOT" && (
+              <ChevronLeft
+                size={16}
+                className="cursor-pointer"
+                onClick={() => setDateAndSlotContent("CALENDER")}
+              />
+            )}
+
+            <h3 className="text-sm font-semibold text-fl-border">
+              {dateAndSlotContent === "SLOT" ? "26 Nov" : product?.bottom_title}
+            </h3>
+          </div>
           <p className="text-xs text-para">{product?.timezone}</p>
         </div>
 
-        <Calendar mode="single" className="rounded-[16px] border bg-white" />
+        {currentDateSlowView}
       </div>
 
       <hr className="h-[2px] bg-black/5" />
