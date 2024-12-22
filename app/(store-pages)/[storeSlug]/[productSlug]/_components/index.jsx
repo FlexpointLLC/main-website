@@ -40,6 +40,33 @@ const generateValidationSchema = (formFields) => {
   return validationSchema;
 };
 
+const availableDated = [
+  {
+    date: "2024-12-22",
+    day: "Monday",
+  },
+  {
+    date: "2024-12-23",
+    day: "Monday",
+  },
+  {
+    date: "2024-12-24",
+    day: "Tuesday",
+  },
+  {
+    date: "2024-12-27",
+    day: "Friday",
+  },
+  {
+    date: "2024-12-30",
+    day: "Monday",
+  },
+  {
+    date: "2024-12-31",
+    day: "Tuesday",
+  },
+];
+
 export default function ProductDetails({ product, storeSlug }) {
   const { fields, slug: productSlug } = product;
 
@@ -47,7 +74,7 @@ export default function ProductDetails({ product, storeSlug }) {
 
   const { data, isLoading } = useGetProductCalendarQuery({ productSlug });
 
-  console.log(data);
+  // console.log(data);
 
   const formik = useFormik({
     initialValues: {
@@ -77,14 +104,20 @@ export default function ProductDetails({ product, storeSlug }) {
       currentDateSlowView = (
         <Calendar
           mode="single"
-          className="rounded-[16px] border bg-white"
+          // className={}
           selected={formik.values.picked_date}
-          onSelect={(date) => {
-            formik.setFieldValue("picked_date", date);
-            setDateAndSlotContent("SLOT");
+          onDayClick={(date, modifiers) => {
+            if (modifiers.available) {
+              formik.setFieldValue("picked_date", date);
+              setDateAndSlotContent("SLOT");
+            } else {
+              alert("No slot available.");
+            }
           }}
-          fromDate={new Date("2024-12-10")}
-          toDate={new Date("2024-12-31")}
+          modifiers={{
+            available: availableDated.map((date) => new Date(date.date)),
+          }}
+          modifiersClassNames={{ available: "text-heading" }}
         />
       );
       break;
