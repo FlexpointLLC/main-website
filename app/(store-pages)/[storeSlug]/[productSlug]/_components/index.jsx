@@ -2,18 +2,17 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 import { useFormik } from "formik";
 import { object, string } from "yup";
 
 import { ArrowLeft, ChevronLeft } from "lucide-react";
-
 import { Calendar } from "@/components/ui/calendar";
+import { useGetProductCalendarQuery } from "@/redux/api/scheduleApi";
+
 import CustomerInfo from "./customer-info";
-import { Button } from "@/components/ui/button";
 import SlotPicker from "./slot-picker";
 import SelectedSlotCard from "./seleted-slot-card";
-import { useState } from "react";
-import { useGetUsersQuery } from "@/redux/api/usersApi";
 
 const generateInitialValues = (formFields) => {
   const initialValues = {};
@@ -42,12 +41,13 @@ const generateValidationSchema = (formFields) => {
 };
 
 export default function ProductDetails({ product, storeSlug }) {
-  const { fields } = product;
+  const { fields, slug: productSlug } = product;
+
   const [dateAndSlotContent, setDateAndSlotContent] = useState("CALENDER");
 
-  const { data, isLoading } = useGetUsersQuery();
+  const { data, isLoading } = useGetProductCalendarQuery({ productSlug });
 
-  console.log("🔥Dummy JSON Data fetched using RTK Query: ", data);
+  console.log(data);
 
   const formik = useFormik({
     initialValues: {

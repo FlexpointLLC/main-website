@@ -6,7 +6,7 @@ import { tagTypesList } from "../tagTypes";
 export const baseApi = createApi({
   reducerPath: "api",
   baseQuery: axiosBaseQuery({
-    baseUrl: "https://jsonplaceholder.typicode.com",
+    baseUrl: process.env.NEXT_PUBLIC_API_URL,
   }),
   endpoints: () => ({}),
   tagTypes: tagTypesList,
