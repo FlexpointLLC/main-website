@@ -1,30 +1,29 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import { useGetAvailableSlotsQuery } from "@/redux/api/scheduleApi";
+import moment from "moment";
 
-const slots = [
-  {
-    schedule_id: 150,
-    start_time: "09:00",
-    end_time: "09:30",
-    meridiem: "AM",
-  },
-  {
-    schedule_id: 151,
-    start_time: "09:30",
-    end_time: "10:00",
-    meridiem: "AM",
-  },
-  {
-    schedule_id: 152,
-    start_time: "01:00",
-    end_time: "01:30",
-    meridiem: "PM",
-  },
-];
+const SlotPicker = ({
+  picked_slot,
+  onSlotChange,
+  setDateAndSlotContent,
+  selectedDate,
+  productSlug,
+}) => {
+  const { data: availableSlots, isLoading: isSlotsLoading } =
+    useGetAvailableSlotsQuery({
+      productSlug,
+      selectedDate: moment(selectedDate).format("YYYY-MM-DD"),
+    });
 
-const SlotPicker = ({ picked_slot, onSlotChange, setDateAndSlotContent }) => {
+  if (isSlotsLoading) {
+    return "Loading...";
+  }
+
+  const slots = availableSlots.data.slots;
+
   return (
-    <div className="scrollbar-none max-h-[280px] overflow-y-auto rounded-lg border border-[#F2F5F8] bg-white p-4">
+    <div className="max-h-[280px] overflow-y-auto rounded-lg border border-[#F2F5F8] bg-white p-4 scrollbar-none">
       <Tabs defaultValue="AM">
         <TabsList className="sticky -top-2 w-full">
           <TabsTrigger value="AM" className="w-full">
@@ -37,42 +36,48 @@ const SlotPicker = ({ picked_slot, onSlotChange, setDateAndSlotContent }) => {
         <TabsContent value="AM" className="grid grid-cols-3 items-center gap-2">
           {slots
             .filter((slot) => slot.meridiem === "AM")
-            .map((slot) => (
+            .map((slot, i) => (
               <button
                 className={cn(
                   "w-full rounded border border-[#F2F5F8] py-2 text-center text-xs",
-                  slot.start_time === picked_slot
-                    ? "bg-[#0E121B] text-white"
+                  slot.start === picked_slot
+                    ? "bg-primary text-primary-foreground"
                     : "bg-white text-heading",
                 )}
-                key={slot.schedule_id}
+                key={i}
                 onClick={() => {
-                  onSlotChange("picked_slot", slot.start_time);
+                  onSlotChange("picked_slot", slot.start);
+                  onSlotChange("picked_slot_end", slot.end);
+                  onSlotChange("picked_slot_end", slot.end);
+                  onSlotChange("picked_meridiem", "AM");
                   setDateAndSlotContent("RESULT");
                 }}
               >
-                {slot.start_time}
+                {slot.start}
               </button>
             ))}
         </TabsContent>
         <TabsContent value="PM" className="grid grid-cols-3 items-center gap-2">
           {slots
             .filter((slot) => slot.meridiem === "PM")
-            .map((slot) => (
+            .map((slot, i) => (
               <button
                 className={cn(
                   "w-full rounded border border-[#F2F5F8] py-2 text-center text-xs",
-                  slot.start_time === picked_slot
-                    ? "bg-[#0E121B] text-white"
+                  slot.start === picked_slot
+                    ? "bg-primary text-primary-foreground"
                     : "bg-white text-heading",
                 )}
-                key={slot.schedule_id}
+                key={i}
                 onClick={() => {
-                  onSlotChange("picked_slot", slot.start_time);
+                  onSlotChange("picked_slot", slot.start);
+                  onSlotChange("picked_slot_end", slot.end);
+                  onSlotChange("picked_slot_end", slot.end);
+                  onSlotChange("picked_meridiem", "PM");
                   setDateAndSlotContent("RESULT");
                 }}
               >
-                {slot.start_time}
+                {slot.start}
               </button>
             ))}
         </TabsContent>

@@ -10,7 +10,16 @@ export const categoryApi = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.schedules],
     }),
+
+    getAvailableSlots: build.query({
+      query: ({ productSlug, selectedDate }) => ({
+        url: `/available-slot/${productSlug}/${selectedDate}`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.schedules],
+    }),
   }),
 });
 
-export const { useGetProductCalendarQuery } = categoryApi;
+export const { useGetProductCalendarQuery, useGetAvailableSlotsQuery } =
+  categoryApi;

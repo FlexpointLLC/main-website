@@ -8,11 +8,16 @@ import { object, string } from "yup";
 
 import { ArrowLeft, ChevronLeft } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
-import { useGetProductCalendarQuery } from "@/redux/api/scheduleApi";
+import {
+  useGetAvailableSlotsQuery,
+  useGetProductCalendarQuery,
+} from "@/redux/api/scheduleApi";
 
 import CustomerInfo from "./customer-info";
 import SlotPicker from "./slot-picker";
 import SelectedSlotCard from "./seleted-slot-card";
+
+import moment from "moment";
 
 const generateInitialValues = (formFields) => {
   const initialValues = {};
@@ -40,33 +45,6 @@ const generateValidationSchema = (formFields) => {
   return validationSchema;
 };
 
-const availableDated = [
-  {
-    date: "2024-12-22",
-    day: "Monday",
-  },
-  {
-    date: "2024-12-23",
-    day: "Monday",
-  },
-  {
-    date: "2024-12-24",
-    day: "Tuesday",
-  },
-  {
-    date: "2024-12-27",
-    day: "Friday",
-  },
-  {
-    date: "2024-12-30",
-    day: "Monday",
-  },
-  {
-    date: "2024-12-31",
-    day: "Tuesday",
-  },
-];
-
 export default function ProductDetails({ product, storeSlug }) {
   const { fields, slug: productSlug } = product;
 
@@ -74,13 +52,13 @@ export default function ProductDetails({ product, storeSlug }) {
 
   const { data, isLoading } = useGetProductCalendarQuery({ productSlug });
 
-  // console.log(data);
-
   const formik = useFormik({
     initialValues: {
       ...generateInitialValues(fields),
       picked_slot: "",
+      picked_slot_end: "",
       picked_date: new Date(),
+      picked_meridiem: "",
     },
     validationSchema: generateValidationSchema(fields),
     onSubmit: (values) => {
@@ -97,6 +75,8 @@ export default function ProductDetails({ product, storeSlug }) {
 
   const hasDiscount = parseFloat(product?.discount_price) ? true : false;
 
+  const calender = data?.data.calendar;
+
   let currentDateSlowView;
 
   switch (dateAndSlotContent) {
@@ -104,7 +84,10 @@ export default function ProductDetails({ product, storeSlug }) {
       currentDateSlowView = (
         <Calendar
           mode="single"
-          // className={}
+          classNames={{
+            day: "h-11 w-11 p-0 font-normal hover:cursor-not-allowed text-[#CACFD8]",
+            root: "bg-white rounded-xl",
+          }}
           selected={formik.values.picked_date}
           onDayClick={(date, modifiers) => {
             if (modifiers.available) {
@@ -115,9 +98,11 @@ export default function ProductDetails({ product, storeSlug }) {
             }
           }}
           modifiers={{
-            available: availableDated.map((date) => new Date(date.date)),
+            available: calender?.map((date) => new Date(date.date)),
           }}
-          modifiersClassNames={{ available: "text-heading" }}
+          modifiersClassNames={{
+            available: "text-gray-700 hover:cursor-pointer rounded-md",
+          }}
         />
       );
       break;
@@ -127,6 +112,8 @@ export default function ProductDetails({ product, storeSlug }) {
           picked_slot={formik.values.picked_slot}
           onSlotChange={formik.setFieldValue}
           setDateAndSlotContent={setDateAndSlotContent}
+          selectedDate={formik.values.picked_date}
+          productSlug={productSlug}
         />
       );
       break;
@@ -134,6 +121,10 @@ export default function ProductDetails({ product, storeSlug }) {
       currentDateSlowView = (
         <SelectedSlotCard
           handleChangeDate={setDateAndSlotContent.bind(null, "CALENDER")}
+          selectedDate={formik.values.picked_date}
+          slotStartTime={formik.values.picked_slot}
+          slotEndTime={formik.values.picked_slot_end}
+          selectedMeridiem={formik.values.picked_meridiem}
         />
       );
       break;
@@ -193,22 +184,40 @@ export default function ProductDetails({ product, storeSlug }) {
       <div className="space-y-4 py-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-[2px]">
-            {dateAndSlotContent === "SLOT" && (
+            {(dateAndSlotContent === "SLOT" ||
+              dateAndSlotContent === "RESULT") && (
               <ChevronLeft
                 size={16}
                 className="cursor-pointer"
-                onClick={() => setDateAndSlotContent("CALENDER")}
+                onClick={() => {
+                  if (dateAndSlotContent === "SLOT") {
+                    setDateAndSlotContent("CALENDER");
+                  } else if (dateAndSlotContent === "RESULT") {
+                    setDateAndSlotContent("SLOT");
+                  }
+                }}
               />
             )}
 
             <h3 className="text-sm font-semibold text-fl-border">
-              {dateAndSlotContent === "SLOT" ? "26 Nov" : product?.bottom_title}
+              {dateAndSlotContent === "SLOT" ||
+              dateAndSlotContent === "RESULT" ? (
+                <span>
+                  {dateAndSlotContent === "SLOT" ? (
+                    <>{moment(formik.values.picked_date).format("MMM DD")}</>
+                  ) : (
+                    <>Selected Slot</>
+                  )}
+                </span>
+              ) : (
+                product?.bottom_title
+              )}
             </h3>
           </div>
           <p className="text-xs text-para">{product?.timezone}</p>
         </div>
 
-        {currentDateSlowView}
+        {isLoading ? <div>Loading...</div> : <div>{currentDateSlowView}</div>}
       </div>
 
       <hr className="h-[2px] bg-black/5" />
