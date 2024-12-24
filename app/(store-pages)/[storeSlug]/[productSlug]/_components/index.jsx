@@ -224,9 +224,9 @@ export default function ProductDetails({ product, storeSlug }) {
 
       <CustomerInfo formik={formik} fields={fields} />
 
-      <button onClick={formik.handleSubmit} type="submit">
+      {/* <button onClick={formik.handleSubmit} type="submit">
         Submit
-      </button>
+      </button> */}
     </div>
   );
 }
