@@ -10,7 +10,7 @@ const PrivacyPolicyPage = () => {
     <div className="min-h-screen pt-16">
       <article className="mx-auto max-w-3xl px-6 text-para">
         <h1 className="mb-8 text-4xl font-semibold uppercase text-heading md:text-5xl lg:text-6xl">
-          Privacy and Policy
+          Privacy Policy
         </h1>
 
         <section className="border-b border-fl-border/5 pb-9">
