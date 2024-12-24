@@ -25,7 +25,7 @@ export default async function ProductPage({ params }) {
     return redirect("/");
   }
 
-  const product = response?.data || {};
+  const product = response?.data?.productDetails || {};
 
   return (
     <div className="mx-auto max-w-[375px] px-4">
