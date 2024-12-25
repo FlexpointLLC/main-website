@@ -47,12 +47,11 @@ export default function ProductDetails({
   product,
   storeSlug,
   visitor_timezone,
+  calendarData,
 }) {
   const { fields, slug: productSlug } = product;
 
   const [dateAndSlotContent, setDateAndSlotContent] = useState("CALENDER");
-
-  const { data, isLoading } = useGetProductCalendarQuery({ productSlug });
 
   const formik = useFormik({
     initialValues: {
@@ -77,9 +76,7 @@ export default function ProductDetails({
 
   const hasDiscount = parseFloat(product?.discount_price) ? true : false;
 
-  const calender = data?.data.calendar;
-
-  const enabledDates = calender.map((date) => date.date);
+  const enabledDates = calendarData.map((date) => date.date);
 
   const isDayDisabled = (date) => {
     const formattedDate = moment(date).format("YYYY-MM-DD");
@@ -227,11 +224,7 @@ export default function ProductDetails({
           <p className="text-xs text-para">{visitor_timezone}</p>
         </div>
 
-        {isLoading ? (
-          <div>Loading...</div>
-        ) : (
-          <div className="rounded-lg bg-white">{currentDateSlowView}</div>
-        )}
+        <div className="rounded-lg bg-white">{currentDateSlowView}</div>
       </div>
 
       <hr className="h-[2px] bg-black/5" />

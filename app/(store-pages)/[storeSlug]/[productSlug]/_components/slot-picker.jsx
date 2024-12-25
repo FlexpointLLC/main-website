@@ -17,7 +17,21 @@ const SlotPicker = ({
     });
 
   if (isSlotsLoading) {
-    return "Loading...";
+    return (
+      <div class="max-h-[280px] animate-pulse overflow-y-auto rounded-lg border border-[#F2F5F8] bg-white p-4 scrollbar-none">
+        <div class="h-9 w-full rounded bg-gray-200"></div>
+        <div class="mt-2 grid grid-cols-3 items-center gap-2">
+          <div class="h-8 w-full rounded bg-gray-200"></div>
+          <div class="h-8 w-full rounded bg-gray-200"></div>
+          <div class="h-8 w-full rounded bg-gray-200"></div>
+        </div>
+        <div class="mt-2 grid grid-cols-3 items-center gap-2">
+          <div class="h-8 w-full rounded bg-gray-200"></div>
+          <div class="h-8 w-full rounded bg-gray-200"></div>
+          <div class="h-8 w-full rounded bg-gray-200"></div>
+        </div>
+      </div>
+    );
   }
 
   const slots = availableSlots.data.slots;
@@ -33,15 +47,18 @@ const SlotPicker = ({
             PM
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="AM" className="grid grid-cols-3 items-center gap-2">
+        <TabsContent
+          value="AM"
+          className="mt-2 grid grid-cols-3 items-center gap-2"
+        >
           {slots
             .filter((slot) => slot.meridiem === "AM")
             .map((slot, i) => (
               <button
                 className={cn(
-                  "w-full rounded border border-[#F2F5F8] py-2 text-center text-xs",
+                  "h-8 w-full rounded border border-[#F2F5F8] py-2 text-center text-xs hover:bg-gray-100",
                   slot.start === picked_slot
-                    ? "bg-primary text-primary-foreground"
+                    ? "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground"
                     : "bg-white text-heading",
                 )}
                 key={i}
@@ -63,9 +80,9 @@ const SlotPicker = ({
             .map((slot, i) => (
               <button
                 className={cn(
-                  "w-full rounded border border-[#F2F5F8] py-2 text-center text-xs",
+                  "h-8 w-full rounded border border-[#F2F5F8] py-2 text-center text-xs hover:bg-gray-100",
                   slot.start === picked_slot
-                    ? "bg-primary text-primary-foreground"
+                    ? "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground"
                     : "bg-white text-heading",
                 )}
                 key={i}
