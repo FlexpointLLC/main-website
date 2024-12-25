@@ -8,10 +8,8 @@ import { object, string } from "yup";
 
 import { ArrowLeft, ChevronLeft } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
-import {
-  useGetAvailableSlotsQuery,
-  useGetProductCalendarQuery,
-} from "@/redux/api/scheduleApi";
+import { useGetProductCalendarQuery } from "@/redux/api/scheduleApi";
+import { extractYouTubeId } from "@/lib/utils";
 
 import CustomerInfo from "./customer-info";
 import SlotPicker from "./slot-picker";
@@ -45,7 +43,11 @@ const generateValidationSchema = (formFields) => {
   return validationSchema;
 };
 
-export default function ProductDetails({ product, storeSlug }) {
+export default function ProductDetails({
+  product,
+  storeSlug,
+  visitor_timezone,
+}) {
   const { fields, slug: productSlug } = product;
 
   const [dateAndSlotContent, setDateAndSlotContent] = useState("CALENDER");
@@ -137,6 +139,7 @@ export default function ProductDetails({ product, storeSlug }) {
           <Image
             src={product.header_image}
             alt={product?.title || "Product Image"}
+            className="rounded-bl-lg rounded-br-lg"
             width={375}
             height={250}
             loading="lazy"
@@ -178,6 +181,19 @@ export default function ProductDetails({ product, storeSlug }) {
           }}
         />
       </div>
+      {product?.promo_video &&
+        extractYouTubeId(product?.promo_video) !== "" && (
+          <div className="pb-6">
+            <iframe
+              title="promo-video"
+              src={`https://www.youtube.com/embed/${extractYouTubeId(product?.promo_video)}`}
+              width="100%"
+              frameBorder="0"
+              allow="accelerometer; autoPlay; clipboard-write; encrypted-media; gyroscope"
+              allowFullScreen
+            />
+          </div>
+        )}
 
       <hr className="h-[2px] bg-black/5" />
 
@@ -214,7 +230,7 @@ export default function ProductDetails({ product, storeSlug }) {
               )}
             </h3>
           </div>
-          <p className="text-xs text-para">{product?.timezone}</p>
+          <p className="text-xs text-para">{visitor_timezone}</p>
         </div>
 
         {isLoading ? <div>Loading...</div> : <div>{currentDateSlowView}</div>}

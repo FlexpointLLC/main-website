@@ -8,13 +8,10 @@ const CustomerInfo = ({ formik, fields }) => {
     <div className="flex flex-col gap-4 py-6">
       {fields.map((field, index) => (
         <div key={index} className="flex flex-col gap-1">
-          <Label
-            htmlFor={field.name}
-            className="text-lg font-medium text-heading"
-          >
+          <Label htmlFor={field.name}>
             <span>{field.name}</span>
             {field.is_required ? (
-              <span className="text-[#2547D0]">*</span>
+              <span className="text-[#2547D0]"> *</span>
             ) : null}
           </Label>
           <Input

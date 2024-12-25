@@ -26,10 +26,15 @@ export default async function ProductPage({ params }) {
   }
 
   const product = response?.data?.productDetails || {};
+  const visitor_timezone = response?.data?.visitor_timezone || "";
 
   return (
     <div className="mx-auto max-w-[375px] px-4">
-      <ProductDetails product={product} storeSlug={storeSlug} />
+      <ProductDetails
+        product={product}
+        visitor_timezone={visitor_timezone}
+        storeSlug={storeSlug}
+      />
       <footer className="mt-6 flex items-center justify-center gap-[7px]">
         <p className="pl-4 text-xs font-medium text-para">Powered by</p>
         <Image src={storeFooterLogo} alt="store footer logo" />
