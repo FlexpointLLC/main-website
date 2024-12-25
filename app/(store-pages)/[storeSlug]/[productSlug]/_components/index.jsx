@@ -79,6 +79,13 @@ export default function ProductDetails({
 
   const calender = data?.data.calendar;
 
+  const enabledDates = calender.map((date) => date.date);
+
+  const isDayDisabled = (date) => {
+    const formattedDate = moment(date).format("YYYY-MM-DD");
+    return !enabledDates.includes(formattedDate);
+  };
+
   let currentDateSlowView;
 
   switch (dateAndSlotContent) {
@@ -86,25 +93,12 @@ export default function ProductDetails({
       currentDateSlowView = (
         <Calendar
           mode="single"
-          classNames={{
-            day: "h-11 w-11 p-0 font-normal hover:cursor-not-allowed text-[#CACFD8]",
-            root: "bg-white rounded-xl",
+          onSelect={(date) => {
+            formik.setFieldValue("picked_date", date);
+            setDateAndSlotContent("SLOT");
           }}
           selected={formik.values.picked_date}
-          onDayClick={(date, modifiers) => {
-            if (modifiers.available) {
-              formik.setFieldValue("picked_date", date);
-              setDateAndSlotContent("SLOT");
-            } else {
-              alert("No slot available.");
-            }
-          }}
-          modifiers={{
-            available: calender?.map((date) => new Date(date.date)),
-          }}
-          modifiersClassNames={{
-            available: "text-gray-700 hover:cursor-pointer rounded-md",
-          }}
+          disabled={(date) => isDayDisabled(date)}
         />
       );
       break;
@@ -233,7 +227,11 @@ export default function ProductDetails({
           <p className="text-xs text-para">{visitor_timezone}</p>
         </div>
 
-        {isLoading ? <div>Loading...</div> : <div>{currentDateSlowView}</div>}
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : (
+          <div className="rounded-lg bg-white">{currentDateSlowView}</div>
+        )}
       </div>
 
       <hr className="h-[2px] bg-black/5" />
