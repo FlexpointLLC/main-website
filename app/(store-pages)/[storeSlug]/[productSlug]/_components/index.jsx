@@ -8,8 +8,7 @@ import { object, string } from "yup";
 
 import { ArrowLeft, ChevronLeft } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
-import { useGetProductCalendarQuery } from "@/redux/api/scheduleApi";
-import { extractYouTubeId } from "@/lib/utils";
+import { extractYouTubeId, rgbaDataURL } from "@/lib/utils";
 
 import CustomerInfo from "./customer-info";
 import SlotPicker from "./slot-picker";
@@ -132,9 +131,11 @@ export default function ProductDetails({
             alt={product?.title || "Product Image"}
             className="rounded-bl-lg rounded-br-lg"
             width={375}
-            height={250}
+            height={215}
             loading="lazy"
             quality={100}
+            placeholder="blur"
+            blurDataURL={rgbaDataURL(216, 228, 233)}
           />
         )}
 
