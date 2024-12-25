@@ -177,10 +177,10 @@ export default function ProductDetails({
         extractYouTubeId(product?.promo_video) !== "" && (
           <div className="pb-6">
             <iframe
+              height={215}
+              width={"100%"}
               title="promo-video"
               src={`https://www.youtube.com/embed/${extractYouTubeId(product?.promo_video)}`}
-              width="100%"
-              frameBorder="0"
               allow="accelerometer; autoPlay; clipboard-write; encrypted-media; gyroscope"
               allowFullScreen
             />
