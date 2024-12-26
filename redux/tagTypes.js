@@ -1,6 +1,6 @@
 export const tagTypes = {
+  products: "products",
   schedules: "schedules",
-  ip: "ip",
 };
 
-export const tagTypesList = [tagTypes.schedules];
+export const tagTypesList = [tagTypes.schedules, tagTypes.products];
