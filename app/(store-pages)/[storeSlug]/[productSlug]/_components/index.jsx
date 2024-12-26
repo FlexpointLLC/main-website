@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { object, string } from "yup";
 
@@ -51,7 +51,31 @@ export default function ProductDetails({
   calendarData,
 }) {
   const [appliedCoupon, setAppliedCoupon] = useState("");
+  const [ipAddress, setIpAddress] = useState("");
+
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
   const { fields, slug: productSlug } = product;
+
+  useEffect(() => {
+    const fetchIpAddress = async () => {
+      try {
+        const response = await fetch("https://api64.ipify.org?format=json");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setIpAddress(data.ip);
+      } catch (error) {
+        console.error("Failed to fetch IP address:", error);
+      }
+    };
+
+    fetchIpAddress();
+  }, []);
+
+  console.log("ipAddress", ipAddress);
+  console.log("timezone", timezone);
 
   const [dateAndSlotContent, setDateAndSlotContent] = useState("CALENDER");
 
@@ -231,7 +255,7 @@ export default function ProductDetails({
               )}
             </h3>
           </div>
-          <p className="text-xs text-para">{visitor_timezone}</p>
+          <p className="text-xs text-para">{timezone}</p>
         </div>
 
         <div className="rounded-lg bg-white">{currentDateSlowView}</div>
@@ -268,10 +292,6 @@ export default function ProductDetails({
       <Button className="mt-6 w-full" type="submit" variant={"primaryDefault"}>
         {product.bottom_button_text}
       </Button>
-
-      <div className="mt-6 text-center">
-        {Intl.DateTimeFormat().resolvedOptions().timeZone}
-      </div>
     </div>
   );
 }

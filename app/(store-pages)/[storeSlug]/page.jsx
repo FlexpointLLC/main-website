@@ -75,10 +75,6 @@ export default async function StorePage({ params }) {
         <p className="pl-4 text-xs font-medium text-para">Powered by</p>
         <Image src={storeFooterLogo} alt="Flexpoint footer logo" />
       </footer>
-
-      <div className="mt-6 text-center">
-        {Intl.DateTimeFormat().resolvedOptions().timeZone}
-      </div>
     </div>
   );
 }
