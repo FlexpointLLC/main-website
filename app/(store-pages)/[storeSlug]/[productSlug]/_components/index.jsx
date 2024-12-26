@@ -289,7 +289,12 @@ export default function ProductDetails({
         </h4>
       </div>
 
-      <Button className="mt-6 w-full" type="submit" variant={"primaryDefault"}>
+      <Button
+        className="mt-6 w-full"
+        type="submit"
+        variant={"primaryDefault"}
+        onClick={formik.handleSubmit}
+      >
         {product.bottom_button_text}
       </Button>
     </div>
