@@ -269,9 +269,9 @@ export default function ProductDetails({
         {product.bottom_button_text}
       </Button>
 
-      {/* <button onClick={formik.handleSubmit} type="submit">
-        Submit
-      </button> */}
+      <div className="mt-6 text-center">
+        {Intl.DateTimeFormat().resolvedOptions().timeZone}
+      </div>
     </div>
   );
 }
