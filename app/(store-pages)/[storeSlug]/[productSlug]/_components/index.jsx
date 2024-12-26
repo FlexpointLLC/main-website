@@ -8,11 +8,13 @@ import { object, string } from "yup";
 
 import { ArrowLeft, ChevronLeft } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
-import { extractYouTubeId, rgbaDataURL } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { extractYouTubeId, percentage, rgbaDataURL } from "@/lib/utils";
 
 import CustomerInfo from "./customer-info";
 import SlotPicker from "./slot-picker";
 import SelectedSlotCard from "./seleted-slot-card";
+import HandelCoupon from "./handel-coupon";
 
 import moment from "moment";
 
@@ -48,6 +50,7 @@ export default function ProductDetails({
   visitor_timezone,
   calendarData,
 }) {
+  const [appliedCoupon, setAppliedCoupon] = useState("");
   const { fields, slug: productSlug } = product;
 
   const [dateAndSlotContent, setDateAndSlotContent] = useState("CALENDER");
@@ -121,6 +124,12 @@ export default function ProductDetails({
       );
       break;
   }
+
+  const applidCouponDiscountPercentage =
+    parseInt(
+      product?.coupons?.find((coupon) => coupon.code === appliedCoupon)
+        ?.discount,
+    ) || 0;
 
   return (
     <div>
@@ -231,6 +240,34 @@ export default function ProductDetails({
       <hr className="h-[2px] bg-black/5" />
 
       <CustomerInfo formik={formik} fields={fields} />
+
+      <hr className="h-[2px] bg-black/5" />
+
+      <HandelCoupon
+        product={product}
+        appliedCoupon={appliedCoupon}
+        setAppliedCoupon={setAppliedCoupon}
+      />
+
+      <div className="flex items-center justify-between pt-6">
+        <p className="text-sm text-para">Total:</p>
+        <h4 className="text-xl font-semibold text-fl-border">
+          {acutalPrice === "Free"
+            ? "Free"
+            : `${product.currency} ${
+                appliedCoupon
+                  ? (
+                      acutalPrice -
+                      percentage(applidCouponDiscountPercentage, acutalPrice)
+                    ).toFixed(2)
+                  : acutalPrice
+              }`}
+        </h4>
+      </div>
+
+      <Button className="mt-6 w-full" type="submit" variant={"primaryDefault"}>
+        {product.bottom_button_text}
+      </Button>
 
       {/* <button onClick={formik.handleSubmit} type="submit">
         Submit

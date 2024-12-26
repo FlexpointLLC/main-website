@@ -50,7 +50,7 @@ export default async function ProductPage({ params }) {
         storeSlug={storeSlug}
         calendarData={calendarData}
       />
-      <footer className="mt-6 flex items-center justify-center gap-[7px]">
+      <footer className="my-6 flex items-center justify-center gap-[7px]">
         <p className="pl-4 text-xs font-medium text-para">Powered by</p>
         <Image src={storeFooterLogo} alt="store footer logo" />
       </footer>
