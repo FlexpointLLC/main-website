@@ -75,6 +75,10 @@ export default async function StorePage({ params }) {
         <p className="pl-4 text-xs font-medium text-para">Powered by</p>
         <Image src={storeFooterLogo} alt="store footer logo" />
       </footer>
+
+      <div className="text-center">
+        {Intl.DateTimeFormat().resolvedOptions().timeZone}
+      </div>
     </div>
   );
 }
