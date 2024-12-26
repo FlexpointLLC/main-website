@@ -73,8 +73,12 @@ export default async function StorePage({ params }) {
 
       <footer className="mt-6 flex items-center justify-center gap-[7px]">
         <p className="pl-4 text-xs font-medium text-para">Powered by</p>
-        <Image src={storeFooterLogo} alt="store footer logo" />
+        <Image src={storeFooterLogo} alt="Flexpoint footer logo" />
       </footer>
+
+      <div className="mt-6 text-center">
+        {Intl.DateTimeFormat().resolvedOptions().timeZone}
+      </div>
     </div>
   );
 }
