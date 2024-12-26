@@ -46,7 +46,7 @@ export default function HandelCoupon({
               />
               <button
                 type="button"
-                className={`absolute right-3 top-1/2 -translate-y-1/2 transform font-semibold text-primary ${
+                className={`absolute right-3 top-1/2 -translate-y-1/2 transform font-semibold ${
                   !couponInput || appliedCoupon
                     ? "cursor-not-allowed text-gray-400"
                     : "cursor-pointer text-primary"
