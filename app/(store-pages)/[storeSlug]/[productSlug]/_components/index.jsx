@@ -26,7 +26,8 @@ const generateInitialValues = (formFields) => {
   const initialValues = {};
 
   formFields.forEach((field) => {
-    initialValues[field.name] = "";
+    const lowerCaseName = field.name.toLowerCase();
+    initialValues[lowerCaseName] = "";
   });
 
   return initialValues;
@@ -37,7 +38,10 @@ const generateValidationSchema = (formFields) => {
 
   formFields.forEach((field) => {
     if (field.is_required) {
-      validators[field.name] = string().required(`${field.name} is required`);
+      const lowerCaseName = field.name.toLowerCase();
+      validators[lowerCaseName] = string().required(
+        `${field.name} is required`,
+      );
     }
   });
 
@@ -73,7 +77,39 @@ export default function ProductDetails({ productSlug, storeSlug, fields }) {
     },
     validationSchema: generateValidationSchema(fields),
     onSubmit: (values) => {
-      console.log(values);
+      const product = productData?.data?.productDetails;
+      const staticFields = fields
+        .slice(0, 3)
+        .map((field) => field.name.toLowerCase());
+
+      const dynamicFields = fields.slice(3).map((field) => field.name);
+
+      const staticFieldsValues = staticFields.map((field) => ({
+        name: field,
+        value: values[field],
+      }));
+
+      console.log(staticFieldsValues);
+
+      const dynamicFieldsValues = dynamicFields.map((field) => ({
+        name: field,
+        value: values[field.toLowerCase()],
+      }));
+
+      const payload = {
+        [staticFields[0]]: values[staticFields[0]],
+        [staticFields[1]]: values[staticFields[1]],
+        [staticFields[2]]: values[staticFields[2]],
+        date: moment(values.picked_date).format("YYYY-MM-DD"),
+        start_at: values.picked_slot,
+        end_at: values.picked_slot_end,
+        type: product?.platform,
+        product_id: product?.id,
+        applied_coupon: appliedCoupon,
+        dynamic_fields: dynamicFieldsValues,
+      };
+
+      console.log(payload);
     },
   });
 
