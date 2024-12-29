@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useFormik } from "formik";
 import { object, string } from "yup";
 import storeFooterLogo from "@/public/assets/img/store-footer-logo.svg";
 
 import { ArrowLeft, ChevronLeft } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
-import { Button } from "@/components/ui/button";
+
 import { extractYouTubeId, percentage, rgbaDataURL } from "@/lib/utils";
 
 import CustomerInfo from "./customer-info";
@@ -21,6 +21,21 @@ import moment from "moment";
 import { useGetProductDetailsQuery } from "@/redux/api/productApi";
 import Loader from "@/components/global/loader/loader";
 import { useGetProductCalendarQuery } from "@/redux/api/scheduleApi";
+import { useCreatePaymentIntentQuery } from "@/redux/api/paymentApi";
+import { Button } from "@/components/ui/button";
+import {
+  Elements,
+  useStripe,
+  useElements,
+  CardElement,
+} from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+import { toast } from "sonner";
+
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+);
 
 const generateInitialValues = (formFields) => {
   const initialValues = {};
@@ -52,9 +67,12 @@ const generateValidationSchema = (formFields) => {
   return validationSchema;
 };
 
-export default function ProductDetails({ productSlug, storeSlug, fields }) {
+function ProductDetailsContent({ productSlug, storeSlug, fields }) {
+  const stripe = useStripe();
+  const elements = useElements();
   const [dateAndSlotContent, setDateAndSlotContent] = useState("CALENDER");
   const [appliedCoupon, setAppliedCoupon] = useState("");
+  const [error, setError] = useState(null);
 
   const { data: productData, isLoading: isProductDataLoading } =
     useGetProductDetailsQuery({
@@ -74,42 +92,90 @@ export default function ProductDetails({ productSlug, storeSlug, fields }) {
       picked_slot_end: "",
       picked_date: new Date(),
       picked_meridiem: "",
+      card_token: "",
     },
     validationSchema: generateValidationSchema(fields),
-    onSubmit: (values) => {
-      const product = productData?.data?.productDetails;
-      const staticFields = fields
-        .slice(0, 3)
-        .map((field) => field.name.toLowerCase());
+    onSubmit: async (values, { setSubmitting }) => {
+      if (values.picked_slot === "") {
+        toast.error("Please select a date and slot.");
+        return;
+      }
 
-      const dynamicFields = fields.slice(3).map((field) => field.name);
+      setSubmitting(true);
+      setError(null);
 
-      const staticFieldsValues = staticFields.map((field) => ({
-        name: field,
-        value: values[field],
-      }));
+      try {
+        const product = productData?.data?.productDetails;
 
-      console.log(staticFieldsValues);
+        let tokenId = null;
 
-      const dynamicFieldsValues = dynamicFields.map((field) => ({
-        name: field,
-        value: values[field.toLowerCase()],
-      }));
+        if (product?.price !== "0.00") {
+          if (!stripe || !elements) {
+            setError("Stripe.js has not loaded yet.");
+            setSubmitting(false);
+            return;
+          }
 
-      const payload = {
-        [staticFields[0]]: values[staticFields[0]],
-        [staticFields[1]]: values[staticFields[1]],
-        [staticFields[2]]: values[staticFields[2]],
-        date: moment(values.picked_date).format("YYYY-MM-DD"),
-        start_at: values.picked_slot,
-        end_at: values.picked_slot_end,
-        type: product?.platform,
-        product_id: product?.id,
-        applied_coupon: appliedCoupon,
-        dynamic_fields: dynamicFieldsValues,
-      };
+          const cardElement = elements.getElement(CardElement);
+          if (!cardElement) {
+            setError("Card Element not found.");
+            setSubmitting(false);
+            return;
+          }
 
-      console.log(payload);
+          // Create a token from Card Element
+          const { token, error: tokenError } =
+            await stripe.createToken(cardElement);
+
+          if (tokenError) {
+            setError(tokenError.message);
+            setSubmitting(false);
+            return;
+          }
+
+          if (!token || !token.id) {
+            setError("Failed to generate card token.");
+            setSubmitting(false);
+            return;
+          }
+
+          tokenId = token.id;
+        }
+
+        // Prepare the payload
+
+        const staticFields = fields
+          .slice(0, 3)
+          .map((field) => field.name.toLowerCase());
+
+        const dynamicFields = fields.slice(3).map((field) => field.name);
+
+        const dynamicFieldsValues = dynamicFields.map((field) => ({
+          name: field,
+          value: values[field.toLowerCase()],
+        }));
+
+        const payload = {
+          [staticFields[0]]: values[staticFields[0]],
+          [staticFields[1]]: values[staticFields[1]],
+          [staticFields[2]]: values[staticFields[2]],
+          date: moment(values.picked_date).format("YYYY-MM-DD"),
+          start_at: values.picked_slot,
+          end_at: values.picked_slot_end,
+          type: product?.platform,
+          product_id: product?.id,
+          applied_coupon: appliedCoupon,
+          dynamic_fields: dynamicFieldsValues,
+          card_token: product?.price !== "0.00" ? tokenId : "",
+        };
+
+        console.log(payload);
+        // Add API call or further processing here
+      } catch (err) {
+        console.error("Unexpected error:", err);
+      } finally {
+        setSubmitting(false);
+      }
     },
   });
 
@@ -186,7 +252,7 @@ export default function ProductDetails({ productSlug, storeSlug, fields }) {
 
   return (
     <>
-      <div>
+      <form onSubmit={formik.handleSubmit}>
         <div className="relative">
           {product?.header_image && (
             <Image
@@ -319,19 +385,79 @@ export default function ProductDetails({ productSlug, storeSlug, fields }) {
           </h4>
         </div>
 
+        {acutalPrice !== "Free" && (
+          <div className="mt-6">
+            <CardElement
+              onChange={(e) => {
+                setError(e.error?.message);
+              }}
+              options={{
+                style: {
+                  base: {
+                    fontSize: "16px",
+                    color: "#424770",
+                    "::placeholder": {
+                      color: "#aab7c4",
+                    },
+                  },
+                  invalid: {
+                    color: "#9e2146",
+                  },
+                },
+                hidePostalCode: true,
+              }}
+              className="mb-4 rounded-md border bg-white p-3"
+            />
+            {error && <div style={{ color: "red" }}>{error}</div>}
+          </div>
+        )}
+
         <Button
           className="mt-6 w-full"
           type="submit"
           variant={"primaryDefault"}
-          onClick={formik.handleSubmit}
+          disabled={!stripe || !elements || formik.isSubmitting}
         >
-          {product.bottom_button_text}
+          {formik.isSubmitting ? "Processing..." : product.bottom_button_text}
         </Button>
-      </div>
+      </form>
       <footer className="my-6 flex items-center justify-center gap-[7px]">
         <p className="pl-4 text-xs font-medium text-para">Powered by</p>
         <Image src={storeFooterLogo} alt="store footer logo" />
       </footer>
     </>
+  );
+}
+
+export default function ProductDetails({ productSlug, storeSlug, fields }) {
+  const {
+    data: paymentIntentData,
+    isFetching: isPaymentIntentFetching,
+    isLoading: isPaymentIntentLoading,
+    isError: isPaymentIntentError,
+  } = useCreatePaymentIntentQuery();
+
+  const isLoading =
+    isPaymentIntentFetching || isPaymentIntentLoading || isPaymentIntentError;
+
+  if (isLoading) {
+    <Loader />;
+  }
+
+  const secret = paymentIntentData?.data?.client_secret;
+
+  return (
+    <Elements
+      stripe={stripePromise}
+      options={{
+        clientSecret: secret,
+      }}
+    >
+      <ProductDetailsContent
+        productSlug={productSlug}
+        storeSlug={storeSlug}
+        fields={fields}
+      />
+    </Elements>
   );
 }

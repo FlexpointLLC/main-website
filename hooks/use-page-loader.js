@@ -1,4 +1,3 @@
-// hooks/usePageLoader.ts
 export default function usePageLoader() {
   const bodyClass = "page-loading";
 
