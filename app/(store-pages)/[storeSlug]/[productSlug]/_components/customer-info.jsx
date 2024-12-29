@@ -8,7 +8,7 @@ const CustomerInfo = ({ formik, fields }) => {
     <div className="flex flex-col gap-4 py-6">
       {fields.map((field, index) => (
         <div key={index} className="flex flex-col gap-1">
-          <Label htmlFor={field.name}>
+          <Label htmlFor={field.name.toLowerCase()}>
             <span>{field.name}</span>
             {field.is_required ? (
               <span className="text-[#2547D0]"> *</span>
@@ -16,16 +16,17 @@ const CustomerInfo = ({ formik, fields }) => {
           </Label>
           <Input
             type={field.type}
-            id={field.name}
-            name={field.name}
-            value={values[field.name]}
+            id={field.name.toLowerCase()}
+            name={field.name.toLowerCase()}
+            value={values[field.name.toLowerCase()]}
             onChange={handleChange}
             className="rounded-lg bg-white"
           />
 
-          {touched[field.name] && errors[field.name] ? (
+          {touched[field.name.toLowerCase()] &&
+          errors[field.name.toLowerCase()] ? (
             <p className="text-xs font-medium text-red-400">
-              {errors[field.name]}
+              {errors[field.name.toLowerCase()]}
             </p>
           ) : null}
         </div>

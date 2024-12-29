@@ -18,17 +18,17 @@ const SlotPicker = ({
 
   if (isSlotsLoading) {
     return (
-      <div class="max-h-[280px] animate-pulse overflow-y-auto rounded-lg border border-[#F2F5F8] bg-white p-4 scrollbar-none">
-        <div class="h-9 w-full rounded bg-gray-200"></div>
-        <div class="mt-2 grid grid-cols-3 items-center gap-2">
-          <div class="h-8 w-full rounded bg-gray-200"></div>
-          <div class="h-8 w-full rounded bg-gray-200"></div>
-          <div class="h-8 w-full rounded bg-gray-200"></div>
+      <div className="max-h-[280px] animate-pulse overflow-y-auto rounded-lg border border-[#F2F5F8] bg-white p-4 scrollbar-none">
+        <div className="h-9 w-full rounded bg-gray-200"></div>
+        <div className="mt-2 grid grid-cols-3 items-center gap-2">
+          <div className="h-8 w-full rounded bg-gray-200"></div>
+          <div className="h-8 w-full rounded bg-gray-200"></div>
+          <div className="h-8 w-full rounded bg-gray-200"></div>
         </div>
-        <div class="mt-2 grid grid-cols-3 items-center gap-2">
-          <div class="h-8 w-full rounded bg-gray-200"></div>
-          <div class="h-8 w-full rounded bg-gray-200"></div>
-          <div class="h-8 w-full rounded bg-gray-200"></div>
+        <div className="mt-2 grid grid-cols-3 items-center gap-2">
+          <div className="h-8 w-full rounded bg-gray-200"></div>
+          <div className="h-8 w-full rounded bg-gray-200"></div>
+          <div className="h-8 w-full rounded bg-gray-200"></div>
         </div>
       </div>
     );
