@@ -1,6 +1,8 @@
 const StorePagesLayout = ({ children }) => {
   return (
-    <main className={`bg-store-texture min-h-screen bg-cover`}>{children}</main>
+    <main className={`h-screen overflow-y-auto bg-store-texture bg-cover`}>
+      {children}
+    </main>
   );
 };
 

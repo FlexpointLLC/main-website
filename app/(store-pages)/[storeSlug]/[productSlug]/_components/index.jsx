@@ -32,6 +32,7 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 
 import { toast } from "sonner";
+import { useCreateAppointmentMutation } from "@/redux/api/appointmentApi";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
@@ -84,6 +85,8 @@ function ProductDetailsContent({ productSlug, storeSlug, fields }) {
     useGetProductCalendarQuery({
       productSlug,
     });
+
+  const [createAppointment] = useCreateAppointmentMutation();
 
   const formik = useFormik({
     initialValues: {
@@ -171,6 +174,8 @@ function ProductDetailsContent({ productSlug, storeSlug, fields }) {
 
         console.log(payload);
         // Add API call or further processing here
+
+        await createAppointment(payload).unwrap();
       } catch (err) {
         console.error("Unexpected error:", err);
       } finally {
