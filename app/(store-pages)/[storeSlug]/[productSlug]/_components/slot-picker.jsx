@@ -6,7 +6,7 @@ import moment from "moment";
 const SlotPicker = ({
   picked_slot,
   onSlotChange,
-  setDateAndSlotContent,
+  setViewState,
   selectedDate,
   productSlug,
 }) => {
@@ -71,7 +71,7 @@ const SlotPicker = ({
                   onSlotChange("picked_slot_end", slot.end);
                   onSlotChange("picked_slot_end", slot.end);
                   onSlotChange("picked_meridiem", "AM");
-                  setDateAndSlotContent("RESULT");
+                  setViewState("RESULT");
                 }}
               >
                 {slot.start}
@@ -95,7 +95,7 @@ const SlotPicker = ({
                   onSlotChange("picked_slot_end", slot.end);
                   onSlotChange("picked_slot_end", slot.end);
                   onSlotChange("picked_meridiem", "PM");
-                  setDateAndSlotContent("RESULT");
+                  setViewState("RESULT");
                 }}
               >
                 {slot.start}
