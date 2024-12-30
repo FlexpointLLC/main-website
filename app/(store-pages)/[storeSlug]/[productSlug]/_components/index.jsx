@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useState } from "react";
 import { useFormik } from "formik";
@@ -56,6 +57,7 @@ const createValidationSchema = (fields) =>
   );
 
 const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
+  const router = useRouter();
   const stripe = useStripe();
   const elements = useElements();
   const [viewState, setViewState] = useState("CALENDAR");
@@ -123,16 +125,23 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
           date: moment(values.picked_date).format("YYYY-MM-DD"),
           start_at: values.picked_slot,
           end_at: values.picked_slot_end,
+          meridiem: values.picked_meridiem,
           type: product?.platform,
           product_id: product?.id,
           applied_coupon: appliedCoupon,
-          dynamic_fields: dynamicFields,
+          dynamic_fields: dynamicFields.length ? dynamicFields : null,
           card_token: product?.price !== "0.00" ? tokenId : "",
         };
 
-        console.log("Payload:", payload);
+        const response = await createAppointment(payload).unwrap();
 
-        // await createAppointment(payload).unwrap();
+        const charge_id = response?.appointment?.charge_id;
+
+        if (charge_id) {
+          router.push(`/${storeSlug}/success?charge_id=${charge_id}`);
+        } else {
+          router.push(`/${storeSlug}/success`);
+        }
       } catch (err) {
         console.error("Unexpected error:", err);
       } finally {
