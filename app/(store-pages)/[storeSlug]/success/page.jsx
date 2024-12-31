@@ -30,6 +30,20 @@ export default function ConfirmationModal({ params }) {
             </p>
           </div>
           <hr />
+          <div className="mx-4 my-6 space-y-1 rounded-[8px] bg-[#F5F7FA] px-4 py-3">
+            <div className="flex items-center justify-between">
+              <h2 className="text-sm font-medium text-[#0E121B]">
+                Book a 1:1 Call with Me
+              </h2>
+              <h2 className="text-sm font-medium text-[#0E121B]">
+                September 3, 2024
+              </h2>
+            </div>
+            <div className="flex items-center justify-between">
+              <p className="text-xs text-[#525866]">Purchased</p>
+              <p className="text-xs text-[#525866]">09:15 AM</p>
+            </div>
+          </div>
           <hr />
           <div className="px-5 py-4">
             <Button

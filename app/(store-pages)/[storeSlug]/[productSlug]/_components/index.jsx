@@ -159,12 +159,13 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
   const isDateDisabled = (date) =>
     !enabledDates.includes(moment(date).format("YYYY-MM-DD"));
 
-  const price = product?.discount_price || product?.price || "0.00";
-  const isFree = parseFloat(price) === 0;
+  const price =
+    parseFloat(product?.discount_price) || parseFloat(product?.price);
+  const isFree = price === "0.00";
   const hasDiscount =
     product?.discount_price && product?.discount_price !== "0.00";
 
-  const formattedPrice = parseFloat(price).toFixed(2);
+  const formattedPrice = price.toFixed(2);
   const totalPrice = appliedCoupon
     ? (
         formattedPrice -
