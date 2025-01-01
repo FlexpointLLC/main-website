@@ -144,6 +144,7 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
         }
       } catch (err) {
         console.error("Unexpected error:", err);
+        toast.error("Something went wrong. Please try again.");
       } finally {
         setSubmitting(false);
       }
