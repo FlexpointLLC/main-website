@@ -34,7 +34,7 @@ export default function ProductList({ store }) {
                 <Image
                   src={product?.thumbnail || coachingProduct}
                   alt={product?.title}
-                  className="size-12 object-cover p-1"
+                  className="size-12 rounded-lg object-cover p-1"
                   height={48}
                   width={48}
                   loading="lazy"
@@ -50,13 +50,13 @@ export default function ProductList({ store }) {
                     >
                       {acutalPrice === "Free"
                         ? null
-                        : store?.user?.currency_symbol}{" "}
+                        : store?.user?.currency_symbol}
                       {acutalPrice}
                     </p>
                     {hasDiscount && (
                       <div className="flex items-center justify-between gap-2">
                         <p className="text-sm text-[#99A0AE] line-through">
-                          {store?.user?.currency_symbol}{" "}
+                          {store?.user?.currency_symbol}
                           {parseFloat(product?.price).toFixed(2)}
                         </p>
                       </div>

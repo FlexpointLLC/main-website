@@ -1,5 +1,4 @@
 import ProductDetails from "./_components";
-import { redirect } from "next/navigation";
 
 const base_url = process.env.NEXT_PUBLIC_API_URL;
 
