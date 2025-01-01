@@ -28,9 +28,9 @@ const navOptions = [
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0" role="banner">
+    <header className="sticky top-0 z-[1000]" role="banner">
       <div className="relative max-md:p-4 md:mx-auto md:w-full md:max-w-5xl">
-        <div className="max-md:border-[rgba(255, 255, 255, 0.30)] grid w-full grid-cols-12 items-center justify-between rounded-bl-[20px] rounded-br-[20px] px-4 py-[13px] max-md:rounded-bl-[12px] max-md:rounded-br-[12px] max-md:rounded-tl-[12px] max-md:rounded-tr-[12px] max-md:border max-md:bg-[#D6EDFE] max-md:shadow max-md:backdrop-blur-[20px] md:bg-white">
+        <div className="max-md:border-[rgba(255, 255, 255, 0.30)] grid w-full grid-cols-12 items-center justify-between rounded-bl-[20px] rounded-br-[20px] px-4 py-3 max-md:rounded-bl-[12px] max-md:rounded-br-[12px] max-md:rounded-tl-[12px] max-md:rounded-tr-[12px] max-md:border max-md:bg-[#D6EDFE] max-md:shadow max-md:backdrop-blur-[20px] md:bg-white">
           <div className="col-span-2">
             <Link href="/" aria-label="Homepage" className="max-md:hidden">
               <Image
@@ -72,13 +72,15 @@ export default function Navbar() {
 
           <div className="col-span-2 flex justify-end">
             <MobileMenu />
-            <Button
-              variant="secondary"
-              aria-label="Login button"
-              className={"max-md:hidden"}
-            >
-              Login
-            </Button>
+            <Link href="https://dev-admin.flexpoint.store/lookup">
+              <Button
+                variant="secondary"
+                aria-label="Login button"
+                className={"px-6 font-normal text-para max-md:hidden"}
+              >
+                Login
+              </Button>
+            </Link>
           </div>
         </div>
 
