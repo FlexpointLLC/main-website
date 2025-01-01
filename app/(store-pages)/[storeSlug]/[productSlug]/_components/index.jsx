@@ -161,7 +161,8 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
 
   const price =
     parseFloat(product?.discount_price) || parseFloat(product?.price);
-  const isFree = price === "0.00";
+
+  const isFree = price === 0;
   const hasDiscount =
     product?.discount_price && product?.discount_price !== "0.00";
 
