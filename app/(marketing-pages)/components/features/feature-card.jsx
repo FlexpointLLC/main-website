@@ -6,24 +6,27 @@ const FeatureCard = ({ feature }) => {
   return (
     <article
       style={{
-        backgroundColor: feature.backgroundColor,
+        // backgroundColor: feature.backgroundColor,
         border: `1px solid ${feature.borderColor}`,
       }}
       className={cn(
-        "md: flex w-full flex-col-reverse gap-3 rounded-2xl px-10 py-8 md:gap-8 md:px-10 md:py-20",
+        "max-h-[460px] w-full flex-col-reverse gap-3 rounded-2xl bg-gradient-to-b px-10 md:flex md:gap-20 md:px-16",
         feature.imgPosition === "RIGHT" ? "md:flex-row" : "md:flex-row-reverse",
+        feature.backgroundColor,
       )}
     >
-      <div className="w w-full md:w-3/5">
-        <span className="mb-1 text-[12px] font-medium uppercase text-[#5C5C5C]">
+      <div className="w w-full py-8 md:w-3/5 md:py-20">
+        <span className="mb-1 text-[11.8px] font-medium uppercase leading-4 tracking-[0.48px] text-[#5C5C5C]">
           {feature.subTitle}
         </span>
-        <h4 className="mb-4 text-2xl font-medium text-heading">
+        <h4 className="mb-4 text-2xl font-medium tracking-[-0.72px] text-heading">
           {feature.title}
         </h4>
-        <p className="mb- mb-8 text-[#5C5C5C]">{feature.shortDes}</p>
+        <p className="mb-8 leading-6 tracking-[-0.18px] text-[#5C5C5C]">
+          {feature.shortDes}
+        </p>
 
-        <ul className="space-y-5">
+        <ul className="space-y-5 tracking-[-0.08px]">
           {feature.list.map((item, index) => (
             <li
               key={index}
@@ -35,7 +38,7 @@ const FeatureCard = ({ feature }) => {
           ))}
         </ul>
       </div>
-      <figure className="flex w-full items-center justify-center md:w-2/5">
+      <figure className="flex w-full items-center justify-center md:w-1/2">
         <Image src={feature.image} alt={`${feature.title} image`} />
       </figure>
     </article>

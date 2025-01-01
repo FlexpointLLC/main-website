@@ -14,7 +14,7 @@ const features = [
     title: "Book Paid Calls & Host Events",
     shortDes:
       "Offer paid one-on-one coaching or group events and start earning immediately.",
-    backgroundColor: "#ECF8F8",
+    backgroundColor: "from-[#ECF8F8] to-[#F9FDFD]",
     borderColor: "#D5F1F1",
     iconColor: "#37C390",
     list: [
@@ -32,7 +32,8 @@ const features = [
     title: "Monetize Digital Content",
     shortDes:
       "Sell your guides, templates, eBooks, or exclusive content effortlessly.",
-    backgroundColor: "#DFEAFF",
+    backgroundColor: "from-[#DFEAFF] to-[#F8FAFF]",
+    borderColor: "#E5EBFF",
     iconColor: "#375DFB",
     list: [
       "Upload and sell digital products in minutes",
@@ -48,7 +49,8 @@ const features = [
     subTitle: "Community Builders",
     title: "Engage & Build Community",
     shortDes: "Create and monetize free or paid communities with ease.",
-    backgroundColor: "#F3EEFC",
+    backgroundColor: "from-[#F3EEFC] to-white/0",
+    borderColor: "#EDE5FA",
     iconColor: "#6E3FF3",
     list: [
       "Host exclusive communities for your audience",
@@ -65,7 +67,8 @@ const features = [
     title: "Offer Exclusive Services",
     shortDes:
       "Sell your expertise directly to your audience and get paid instantly.",
-    backgroundColor: "#FCF5E9",
+    backgroundColor: "from-[#FCF5E9] to-[#FEFBF6]",
+    borderColor: "#FDF6EA",
     iconColor: "#F1A62D",
     list: [
       "Create personalized service offerings",
@@ -82,7 +85,8 @@ const features = [
     title: "Promote & Earn with Affiliate Links",
     shortDes:
       "Share affiliate products or services and generate income passively.",
-    backgroundColor: "#F2F2F2",
+    backgroundColor: "from-[#F2F2F2] to-[#FAFAFA]",
+    borderColor: "#EDEDED",
     iconColor: "#383838",
     list: [
       "Add affiliate links easily to your pages",
@@ -98,7 +102,7 @@ const features = [
 const Features = () => {
   return (
     <div className="bg-white">
-      <section className="mx-auto max-w-5xl px-4 pb-24 pt-16 md:pt-32">
+      <section className="mx-auto max-w-5xl px-4 pb-24 pt-16 md:pt-32 xl:px-0">
         <SectionHeading
           headingLongText="Not just another link·in·bio🚀"
           headingShortText="What you will get?"
