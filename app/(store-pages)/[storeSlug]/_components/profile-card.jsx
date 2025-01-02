@@ -18,7 +18,7 @@ export default function ProfileCard({ store }) {
           loading="lazy"
         />
 
-        <div className="space-y-1">
+        <div>
           <h1 className="w-full break-all text-2xl font-medium text-[#111928]">
             {store?.user?.name}
           </h1>
@@ -29,7 +29,7 @@ export default function ProfileCard({ store }) {
           )}
 
           {store?.user?.details?.social_links && (
-            <div className="flex items-center gap-2 leading-none">
+            <div className="mt-1 flex items-center gap-2 leading-none">
               {Object.keys(store?.user?.details?.social_links).length !== 0 &&
                 store?.user?.details?.social_links?.tiktok && (
                   <Link
