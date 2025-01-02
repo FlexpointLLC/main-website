@@ -3,7 +3,7 @@ import Navbar from "@/components/global/navbar/navbar";
 
 const MarketingPagesLayout = ({ children }) => {
   return (
-    <main className="min-h-screen bg-gradient-primary-from-top">
+    <main className="min-h-screen bg-white">
       <Navbar />
       {children}
       <Footer />

@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  distDir: '_next',
+  distDir: "_next",
   images: {
     domains: ["dev-api.flexpoint.store"],
   },
