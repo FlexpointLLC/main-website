@@ -249,11 +249,12 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
           <p className="text-xs text-para">Price</p>
           <div className="flex items-center gap-[6px]">
             <h3 className="text-2xl font-semibold text-fl-border">
-              {isFree ? "Free" : `${product?.currency} ${totalPrice}`}
+              {isFree ? "Free" : `${product?.currency_symbol}${totalPrice}`}
             </h3>
             {hasDiscount && (
               <p className="text-xs text-para line-through">
-                {product.currency} {parseFloat(product?.price).toFixed(2)}
+                {product.currency_symbol}
+                {parseFloat(product?.price).toFixed(2)}
               </p>
             )}
           </div>
@@ -323,7 +324,7 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
         <div className="flex items-center justify-between pt-6">
           <p className="text-sm text-para">Total:</p>
           <h4 className="text-xl font-semibold text-fl-border">
-            {isFree ? "Free" : `${product.currency} ${totalPrice}`}
+            {isFree ? "Free" : `${product.currency_symbol}${totalPrice}`}
           </h4>
         </div>
 
