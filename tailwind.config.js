@@ -1,3 +1,5 @@
+import { default as TailwindScrollbar } from "tailwind-scrollbar";
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
@@ -64,6 +66,7 @@ module.exports = {
           "linear-gradient(0deg, #CAE7FF 0.18%, #E1F2FE 35.54%, #FFFFFF 100.03%)",
         "gradient-secondary-from-bottom":
           "linear-gradient(0deg, #CAFFE4 -10.26%, #FFF 73.88%)",
+        "store-texture": "url('/assets/img/store-bg.svg')",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -72,5 +75,8 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    TailwindScrollbar({ nocompatible: true }),
+  ],
 };

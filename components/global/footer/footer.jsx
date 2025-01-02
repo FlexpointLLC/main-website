@@ -5,8 +5,8 @@ import footerBg from "@/public/assets/img/footer-bg.svg";
 
 const footerLinks = [
   { label: "Blogs", href: "/blogs" },
-  { label: "Terms of service", href: "/terms" },
-  { label: "Privacy & policy", href: "/privacy-policy" },
+  { label: "Terms of Service", href: "/terms" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
 ];
 
 const Footer = () => {
