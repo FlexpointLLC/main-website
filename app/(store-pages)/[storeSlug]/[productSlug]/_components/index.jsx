@@ -135,10 +135,10 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
 
         const response = await createAppointment(payload).unwrap();
 
-        const charge_id = response?.appointment?.charge_id;
+        const orderId = response?.appointment?.orderId;
 
-        if (charge_id) {
-          router.push(`/${storeSlug}/success?charge_id=${charge_id}`);
+        if (orderId) {
+          router.push(`/${storeSlug}/success?order_id=${orderId}`);
         } else {
           router.push(`/${storeSlug}/success`);
         }

@@ -11,7 +11,16 @@ export const appointmentApi = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.appointments],
     }),
+    successAppointment: build.query({
+      query: ({ storeSlug, order_id }) => ({
+        url: `/${storeSlug}/success`,
+        method: "GET",
+        params: { order: order_id },
+      }),
+      providesTags: [tagTypes.appointments],
+    }),
   }),
 });
 
-export const { useCreateAppointmentMutation } = appointmentApi;
+export const { useCreateAppointmentMutation, useSuccessAppointmentQuery } =
+  appointmentApi;

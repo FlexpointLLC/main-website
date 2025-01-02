@@ -6,11 +6,30 @@ import { Button } from "@/components/ui/button";
 
 import congratulationSvg from "@/public/assets/success/congratulations.svg";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useSuccessAppointmentQuery } from "@/redux/api/appointmentApi";
+import Loader from "@/components/global/loader/loader";
+import moment from "moment";
 
 export default function ConfirmationModal({ params }) {
-  const storeSlug = params.storeSlug;
   const router = useRouter();
+  const storeSlug = params.storeSlug;
+  const order_id = useSearchParams().get("order_id");
+
+  const { data, isLoading } = useSuccessAppointmentQuery(
+    { storeSlug, order_id },
+    {
+      skip: !order_id,
+    },
+  );
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  const appointment = data?.data;
+  const date = new Date(appointment?.date);
+
   return (
     <div className="relative h-screen">
       {" "}
@@ -33,15 +52,15 @@ export default function ConfirmationModal({ params }) {
           <div className="mx-4 my-6 space-y-1 rounded-[8px] bg-[#F5F7FA] px-4 py-3">
             <div className="flex items-center justify-between">
               <h2 className="text-sm font-medium text-[#0E121B]">
-                Book a 1:1 Call with Me
+                {appointment?.title}
               </h2>
               <h2 className="text-sm font-medium text-[#0E121B]">
-                September 3, 2024
+                {moment(date).format("MMM DD, YYYY")}
               </h2>
             </div>
             <div className="flex items-center justify-between">
               <p className="text-xs text-[#525866]">Purchased</p>
-              <p className="text-xs text-[#525866]">09:15 AM</p>
+              <p className="text-xs text-[#525866]">{appointment?.time}</p>
             </div>
           </div>
           <hr />
