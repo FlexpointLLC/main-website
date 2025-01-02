@@ -1,4 +1,10 @@
-// test
+import CTA from "./components/cta/cta";
+import Features from "./components/features/features";
+import FlexpointDescription from "./components/flexpoint-description/flexpoint-description";
+import HowItWorks from "./components/how-it-works/how-it-works";
+import Hero from "./components/hero/hero";
+import PricingPlans from "./components/pricing-plans/pricing-plans";
+
 export const metadata = {
   title: "Flexpoint - Home",
   description:
@@ -7,8 +13,13 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <main className="flex min-h-[calc(100vh-210px)] flex-col items-center justify-center text-4xl font-semibold text-heading md:text-5xl lg:text-6xl">
-      <h1>Coming Very Soon</h1>
-    </main>
+    <div className="min-h-[calc(100vh-210px)]">
+      <Hero />
+      <FlexpointDescription />
+      <Features />
+      <PricingPlans />
+      <HowItWorks />
+      <CTA />
+    </div>
   );
 }
