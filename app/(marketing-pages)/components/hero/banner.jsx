@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Banner = () => {
   return (
-    <div className="relative z-10 flex w-full flex-col items-center justify-center gap-7 px-4 pb-24 text-center md:mx-auto md:max-w-xl md:pb-36">
+    <div className="relative z-10 flex w-full flex-col items-center justify-center gap-7 px-4 pb-24 text-center md:mx-auto md:max-w-xl md:pb-44">
       <h1 className="text-5xl font-semibold text-heading md:text-[64px]">
         The All-in-one Creator Platform.
       </h1>
