@@ -72,7 +72,7 @@ export default function Navbar() {
 
           <div className="col-span-2 flex justify-end">
             <MobileMenu />
-            <Link href="https://dev-admin.flexpoint.store/lookup">
+            <Link href={process.env.NEXT_PUBLIC_LOGIN_URL}>
               <Button
                 variant="secondary"
                 aria-label="Login button"
