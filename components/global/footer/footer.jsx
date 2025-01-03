@@ -11,13 +11,13 @@ const footerLinks = [
 
 const Footer = () => {
   return (
-    <footer className="relative bg-gradient-secondary-from-bottom py-12 text-para">
-      <div className="mx-auto flex max-w-5xl flex-col items-center gap-8 px-4 md:flex-row md:justify-between md:gap-0 lg:px-0">
+    <footer className="relative mt-20 bg-gradient-secondary-from-bottom py-12 text-para">
+      <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center gap-8 px-4 md:flex-row md:justify-between md:gap-0 lg:px-0">
         <figure className="col-span-2">
           <Image
             src="/assets/img/flexpoint-logo.svg"
-            width={250}
-            height={50}
+            width={185.55}
+            height={45.9}
             alt="Logo of Flexpoint"
             className="h-12 w-32"
           />
@@ -26,7 +26,7 @@ const Footer = () => {
           {footerLinks.map((link) => (
             <li key={link.href}>
               <Link
-                className="underline-offset-2 hover:underline"
+                className="leading-6 tracking-[-0.18px] underline-offset-2 hover:underline"
                 href={link.href}
               >
                 {link.label}
@@ -35,7 +35,9 @@ const Footer = () => {
           ))}
         </ul>
 
-        <p className="col-span-2">Copyright © {new Date().getFullYear()}</p>
+        <p className="col-span-2 leading-6 tracking-[-0.18px]">
+          Copyright © {new Date().getFullYear()}
+        </p>
       </div>
       <Image
         src={footerBg}

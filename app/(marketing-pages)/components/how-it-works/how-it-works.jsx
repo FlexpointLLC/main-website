@@ -36,18 +36,19 @@ const workingStrategies = [
 const HowItWorks = () => {
   return (
     <div className="bg-white">
-      <section className="mx-auto max-w-4xl px-4 pb-24 pt-16 md:pt-32">
+      <section className="mx-auto max-w-4xl px-4 pb-28 pt-16 md:pt-32">
         <SectionHeading
           headingLongText="How Flexpoint Works"
           headingShortText="Effortless, Easy Steps"
           headingPara="Flexpoint has everything you need to manage and grow your business—all in one place."
+          extraClassNames={"md:mb-10"}
         />
 
         <div className="flex flex-col gap-6">
           {workingStrategies.map((item) => (
             <article
               key={item.id}
-              className="flex flex-col-reverse rounded-2xl border border-[#E1E4EA] md:flex-row"
+              className="flex flex-col-reverse overflow-hidden rounded-2xl border border-[#E1E4EA] md:flex-row"
             >
               <div className="w-full p-4 md:w-3/5 md:p-12">
                 <span className="mb-1 text-[12px] font-medium uppercase text-[#5C5C5C]">
