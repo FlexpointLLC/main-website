@@ -8,7 +8,7 @@ import avatarGroupImage from "@/public/assets/img/hero-avatar-group.svg";
 const PricingPlans = () => {
   return (
     <div className="bg-[#F3F7FB]">
-      <section className="mx-auto w-full px-4 py-20 md:max-w-2xl">
+      <section className="mx-auto w-full px-4 py-20 md:max-w-[652px]">
         <SectionHeading
           headingLongText="Flexpoint vs Other Tools"
           headingShortText="What you will get?"
