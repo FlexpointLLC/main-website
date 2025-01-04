@@ -23,7 +23,6 @@ const Banner = () => {
           className={
             "flex h-fit items-center gap-2 rounded-2xl px-[28px] py-4 text-lg font-semibold leading-6"
           }
-          asChild
         >
           <Link
             href="https://dev-admin.flexpoint.store/register"

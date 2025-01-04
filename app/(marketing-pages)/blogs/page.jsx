@@ -6,8 +6,8 @@ export const metadata = {
 
 const BlogsPage = () => {
   return (
-    <main className="flex min-h-[calc(100vh-210px)] flex-col items-center justify-center text-4xl font-semibold text-heading md:text-5xl lg:text-6xl">
-      <h1>Coming Soon!</h1>
+    <main className="relative -top-16 flex min-h-[calc(100vh-210px)] flex-col items-center justify-center bg-gradient-primary-from-top text-4xl font-semibold text-heading md:text-5xl lg:text-6xl">
+      <h1 className="mt-16">Coming Soon!</h1>
     </main>
   );
 };
