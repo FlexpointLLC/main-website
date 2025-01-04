@@ -2,6 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { useGetAvailableSlotsQuery } from "@/redux/api/scheduleApi";
 import moment from "moment";
+import Image from "next/image";
 
 const SlotPicker = ({
   picked_slot,
@@ -57,11 +58,12 @@ const SlotPicker = ({
         >
           {slots.filter((slot) => slot.meridiem === "AM").length === 0 ? (
             <div className="col-span-3 flex flex-col items-center justify-center gap-2 p-4 pt-6">
-              <img
+              <Image
                 src="/assets/icon/calender.svg"
                 height={28}
                 width={28}
                 className="inline-bolck"
+                alt=""
               />
 
               <p className="text-center text-xs font-normal text-para">
@@ -96,11 +98,12 @@ const SlotPicker = ({
         <TabsContent value="PM" className="grid grid-cols-3 items-center gap-2">
           {slots.filter((slot) => slot.meridiem === "PM").length === 0 ? (
             <div className="col-span-3 flex flex-col items-center justify-center gap-2 p-4 pt-6">
-              <img
+              <Image
                 src="/assets/icon/calender.svg"
                 height={28}
                 width={28}
                 className="inline-bolck"
+                alt=""
               />
 
               <p className="text-center text-xs font-normal text-para">
