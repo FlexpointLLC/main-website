@@ -1,3 +1,5 @@
+import Marquee from "react-fast-marquee";
+
 import creatorImage1 from "@/public/assets/img/creator-profile-1.webp";
 import creatorImage2 from "@/public/assets/img/creator-profile-2.webp";
 import creatorImage3 from "@/public/assets/img/creator-profile-3.webp";
@@ -159,12 +161,12 @@ const creatorsData = [
 
 export default function Marque() {
   return (
-    <div>
-      <ul className="relative flex items-center gap-5">
+    <Marquee>
+      <ul className="relative flex items-center gap-3 pt-10 md:gap-5">
         {creatorsData.map((creator) => (
           <li
             key={creator.id}
-            className="relative w-[238px] overflow-hidden rounded-[14px] shadow odd:bottom-10"
+            className="relative w-[180px] overflow-hidden rounded-[14px] shadow last:mr-3 odd:bottom-10 md:w-[238px] last:md:mr-5"
           >
             <Image
               src={creator.image}
@@ -249,6 +251,6 @@ export default function Marque() {
           </li>
         ))}
       </ul>
-    </div>
+    </Marquee>
   );
 }

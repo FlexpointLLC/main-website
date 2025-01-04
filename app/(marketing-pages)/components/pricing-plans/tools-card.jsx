@@ -53,7 +53,7 @@ const toolsData = [
 
 export default function ToolsCard() {
   return (
-    <div className="mb-4 w-full rounded-2xl bg-white shadow-sm">
+    <div className="appear-animation mb-4 w-full rounded-2xl bg-white shadow-sm">
       <div className="border-b border-black/5 px-6 py-6">
         <p className="text-lg font-medium leading-6 tracking-[-1.5%]">
           What other tools will cost you

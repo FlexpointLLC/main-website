@@ -20,10 +20,10 @@ const PricingPlans = () => {
 
         <TotalPricingCard />
 
-        <div className="mt-6 w-full">
+        <div className="appear-animation mt-6 w-full">
           <Button
             className={
-              "flex h-fit w-full items-center gap-2 rounded-2xl py-4 text-lg font-semibold leading-6"
+              "flex h-fit w-full items-center gap-2 rounded-2xl py-4 text-lg font-semibold leading-6 hover:gap-3"
             }
           >
             <span>Get Started Now</span>

@@ -1,8 +1,7 @@
 import { default as TailwindScrollbar } from "tailwind-scrollbar";
-import tailwindcssAnimate from "tailwindcss-animate";
 
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -76,5 +75,8 @@ export default {
       },
     },
   },
-  plugins: [tailwindcssAnimate, TailwindScrollbar({ nocompatible: true })],
+  plugins: [
+    require("tailwindcss-animate"),
+    TailwindScrollbar({ nocompatible: true }),
+  ],
 };

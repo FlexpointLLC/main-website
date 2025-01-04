@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const TotalPricingCard = () => {
   return (
-    <div className="rounded-2xl border border-success-base bg-white">
+    <div className="appear-animation rounded-2xl border border-success-base bg-white">
       <p className="border-b border-black/5 px-6 py-4 text-lg font-medium text-heading">
         You will get everything here only at
       </p>

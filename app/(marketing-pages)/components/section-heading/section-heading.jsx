@@ -9,7 +9,7 @@ const SectionHeading = ({
   return (
     <header
       className={cn(
-        "mx-auto mb-5 w-full px-4 text-center md:mb-16 md:max-w-3xl md:px-8",
+        "appear-animation mx-auto mb-5 w-full px-4 text-center md:mb-16 md:max-w-3xl md:px-8",
         extraClassNames,
       )}
     >

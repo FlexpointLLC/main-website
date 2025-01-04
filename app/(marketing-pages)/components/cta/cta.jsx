@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 const CTA = () => {
   return (
     <div className="bg-white">
-      <section className="mx-auto max-w-5xl rounded-2xl border border-[#D5F1F1] bg-gradient-to-b from-[#ECF8F8] to-[#F9FDFD] py-16 md:py-24">
+      <section className="appear-animation mx-auto max-w-5xl rounded-2xl border border-[#D5F1F1] bg-gradient-to-b from-[#ECF8F8] to-[#F9FDFD] py-16 md:py-24">
         <div className="w-full text-center md:mx-auto md:max-w-xl">
           <h2 className="mb-[10px] font-semibold text-success-base">
             Ready to get started?
@@ -22,7 +22,7 @@ const CTA = () => {
           <div className="mt-6 flex w-full justify-center">
             <Button
               className={
-                "flex h-fit items-center gap-2 rounded-2xl px-7 py-4 text-lg font-semibold leading-6"
+                "flex h-fit items-center gap-2 rounded-2xl px-7 py-4 text-lg font-semibold leading-6 hover:gap-3"
               }
             >
               <span>Get Started Now</span>

@@ -48,7 +48,7 @@ const HowItWorks = () => {
           {workingStrategies.map((item) => (
             <article
               key={item.id}
-              className="flex flex-col-reverse overflow-hidden rounded-2xl border border-[#E1E4EA] md:flex-row"
+              className="appear-animation flex flex-col-reverse overflow-hidden rounded-2xl border border-[#E1E4EA] md:flex-row"
             >
               <div className="flex flex-col justify-center pl-12">
                 <span className="mb-1 text-[11.8px] font-medium uppercase leading-4 tracking-[0.48px] text-[#5C5C5C]">

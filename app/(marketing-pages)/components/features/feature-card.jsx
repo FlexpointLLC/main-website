@@ -10,7 +10,7 @@ const FeatureCard = ({ feature }) => {
         border: `1px solid ${feature.borderColor}`,
       }}
       className={cn(
-        "max-h-[460px] w-full flex-col-reverse gap-3 rounded-2xl bg-gradient-to-b px-10 md:flex md:gap-20 md:px-16",
+        "appear-animation max-h-[460px] w-full flex-col-reverse gap-3 rounded-2xl bg-gradient-to-b px-10 md:flex md:gap-20 md:px-16",
         feature.imgPosition === "RIGHT" ? "md:flex-row" : "md:flex-row-reverse",
         feature.backgroundColor,
       )}
