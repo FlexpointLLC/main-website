@@ -1,7 +1,7 @@
 const FlexpointDescription = () => {
   return (
     <section className="bg-gradient-to-b from-white to-[#F0FAFA]">
-      <div className="w-full space-y-[10px] px-4 py-20 text-center md:mx-auto md:max-w-4xl md:pb-[148px] md:pt-[22px]">
+      <div className="w-full space-y-[10px] px-4 py-20 pt-0 text-center md:mx-auto md:max-w-4xl md:pb-[148px] md:pt-[22px]">
         <h2 className="appear-animation font-semibold leading-6 tracking-[-0.18px] text-success-base">
           What is flexpoint?
         </h2>

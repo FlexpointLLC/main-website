@@ -79,13 +79,11 @@ const Hero = () => {
         </p>
 
         <div ref={buttonRef}>
-          <Button
-            className={"h-fit rounded-2xl text-lg font-semibold leading-6"}
-          >
+          <Button className={"h-fit rounded-2xl"}>
             <Link
               href="https://dev-admin.flexpoint.store/register"
               target="_blank"
-              className="flex items-center gap-2 px-7 py-4 hover:gap-3"
+              className="flex items-center gap-2 px-7 py-2 text-lg font-semibold leading-6 hover:gap-3 md:py-4"
             >
               <span>Get Started Now</span>
 

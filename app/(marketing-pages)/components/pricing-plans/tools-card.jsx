@@ -65,7 +65,7 @@ export default function ToolsCard() {
           {toolsData.map((tool) => (
             <li
               key={tool.id}
-              className="flex items-center justify-between border-b border-black/5 p-6"
+              className="flex items-center justify-between gap-10 border-b border-black/5 p-4 md:gap-0 md:p-6"
             >
               <div className="flex items-center gap-4">
                 <Image
@@ -75,18 +75,18 @@ export default function ToolsCard() {
                   alt={`${tool.title} icons`}
                 />
 
-                <div className="flex flex-col gap-1">
-                  <h4 className="text-lg font-medium leading-6 tracking-[-1.5%] text-heading">
+                <div className="flex flex-col md:gap-1">
+                  <h4 className="text-sm font-medium tracking-[-1.5%] text-heading md:text-lg md:leading-6">
                     {tool.title}
                   </h4>
-                  <p className="text-sm font-medium leading-5 tracking-[-0.08%] text-para">
+                  <p className="text-xs font-medium leading-5 tracking-[-0.08%] text-para md:text-sm">
                     {tool.subtitle}
                   </p>
                 </div>
               </div>
 
               <div>
-                <p className="text-[22px] font-medium text-para">
+                <p className="text-base font-medium text-para md:text-[22px]">
                   ${tool.price}
                 </p>
               </div>
@@ -108,13 +108,13 @@ export default function ToolsCard() {
                 />
               </svg>
 
-              <p className="text-xl font-semibold leading-6 text-para">
+              <p className="text-sm font-semibold text-para md:text-xl md:leading-6">
                 Your Total Monthly Costs
               </p>
             </div>
 
             <div>
-              <p className="text-[22px] font-semibold text-[#fb3848] line-through">
+              <p className="text-base font-semibold text-[#fb3848] line-through md:text-[22px]">
                 $227/m
               </p>
             </div>

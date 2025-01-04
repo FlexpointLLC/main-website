@@ -10,7 +10,7 @@ const FeatureCard = ({ feature }) => {
         border: `1px solid ${feature.borderColor}`,
       }}
       className={cn(
-        "appear-animation max-h-[460px] w-full flex-col-reverse gap-3 rounded-2xl bg-gradient-to-b px-10 md:flex md:gap-20 md:px-16",
+        "appear-animation flex w-full flex-col-reverse gap-3 rounded-2xl bg-gradient-to-b px-5 pt-10 md:flex md:max-h-[460px] md:gap-20 md:px-16 md:pt-0",
         feature.imgPosition === "RIGHT" ? "md:flex-row" : "md:flex-row-reverse",
         feature.backgroundColor,
       )}
@@ -32,7 +32,11 @@ const FeatureCard = ({ feature }) => {
               key={index}
               className="gap flex items-center gap-2 text-sm text-[#272727]"
             >
-              <CheckCircle2 size={18} color={feature.iconColor} />
+              <CheckCircle2
+                size={18}
+                color={feature.iconColor}
+                className="min-h-[18px] min-w-[18px]"
+              />
               <span>{item}</span>
             </li>
           ))}

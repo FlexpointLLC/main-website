@@ -30,7 +30,7 @@ const PricingPlans = () => {
             <Link
               href="https://dev-admin.flexpoint.store/register"
               target="_blank"
-              className="flex items-center gap-2 px-7 py-4 hover:gap-3"
+              className="flex items-center gap-2 px-7 py-2 hover:gap-3 md:py-4"
             >
               <span>Get Started Now</span>
 

@@ -50,7 +50,7 @@ const HowItWorks = () => {
               key={item.id}
               className="appear-animation flex flex-col-reverse overflow-hidden rounded-2xl border border-[#E1E4EA] md:flex-row"
             >
-              <div className="flex flex-col justify-center pl-12">
+              <div className="flex flex-col justify-center p-5 md:p-0 md:pl-12">
                 <span className="mb-1 text-[11.8px] font-medium uppercase leading-4 tracking-[0.48px] text-[#5C5C5C]">
                   {item.subTitle}
                 </span>
@@ -62,7 +62,7 @@ const HowItWorks = () => {
                 </p>
               </div>
 
-              <figure className="ml-10 h-full w-full">
+              <figure className="h-full w-full md:ml-10">
                 <Image
                   width={309}
                   height={234}

@@ -3,15 +3,15 @@ import Link from "next/link";
 
 const CTA = () => {
   return (
-    <div className="bg-white">
-      <section className="appear-animation mx-auto max-w-5xl rounded-2xl border border-[#D5F1F1] bg-gradient-to-b from-[#ECF8F8] to-[#F9FDFD] py-16 md:py-24">
+    <div className="bg-white px-4">
+      <section className="appear-animation mx-auto max-w-5xl rounded-2xl border border-[#D5F1F1] bg-gradient-to-b from-[#ECF8F8] to-[#F9FDFD] px-5 py-16 md:px-0 md:py-24">
         <div className="w-full text-center md:mx-auto md:max-w-xl">
           <h2 className="mb-[10px] font-semibold text-success-base">
             Ready to get started?
           </h2>
 
           <div className="space-y-6">
-            <p className="text-4xl font-semibold leading-[58px] text-heading md:text-5xl">
+            <p className="text-2xl font-semibold text-heading md:text-5xl md:leading-[58px]">
               Start your 14-day free trial today
             </p>
             <p className="leading-6 tracking-[-0.18px] text-para">
@@ -27,7 +27,7 @@ const CTA = () => {
               <Link
                 href="https://dev-admin.flexpoint.store/register"
                 target="_blank"
-                className="flex items-center gap-2 px-7 py-4 hover:gap-3"
+                className="flex items-center gap-2 px-7 py-2 hover:gap-3 md:py-4"
               >
                 <span>Get Started Now</span>
 
