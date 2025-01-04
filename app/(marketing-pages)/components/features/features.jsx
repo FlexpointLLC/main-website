@@ -6,6 +6,8 @@ import PromoteLinkImg from "@/public/assets/img/promote-link.svg";
 
 import FeatureCard from "./feature-card";
 import SectionHeading from "../section-heading/section-heading";
+import Image from "next/image";
+import avatarGroupImage from "@/public/assets/img/hero-avatar-group.svg";
 
 const features = [
   {
@@ -101,7 +103,7 @@ const features = [
 
 const Features = () => {
   return (
-    <div className="bg-white">
+    <div className="scroll-smooth bg-white" id="features">
       <section className="mx-auto max-w-5xl px-4 pb-24 pt-16 md:pt-32 xl:px-0">
         <SectionHeading
           headingLongText="Not just another link·in·bio🚀"
@@ -113,6 +115,19 @@ const Features = () => {
           {features.map((feature) => (
             <FeatureCard key={feature.id} feature={feature} />
           ))}
+        </div>
+
+        <div className="appear-animation mt-10 flex w-full flex-col items-center gap-2 text-center">
+          <Image
+            src={avatarGroupImage}
+            height={32}
+            width={176}
+            alt="users avatar group image"
+          />
+          <p className="text-sm leading-5 tracking-[-0.08px] text-[#5C5C5C]">
+            Be among <strong>2M</strong> global content creators who use our
+            platform as daily basis
+          </p>
         </div>
       </section>
     </div>

@@ -1,119 +1,256 @@
-import marqueLeft1 from "@/public/assets/img/marque-left-1.svg";
-import marqueRight1 from "@/public/assets/img/marque-right-1.svg";
-import marqueLeft2 from "@/public/assets/img/marque-left-2.svg";
-import marqueRight2 from "@/public/assets/img/marque-right-2.svg";
-import marqueLeft3 from "@/public/assets/img/marque-left-3.svg";
-import marqueRight3 from "@/public/assets/img/marque-right-3.svg";
-import marqueLeft4 from "@/public/assets/img/marque-left-4.svg";
-import marqueRight4 from "@/public/assets/img/marque-right-4.svg";
-import marqueLeft5 from "@/public/assets/img/marque-left-5.svg";
-import marqueRight5 from "@/public/assets/img/marque-right-5.svg";
+import Marquee from "react-fast-marquee";
+
+import creatorImage1 from "@/public/assets/img/creator-profile-1.webp";
+import creatorImage2 from "@/public/assets/img/creator-profile-2.webp";
+import creatorImage3 from "@/public/assets/img/creator-profile-3.webp";
+import creatorImage4 from "@/public/assets/img/creator-profile-4.webp";
+import creatorImage5 from "@/public/assets/img/creator-profile-5.webp";
+import creatorImage6 from "@/public/assets/img/creator-profile-6.webp";
+import creatorImage7 from "@/public/assets/img/creator-profile-7.webp";
+import creatorImage8 from "@/public/assets/img/creator-profile-8.webp";
+import creatorImage9 from "@/public/assets/img/creator-profile-9.webp";
+import creatorImage10 from "@/public/assets/img/creator-profile-10.webp";
+import creatorImage11 from "@/public/assets/img/creator-profile-11.webp";
+import creatorImage12 from "@/public/assets/img/creator-profile-12.webp";
+import creatorImage13 from "@/public/assets/img/creator-profile-13.webp";
+import creatorImage14 from "@/public/assets/img/creator-profile-14.webp";
 import Image from "next/image";
+
+const creatorsData = [
+  {
+    id: 1,
+    name: "Sophie Reynolds",
+    followers: 1.5,
+    title: "Influencer",
+    backgroundColor: "#AB80D1",
+    platform: "tiktok",
+    image: creatorImage1,
+    textColor: "white",
+  },
+  {
+    id: 2,
+    name: "Amelia Brooks",
+    followers: 3,
+    title: "Educators",
+    backgroundColor: "#F7BD00",
+    platform: "instagram",
+    image: creatorImage2,
+    textColor: "black",
+  },
+  {
+    id: 3,
+    name: "Ethan Blake",
+    followers: 2.2,
+    title: "Singer",
+    backgroundColor: "#F72B27",
+    platform: "facebook",
+    image: creatorImage3,
+    textColor: "white",
+  },
+  {
+    id: 4,
+    name: "Ella Thompson",
+    followers: 4,
+    title: "Podcast",
+    backgroundColor: "#34B1E2",
+    platform: "tiktok",
+    image: creatorImage4,
+    textColor: "white",
+  },
+  {
+    id: 5,
+    name: "Liam Carter",
+    followers: 2.8,
+    title: "Writer",
+    backgroundColor: "#F7BD00",
+    platform: "youtube",
+    image: creatorImage5,
+    textColor: "black",
+  },
+  {
+    id: 6,
+    name: "Mason Cole",
+    followers: 1,
+    title: "Digital Creator",
+    backgroundColor: "#FFFFFF",
+    platform: "instagram",
+    image: creatorImage6,
+    textColor: "black",
+  },
+  {
+    id: 7,
+    name: "Oliver Finn",
+    followers: 5,
+    title: "Teacher",
+    backgroundColor: "#F75D98",
+    platform: "tiktok",
+    image: creatorImage7,
+    textColor: "white",
+  },
+  {
+    id: 8,
+    name: "Chloe Smith",
+    followers: 2.5,
+    title: "Blogger",
+    backgroundColor: "#F86409",
+    platform: "youtube",
+    image: creatorImage8,
+    textColor: "white",
+  },
+  {
+    id: 9,
+    name: "Aiden Scott",
+    followers: 3.5,
+    title: "Speaker",
+    backgroundColor: "#F75D98",
+    platform: "youtube",
+    image: creatorImage9,
+    textColor: "white",
+  },
+  {
+    id: 10,
+    name: "Logan Chase",
+    followers: 6,
+    title: "Community",
+    backgroundColor: "#34B2E3",
+    platform: "tiktok",
+    image: creatorImage10,
+    textColor: "white",
+  },
+  {
+    id: 11,
+    name: "Jackson Reid",
+    followers: 2.3,
+    title: "Doctor",
+    backgroundColor: "#722BB2",
+    platform: "instagram",
+    image: creatorImage11,
+    textColor: "white",
+  },
+  {
+    id: 12,
+    name: "Henry Miles",
+    followers: 4.5,
+    title: "Gymnast",
+    backgroundColor: "#F7BD00",
+    platform: "tiktok",
+    image: creatorImage12,
+    textColor: "black",
+  },
+  {
+    id: 13,
+    name: "Lily Johnson",
+    followers: 2.1,
+    title: "Dancer",
+    backgroundColor: "#E0860B",
+    platform: "facebook",
+    image: creatorImage13,
+    textColor: "white",
+  },
+  {
+    id: 14,
+    name: "Gabriel John",
+    followers: 2,
+    title: "Gamer",
+    backgroundColor: "#22D3BB",
+    platform: "tiktok",
+    image: creatorImage14,
+    textColor: "black",
+  },
+];
 
 export default function Marque() {
   return (
-    <div className="flex w-[200vw] gap-10">
-      {/* single content */}
-      <div className="flex items-end">
-        <div>
-          <Image
-            src={marqueLeft1}
-            height={383}
-            width={296}
-            alt="showcasing customer review"
-            className="rounded-2xl"
-          />
-        </div>
-        <div>
-          <Image
-            src={marqueRight1}
-            height={228}
-            width={176}
-            alt="customer image"
-            className="relative bottom-6 right-6 rounded-2xl"
-          />
-        </div>
-      </div>
-      <div className="flex items-end">
-        <div>
-          <Image
-            src={marqueLeft2}
-            height={383}
-            width={296}
-            alt="showcasing customer review"
-            className="rounded-2xl"
-          />
-        </div>
-        <div>
-          <Image
-            src={marqueRight2}
-            height={228}
-            width={176}
-            alt="customer image"
-            className="relative bottom-6 right-6 rounded-2xl"
-          />
-        </div>
-      </div>
-      <div className="flex items-end">
-        <div>
-          <Image
-            src={marqueLeft3}
-            height={383}
-            width={296}
-            alt="showcasing customer review"
-            className="rounded-2xl"
-          />
-        </div>
-        <div>
-          <Image
-            src={marqueRight3}
-            height={228}
-            width={176}
-            alt="customer image"
-            className="relative bottom-6 right-6 rounded-2xl"
-          />
-        </div>
-      </div>
-      <div className="flex items-end">
-        <div>
-          <Image
-            src={marqueLeft4}
-            height={383}
-            width={296}
-            alt="showcasing customer review"
-            className="rounded-2xl"
-          />
-        </div>
-        <div>
-          <Image
-            src={marqueRight4}
-            height={228}
-            width={176}
-            alt="customer image"
-            className="relative bottom-6 right-6 rounded-2xl"
-          />
-        </div>
-      </div>
-      <div className="flex items-end">
-        <div>
-          <Image
-            src={marqueLeft5}
-            height={383}
-            width={296}
-            alt="showcasing customer review"
-            className="rounded-2xl"
-          />
-        </div>
-        <div>
-          <Image
-            src={marqueRight5}
-            height={228}
-            width={176}
-            alt="customer image"
-            className="relative bottom-6 right-6 rounded-2xl"
-          />
-        </div>
-      </div>
-    </div>
+    <Marquee>
+      <ul className="relative flex items-center gap-3 pt-10 md:gap-5">
+        {creatorsData.map((creator) => (
+          <li
+            key={creator.id}
+            className="relative w-[180px] overflow-hidden rounded-[14px] shadow last:mr-3 odd:bottom-10 md:w-[238px] last:md:mr-5"
+          >
+            <Image
+              src={creator.image}
+              width={238}
+              height={330}
+              alt="creator image"
+            />
+            <div className="absolute bottom-0 flex h-[67%] w-full flex-col justify-end bg-gradient-to-b from-[#435681]/0 to-[#0E121B]/90 pb-5 pl-[18px] pr-[14px] text-white">
+              <h2 className="w-[145px] text-[32.2px] font-semibold leading-[36px] tracking-[-1.6px]">
+                {creator.name}
+              </h2>
+              <p className="mb-[6px] mt-2 text-[15px] leading-4 tracking-[2%]">
+                {creator.followers}m followers
+              </p>
+              <div className="flex items-end justify-between">
+                <div
+                  className="rounded px-[6px] py-[3px]"
+                  style={{
+                    backgroundColor: creator.backgroundColor,
+                    color: creator.textColor,
+                  }}
+                >
+                  <p className="text-xs font-medium leading-3 tracking-[2%]">
+                    {creator.title}
+                  </p>
+                </div>
+                {creator.platform === "tiktok" ? (
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 22 22"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M19.212 6.41201C18.1339 6.41089 17.1002 5.9821 16.3378 5.21974C15.5755 4.45738 15.1467 3.42372 15.1456 2.34558C15.1456 2.16584 15.0742 1.99345 14.9471 1.86635C14.82 1.73925 14.6476 1.66785 14.4678 1.66785H11.0791C10.8994 1.66785 10.727 1.73925 10.5999 1.86635C10.4728 1.99345 10.4014 2.16584 10.4014 2.34558V13.5283C10.4013 13.8314 10.3198 14.129 10.1654 14.39C10.0111 14.651 9.78956 14.8657 9.52393 15.0119C9.2583 15.1581 8.95832 15.2303 8.65527 15.221C8.35222 15.2118 8.05721 15.1214 7.80101 14.9592C7.54482 14.7971 7.33682 14.5692 7.19871 14.2993C7.0606 14.0294 6.99745 13.7273 7.01584 13.4247C7.03423 13.1221 7.13349 12.8299 7.30326 12.5787C7.47303 12.3275 7.70709 12.1265 7.98104 11.9966C8.09692 11.9416 8.19481 11.8548 8.26335 11.7464C8.33188 11.638 8.36824 11.5123 8.3682 11.3841V7.76749C8.36824 7.66842 8.34656 7.57055 8.30469 7.48076C8.26282 7.39097 8.20178 7.31146 8.12586 7.24781C8.04993 7.18417 7.96098 7.13794 7.86527 7.11239C7.76955 7.08684 7.66939 7.08258 7.57185 7.09992C4.5483 7.63872 2.26855 10.4022 2.26855 13.5283C2.26855 15.2359 2.9469 16.8735 4.15435 18.081C5.36181 19.2884 6.99947 19.9668 8.70706 19.9668C10.4147 19.9668 12.0523 19.2884 13.2598 18.081C14.4672 16.8735 15.1456 15.2359 15.1456 13.5283V10.1641C16.4008 10.819 17.7962 11.1595 19.212 11.1562C19.3917 11.1562 19.5641 11.0848 19.6912 10.9577C19.8183 10.8306 19.8897 10.6582 19.8897 10.4784V7.08975C19.8897 6.91 19.8183 6.73762 19.6912 6.61052C19.5641 6.48342 19.3917 6.41201 19.212 6.41201ZM18.5343 9.7702C17.2098 9.65284 15.9416 9.18015 14.8635 8.40202C14.7621 8.32916 14.6426 8.2857 14.5182 8.27643C14.3937 8.26716 14.2691 8.29244 14.1581 8.34948C14.0471 8.40652 13.954 8.4931 13.889 8.59969C13.8241 8.70627 13.7899 8.82872 13.7901 8.95353V13.5283C13.7901 14.8764 13.2546 16.1693 12.3013 17.1225C11.3481 18.0758 10.0552 18.6113 8.70706 18.6113C7.35896 18.6113 6.06607 18.0758 5.11282 17.1225C4.15956 16.1693 3.62403 14.8764 3.62403 13.5283C3.62403 11.3341 5.03373 9.3661 7.01272 8.64855V10.9927C6.5746 11.2854 6.2198 11.6866 5.9829 12.1573C5.74599 12.6279 5.63506 13.1519 5.66092 13.6782C5.68678 14.2045 5.84854 14.7151 6.13045 15.1602C6.41236 15.6054 6.80478 15.9699 7.26949 16.2183C7.73419 16.4667 8.25531 16.5904 8.78206 16.5774C9.30881 16.5645 9.82322 16.4153 10.2752 16.1444C10.7271 15.8734 11.1011 15.4901 11.3608 15.0316C11.6205 14.5731 11.7569 14.0552 11.7569 13.5283V3.02332H13.8325C13.9849 4.21706 14.5293 5.32642 15.3802 6.17737C16.2312 7.02833 17.3405 7.57271 18.5343 7.72513V9.7702Z"
+                      fill="white"
+                    />
+                  </svg>
+                ) : creator.platform === "facebook" ? (
+                  <svg
+                    width="23"
+                    height="22"
+                    viewBox="0 0 23 22"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.4654 2.34558C9.72281 2.34558 8.01937 2.86231 6.57048 3.83043C5.12158 4.79855 3.99231 6.17458 3.32546 7.78451C2.6586 9.39443 2.48412 11.1659 2.82408 12.875C3.16404 14.5841 4.00317 16.154 5.23535 17.3862C6.46754 18.6184 8.03743 19.4575 9.74652 19.7975C11.4556 20.1374 13.2271 19.963 14.837 19.2961C16.447 18.6292 17.823 17.5 18.7911 16.0511C19.7592 14.6022 20.276 12.8987 20.276 11.1562C20.2735 8.82022 19.3445 6.58064 17.6927 4.92887C16.0409 3.2771 13.8013 2.34805 11.4654 2.34558ZM12.1431 18.5799V13.1894H14.1763C14.3561 13.1894 14.5285 13.118 14.6556 12.9909C14.7827 12.8638 14.8541 12.6914 14.8541 12.5116C14.8541 12.3319 14.7827 12.1595 14.6556 12.0324C14.5285 11.9053 14.3561 11.8339 14.1763 11.8339H12.1431V9.8007C12.1431 9.4412 12.2859 9.09643 12.5401 8.84223C12.7943 8.58803 13.1391 8.44522 13.4986 8.44522H14.8541C15.0338 8.44522 15.2062 8.37382 15.3333 8.24672C15.4604 8.11962 15.5318 7.94723 15.5318 7.76748C15.5318 7.58774 15.4604 7.41535 15.3333 7.28825C15.2062 7.16115 15.0338 7.08975 14.8541 7.08975H13.4986C12.7796 7.08975 12.0901 7.37536 11.5817 7.88377C11.0733 8.39217 10.7876 9.08171 10.7876 9.8007V11.8339H8.75443C8.57468 11.8339 8.4023 11.9053 8.2752 12.0324C8.1481 12.1595 8.07669 12.3319 8.07669 12.5116C8.07669 12.6914 8.1481 12.8638 8.2752 12.9909C8.4023 13.118 8.57468 13.1894 8.75443 13.1894H10.7876V18.5799C8.8771 18.4055 7.10733 17.5013 5.84646 16.0553C4.58559 14.6094 3.93069 12.733 4.01799 10.8165C4.10528 8.89997 4.92805 7.09089 6.31515 5.76554C7.70225 4.44018 9.54689 3.70058 11.4654 3.70058C13.3839 3.70058 15.2285 4.44018 16.6156 5.76554C18.0027 7.09089 18.8255 8.89997 18.9128 10.8165C19.0001 12.733 18.3452 14.6094 17.0843 16.0553C15.8234 17.5013 14.0537 18.4055 12.1431 18.5799Z"
+                      fill="white"
+                    />
+                  </svg>
+                ) : creator.platform === "instagram" ? (
+                  <svg
+                    width="23"
+                    height="22"
+                    viewBox="0 0 23 22"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.7598 7.08975C10.9555 7.08975 10.1693 7.32824 9.50063 7.77506C8.8319 8.22189 8.3107 8.85698 8.00292 9.60002C7.69514 10.3431 7.61462 11.1607 7.77152 11.9495C7.92842 12.7383 8.31571 13.4629 8.88441 14.0316C9.45311 14.6003 10.1777 14.9876 10.9665 15.1445C11.7553 15.3014 12.5729 15.2208 13.316 14.9131C14.059 14.6053 14.6941 14.0841 15.1409 13.4154C15.5877 12.7466 15.8262 11.9604 15.8262 11.1562C15.8251 10.078 15.3963 9.04437 14.634 8.28201C13.8716 7.51965 12.838 7.09087 11.7598 7.08975ZM11.7598 13.8671C11.2236 13.8671 10.6995 13.7081 10.2537 13.4102C9.80787 13.1124 9.4604 12.689 9.25522 12.1936C9.05003 11.6982 8.99635 11.1532 9.10095 10.6273C9.20555 10.1014 9.46375 9.61837 9.84288 9.23924C10.222 8.86011 10.7051 8.60191 11.2309 8.49731C11.7568 8.39271 12.3019 8.4464 12.7972 8.65158C13.2926 8.85677 13.716 9.20424 14.0139 9.65005C14.3118 10.0959 14.4708 10.62 14.4708 11.1562C14.4708 11.8752 14.1851 12.5647 13.6767 13.0731C13.1683 13.5815 12.4788 13.8671 11.7598 13.8671ZM15.8262 2.34558H7.69338C6.43557 2.34693 5.22965 2.84719 4.34024 3.7366C3.45083 4.62601 2.95056 5.83193 2.94922 7.08975V15.2226C2.95056 16.4804 3.45083 17.6863 4.34024 18.5757C5.22965 19.4652 6.43557 19.9654 7.69338 19.9668H15.8262C17.0841 19.9654 18.29 19.4652 19.1794 18.5757C20.0688 17.6863 20.5691 16.4804 20.5704 15.2226V7.08975C20.5691 5.83193 20.0688 4.62601 19.1794 3.7366C18.29 2.84719 17.0841 2.34693 15.8262 2.34558ZM19.2149 15.2226C19.2149 16.1213 18.8579 16.9833 18.2224 17.6188C17.5869 18.2543 16.725 18.6113 15.8262 18.6113H7.69338C6.79465 18.6113 5.93272 18.2543 5.29722 17.6188C4.66172 16.9833 4.30469 16.1213 4.30469 15.2226V7.08975C4.30469 6.19101 4.66172 5.32908 5.29722 4.69358C5.93272 4.05808 6.79465 3.70106 7.69338 3.70106H15.8262C16.725 3.70106 17.5869 4.05808 18.2224 4.69358C18.8579 5.32908 19.2149 6.19101 19.2149 7.08975V15.2226ZM17.1817 6.75088C17.1817 6.95194 17.1221 7.14849 17.0104 7.31567C16.8987 7.48285 16.7399 7.61316 16.5541 7.6901C16.3684 7.76704 16.164 7.78718 15.9668 7.74795C15.7696 7.70872 15.5884 7.6119 15.4463 7.46973C15.3041 7.32755 15.2073 7.14641 15.168 6.94921C15.1288 6.75201 15.1489 6.5476 15.2259 6.36184C15.3028 6.17608 15.4331 6.01731 15.6003 5.9056C15.7675 5.79389 15.964 5.73427 16.1651 5.73427C16.4347 5.73427 16.6933 5.84138 16.884 6.03203C17.0746 6.22268 17.1817 6.48126 17.1817 6.75088Z"
+                      fill="white"
+                    />
+                  </svg>
+                ) : creator.platform === "youtube" ? (
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 22 22"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M13.9612 10.592L9.89474 7.881C9.79265 7.81289 9.67398 7.77377 9.55139 7.76783C9.42881 7.76189 9.30691 7.78935 9.19871 7.84728C9.09052 7.90521 9.00008 7.99142 8.93705 8.09673C8.87403 8.20204 8.84078 8.32249 8.84086 8.44522V13.8671C8.84078 13.9899 8.87403 14.1103 8.93705 14.2156C9.00008 14.3209 9.09052 14.4071 9.19871 14.4651C9.30691 14.523 9.42881 14.5504 9.55139 14.5445C9.67398 14.5386 9.79265 14.4995 9.89474 14.4313L13.9612 11.7204C14.0541 11.6585 14.1304 11.5746 14.1831 11.4762C14.2358 11.3778 14.2634 11.2678 14.2634 11.1562C14.2634 11.0445 14.2358 10.9346 14.1831 10.8361C14.1304 10.7377 14.0541 10.6538 13.9612 10.592ZM10.1963 12.6006V9.71598L12.3634 11.1562L10.1963 12.6006ZM19.8821 6.20191C19.8022 5.88959 19.6493 5.60074 19.4359 5.35917C19.2224 5.1176 18.9546 4.93024 18.6545 4.81254C15.7504 3.69089 11.1282 3.70105 10.8741 3.70105C10.6199 3.70105 5.99775 3.69089 3.09364 4.81254C2.79354 4.93024 2.52573 5.1176 2.31229 5.35917C2.09885 5.60074 1.94591 5.88959 1.86609 6.20191C1.64667 7.04738 1.38574 8.59263 1.38574 11.1562C1.38574 13.7197 1.64667 15.265 1.86609 16.1104C1.94579 16.4229 2.09868 16.7119 2.31212 16.9537C2.52557 17.1954 2.79344 17.3829 3.09364 17.5006C5.87576 18.574 10.2302 18.6113 10.8182 18.6113H10.93C11.5179 18.6113 15.8749 18.574 18.6545 17.5006C18.9547 17.3829 19.2226 17.1954 19.436 16.9537C19.6495 16.7119 19.8024 16.4229 19.8821 16.1104C20.1015 15.2633 20.3624 13.7197 20.3624 11.1562C20.3624 8.59263 20.1015 7.04738 19.8821 6.20191ZM18.5698 15.775C18.544 15.8789 18.4939 15.9752 18.4236 16.0561C18.3534 16.1369 18.265 16.2 18.1657 16.2401C15.4844 17.2753 10.9241 17.2567 10.88 17.2567H10.8741C10.8283 17.2567 6.27139 17.2736 3.58839 16.2401C3.48908 16.2 3.40068 16.1369 3.33043 16.0561C3.26019 15.9752 3.21011 15.8789 3.18429 15.775C2.97843 15.0015 2.74122 13.5765 2.74122 11.1562C2.74122 8.7358 2.97843 7.31085 3.17836 6.54162C3.2037 6.43706 3.25356 6.34004 3.32383 6.25858C3.3941 6.17711 3.48275 6.11355 3.58246 6.07314C6.16803 5.07432 10.5005 5.05653 10.8554 5.05653H10.8783C10.9241 5.05653 15.4852 5.04128 18.164 6.07314C18.2633 6.11322 18.3517 6.17626 18.4219 6.25711C18.4922 6.33795 18.5423 6.43429 18.5681 6.53823C18.7697 7.31085 19.0069 8.7358 19.0069 11.1562C19.0069 13.5765 18.7697 15.0015 18.5698 15.7707V15.775Z"
+                      fill="white"
+                    />
+                  </svg>
+                ) : null}
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </Marquee>
   );
 }

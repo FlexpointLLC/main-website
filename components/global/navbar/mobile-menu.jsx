@@ -51,12 +51,12 @@ export default function MobileMenu() {
         aria-label="Mobile navigation menu"
       >
         <SheetContent
-          className="bg-gradient-primary-from-top pt-10"
+          className="bg-gradient-primary-from-top pt-20"
           role="navigation"
         >
           <ul className="space-y-4">
             {mobileNavOptions.map((option, index) => (
-              <li key={index}>
+              <li key={index} onClick={() => setOpenMenuBar(false)}>
                 <Link
                   href={option.href}
                   className={`text-[40px] font-semibold text-heading ${option.name !== "Home" && "opacity-30"}`}

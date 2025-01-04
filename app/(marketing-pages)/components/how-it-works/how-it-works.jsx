@@ -35,35 +35,40 @@ const workingStrategies = [
 
 const HowItWorks = () => {
   return (
-    <div className="bg-white">
-      <section className="mx-auto max-w-4xl px-4 pb-24 pt-16 md:pt-32">
+    <div className="scroll-smooth bg-white" id="how-it-works">
+      <section className="mx-auto max-w-[786px] px-4 pb-28 pt-16 md:pt-32">
         <SectionHeading
           headingLongText="How Flexpoint Works"
           headingShortText="Effortless, Easy Steps"
           headingPara="Flexpoint has everything you need to manage and grow your business—all in one place."
+          extraClassNames={"md:mb-10"}
         />
 
         <div className="flex flex-col gap-6">
           {workingStrategies.map((item) => (
             <article
               key={item.id}
-              className="flex flex-col-reverse rounded-2xl border border-[#E1E4EA] md:flex-row"
+              className="appear-animation flex flex-col-reverse overflow-hidden rounded-2xl border border-[#E1E4EA] md:flex-row"
             >
-              <div className="w-full p-4 md:w-3/5 md:p-12">
-                <span className="mb-1 text-[12px] font-medium uppercase text-[#5C5C5C]">
+              <div className="flex flex-col justify-center p-5 md:p-0 md:pl-12">
+                <span className="mb-1 text-[11.8px] font-medium uppercase leading-4 tracking-[0.48px] text-[#5C5C5C]">
                   {item.subTitle}
                 </span>
-                <h4 className="mb-4 text-2xl font-medium text-heading">
+                <h4 className="mb-4 text-2xl font-medium tracking-[-0.72px] text-heading">
                   {item.title}
                 </h4>
-                <p className="mb- mb-8 text-[#5C5C5C]">{item.shortDes}</p>
+                <p className="leading-6 tracking-[-0.18px] text-[#5C5C5C]">
+                  {item.shortDes}
+                </p>
               </div>
 
-              <figure className="w-full md:w-2/5">
+              <figure className="h-full w-full md:ml-10">
                 <Image
+                  width={309}
+                  height={234}
                   src={item.image}
                   alt={`${item.title} image`}
-                  className="w-full"
+                  className="h-full w-full"
                 />
               </figure>
             </article>
