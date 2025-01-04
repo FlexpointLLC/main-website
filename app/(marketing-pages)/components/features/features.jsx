@@ -103,7 +103,7 @@ const features = [
 
 const Features = () => {
   return (
-    <div className="bg-white">
+    <div className="scroll-smooth bg-white" id="features">
       <section className="mx-auto max-w-5xl px-4 pb-24 pt-16 md:pt-32 xl:px-0">
         <SectionHeading
           headingLongText="Not just another link·in·bio🚀"
