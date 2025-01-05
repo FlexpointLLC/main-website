@@ -6,7 +6,6 @@ const FeatureCard = ({ feature }) => {
   return (
     <article
       style={{
-        // backgroundColor: feature.backgroundColor,
         border: `1px solid ${feature.borderColor}`,
       }}
       className={cn(
@@ -15,7 +14,7 @@ const FeatureCard = ({ feature }) => {
         feature.backgroundColor,
       )}
     >
-      <div className="w w-full py-8 md:w-3/5 md:py-20">
+      <div className="relative w-full py-8 md:w-3/5 md:py-20">
         <span className="mb-1 text-[11.8px] font-medium uppercase leading-4 tracking-[0.48px] text-[#5C5C5C]">
           {feature.subTitle}
         </span>
@@ -41,6 +40,15 @@ const FeatureCard = ({ feature }) => {
             </li>
           ))}
         </ul>
+
+        <div className="absolute -right-4 bottom-0 z-10">
+          <Image
+            src={feature.vector}
+            alt="this is decorative vector"
+            width={280}
+            height={280}
+          />
+        </div>
       </div>
       <figure className="flex w-full items-center justify-center md:w-1/2">
         <Image src={feature.image} alt={`${feature.title} image`} />

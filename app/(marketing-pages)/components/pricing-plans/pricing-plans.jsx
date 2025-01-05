@@ -14,7 +14,7 @@ const PricingPlans = () => {
           headingLongText="Flexpoint vs Other Tools"
           headingShortText="What you will get?"
           headingPara="See how Flexpoint brings together 5+ services in one, helping you save big."
-          extraClassNames={"md:mb-8"}
+          extraClassNames={"md:mb-8 md:px-0"}
         />
 
         <ToolsCard />
@@ -30,7 +30,7 @@ const PricingPlans = () => {
             <Link
               href="https://dev-admin.flexpoint.store/register"
               target="_blank"
-              className="flex items-center gap-2 px-7 py-2 hover:gap-3 md:py-4"
+              className="flex items-center gap-2 px-7 py-2 hover:gap-3"
             >
               <span>Get Started Now</span>
 

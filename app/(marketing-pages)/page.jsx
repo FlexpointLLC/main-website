@@ -4,6 +4,7 @@ import FlexpointDescription from "./components/flexpoint-description/flexpoint-d
 import HowItWorks from "./components/how-it-works/how-it-works";
 import Hero from "./components/hero/hero";
 import PricingPlans from "./components/pricing-plans/pricing-plans";
+import FAQs from "./components/faqs/faqs";
 
 export const metadata = {
   title: "Flexpoint - Home",
@@ -19,6 +20,7 @@ export default function Home() {
       <Features />
       <PricingPlans />
       <HowItWorks />
+      <FAQs />
       <CTA />
     </div>
   );
