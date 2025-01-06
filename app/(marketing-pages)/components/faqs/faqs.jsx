@@ -3,7 +3,7 @@ import { AccordionDemo } from "./accordion";
 
 export default function FAQs() {
   return (
-    <div className="bg-[#F3F7FB] py-20 md:py-36">
+    <div className="bg-[#F3F7FB] py-20 md:py-36" id="faq">
       <SectionHeading
         headingLongText="Your Questions, Answered"
         headingShortText="Frequently Asked Questions"
