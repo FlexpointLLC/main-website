@@ -1,5 +1,3 @@
-"use client";
-
 import SectionHeading from "../section-heading/section-heading";
 import { AccordionDemo } from "./accordion";
 
