@@ -3,7 +3,7 @@ import { AccordionDemo } from "./accordion";
 
 export default function FAQs() {
   return (
-    <div className="bg-[#F3F7FB] py-36">
+    <div className="bg-[#F3F7FB] py-20 md:py-36">
       <SectionHeading
         headingLongText="Your Questions, Answered"
         headingShortText="Frequently Asked Questions"
@@ -11,7 +11,7 @@ export default function FAQs() {
         extraClassNames={"md:mb-10"}
       />
 
-      <div className="mx-auto max-w-[564px]">
+      <div className="mx-auto max-w-[564px] px-4 md:px-0">
         <AccordionDemo />
       </div>
     </div>
