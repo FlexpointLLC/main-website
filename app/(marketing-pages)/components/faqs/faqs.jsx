@@ -1,4 +1,7 @@
+"use client";
+
 import SectionHeading from "../section-heading/section-heading";
+import { AccordionDemo } from "./accordion";
 
 export default function FAQs() {
   return (
@@ -10,7 +13,9 @@ export default function FAQs() {
         extraClassNames={"md:mb-10"}
       />
 
-      <div className="mx-auto max-w-[564px]"> hello</div>
+      <div className="mx-auto max-w-[564px]">
+        <AccordionDemo />
+      </div>
     </div>
   );
 }
