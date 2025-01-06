@@ -1,9 +1,16 @@
+"use client";
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+
+import { useEffect, useRef } from "react";
+import { ScrollTrigger, gsap } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const accordionContents = [
   {
@@ -57,8 +64,32 @@ const accordionContents = [
 ];
 
 export function AccordionDemo() {
+  const accordionRef = useRef();
+
+  useEffect(() => {
+    const targets = gsap.utils.toArray([accordionRef.current]);
+
+    ScrollTrigger.create({
+      trigger: accordionRef.current,
+      start: "top 80%",
+      once: true,
+      onEnter: () => {
+        gsap.fromTo(
+          targets,
+          { opacity: 0, y: 30, delay: 0.8 },
+          { opacity: 1, y: 0, delay: 0.8, stagger: 0.2 },
+        );
+      },
+    });
+  }, []);
+
   return (
-    <Accordion type="single" collapsible className="w-full space-y-2">
+    <Accordion
+      ref={accordionRef}
+      type="single"
+      collapsible
+      className="w-full space-y-2"
+    >
       {accordionContents.map((accordion) => (
         <AccordionItem
           key={accordion.id}
