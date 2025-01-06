@@ -14,7 +14,7 @@ const PricingPlans = () => {
           headingLongText="Flexpoint vs Other Tools"
           headingShortText="What you will get?"
           headingPara="See how Flexpoint brings together 5+ services in one, helping you save big."
-          extraClassNames={"md:mb-8"}
+          extraClassNames={"md:mb-8 md:px-0"}
         />
 
         <div className="appear-animation">
@@ -22,17 +22,18 @@ const PricingPlans = () => {
 
           <TotalPricingCard />
 
-          <div className="mt-6 w-full">
-            <Button
-              className={
-                "h-fit w-full rounded-2xl text-lg font-semibold leading-6"
-              }
+
+        <div className="appear-animation mt-6 w-full">
+          <Button
+            className={
+              "h-fit w-full rounded-2xl text-lg font-semibold leading-6"
+            }
+          >
+            <Link
+              href="https://dev-admin.flexpoint.store/register"
+              target="_blank"
+              className="flex items-center gap-2 px-7 py-2 hover:gap-3"
             >
-              <Link
-                href="https://dev-admin.flexpoint.store/register"
-                target="_blank"
-                className="flex items-center gap-2 px-7 py-2 hover:gap-3 md:py-4"
-              >
                 <span>Get Started Now</span>
 
                 <svg

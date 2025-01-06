@@ -8,6 +8,11 @@ import FeatureCard from "./feature-card";
 import SectionHeading from "../section-heading/section-heading";
 import Image from "next/image";
 import avatarGroupImage from "@/public/assets/img/hero-avatar-group.svg";
+import vector1 from "@/public/assets/img/features-vector-1.svg";
+import vector2 from "@/public/assets/img/features-vector-2.svg";
+import vector3 from "@/public/assets/img/features-vector-3.svg";
+import vector4 from "@/public/assets/img/features-vector-4.svg";
+import vector5 from "@/public/assets/img/features-vector-5.svg";
 
 const features = [
   {
@@ -27,6 +32,7 @@ const features = [
     ],
     imgPosition: "RIGHT",
     image: PaidCallAndHostEventImg,
+    vector: vector1,
   },
   {
     id: "2",
@@ -45,6 +51,7 @@ const features = [
     ],
     imgPosition: "LEFT",
     image: MonetizeDigitalContentImg,
+    vector: vector2,
   },
   {
     id: "3",
@@ -62,6 +69,7 @@ const features = [
     ],
     imgPosition: "RIGHT",
     image: BuildCommunityImg,
+    vector: vector3,
   },
   {
     id: "4",
@@ -80,6 +88,7 @@ const features = [
     ],
     imgPosition: "LEFT",
     image: ExclusiveServiceImg,
+    vector: vector4,
   },
   {
     id: "5",
@@ -98,6 +107,7 @@ const features = [
     ],
     imgPosition: "RIGHT",
     image: PromoteLinkImg,
+    vector: vector5,
   },
 ];
 

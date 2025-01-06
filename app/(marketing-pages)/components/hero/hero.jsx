@@ -55,17 +55,17 @@ const Hero = () => {
       {/* badge */}
       <div
         ref={badgeRef}
-        className="relative z-10 mb-6 flex items-center gap-2 rounded-full bg-white/40 py-2 pl-[10px] pr-[26px] text-sm font-medium leading-5 tracking-[-0.08%] text-heading backdrop-blur-2xl"
+        className="relative z-10 mb-6 flex items-center gap-3 rounded-full bg-white/40 py-[6px] pl-2 pr-3 text-sm font-medium leading-5 tracking-[-0.08%] text-[#2B956E] backdrop-blur-2xl"
       >
-        <span className="rounded-full bg-white px-2 py-1">Introducing</span>
+        <span className="rounded-full bg-white px-3 py-1">Introducing</span>
         <span>Your all in one store</span>
       </div>
 
       {/* banner */}
-      <div className="relative z-10 flex w-full flex-col items-center justify-center gap-7 px-4 pb-24 text-center md:mx-auto md:max-w-xl md:pb-44">
+      <div className="relative z-10 flex w-full flex-col items-center justify-center gap-7 px-4 pb-24 text-center md:mx-auto md:max-w-2xl md:pb-44">
         <h1
           ref={headingRef}
-          className="text-5xl font-semibold text-heading md:text-[64px]"
+          className="text-5xl font-semibold leading-[105%] tracking-[-0.05em] text-heading md:text-[72px]"
         >
           The All-in-one Creator Platform.
         </h1>
@@ -83,7 +83,7 @@ const Hero = () => {
             <Link
               href="https://dev-admin.flexpoint.store/register"
               target="_blank"
-              className="flex items-center gap-2 px-7 py-2 text-lg font-semibold leading-6 hover:gap-3 md:py-4"
+              className="flex items-center gap-2 px-7 py-2 text-lg font-semibold leading-6 hover:gap-3"
             >
               <span>Get Started Now</span>
 

@@ -13,14 +13,14 @@ const TotalPricingCard = () => {
           <figure>
             <Image
               src={FlexpointLogo}
-              width={48.45}
-              height={48.45}
+              width={52}
+              height={52}
               alt="Flexpoint Logo"
               className="min-h-12 min-w-12"
             />
           </figure>
           <div className="space-y-1 text-center md:text-start">
-            <h5 className="text-[28.2px] font-bold leading-[110%] text-heading">
+            <h5 className="text-[28.2px] font-bold leading-[100%] tracking-[0px] text-heading">
               Join Flexpoint Family
             </h5>
             <p className="leading-6 tracking-[-0.08px] text-para">

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const CTA = () => {
   return (
-    <div className="bg-white px-4">
+    <div className="mt-20 bg-white px-4">
       <section className="appear-animation mx-auto max-w-5xl rounded-2xl border border-[#D5F1F1] bg-gradient-to-b from-[#ECF8F8] to-[#F9FDFD] px-5 py-16 md:px-0 md:py-24">
         <div className="w-full text-center md:mx-auto md:max-w-xl">
           <h2 className="mb-[10px] font-semibold text-success-base">
@@ -27,7 +27,7 @@ const CTA = () => {
               <Link
                 href="https://dev-admin.flexpoint.store/register"
                 target="_blank"
-                className="flex items-center gap-2 px-7 py-2 hover:gap-3 md:py-4"
+                className="flex items-center gap-2 px-7 py-2 hover:gap-3"
               >
                 <span>Get Started Now</span>
 

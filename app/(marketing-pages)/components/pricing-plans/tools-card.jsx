@@ -53,9 +53,9 @@ const toolsData = [
 
 export default function ToolsCard() {
   return (
-    <div className="mb-4 w-full rounded-2xl bg-white shadow-sm">
-      <div className="border-b border-black/5 px-6 py-6">
-        <p className="text-lg font-medium leading-6 tracking-[-1.5%]">
+    <div className="appear-animation mb-4 w-full rounded-2xl bg-white shadow-sm">
+      <div className="border-b border-black/5 px-6 py-4">
+        <p className="text-lg font-medium leading-6 tracking-[-0.01em]">
           What other tools will cost you
         </p>
       </div>
@@ -76,7 +76,7 @@ export default function ToolsCard() {
                 />
 
                 <div className="flex flex-col md:gap-1">
-                  <h4 className="text-sm font-medium tracking-[-1.5%] text-heading md:text-lg md:leading-6">
+                  <h4 className="text-sm font-medium tracking-[-0.01em] text-heading md:text-lg md:leading-6">
                     {tool.title}
                   </h4>
                   <p className="text-xs font-medium leading-5 tracking-[-0.08%] text-para md:text-sm">
@@ -108,7 +108,7 @@ export default function ToolsCard() {
                 />
               </svg>
 
-              <p className="text-sm font-semibold text-para md:text-xl md:leading-6">
+              <p className="text-sm font-semibold text-para md:text-xl">
                 Your Total Monthly Costs
               </p>
             </div>
