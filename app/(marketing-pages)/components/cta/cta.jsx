@@ -1,10 +1,39 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
+import { useEffect, useRef } from "react";
+import { ScrollTrigger, gsap } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const CTA = () => {
+  const sectionRef = useRef();
+
+  useEffect(() => {
+    const targets = gsap.utils.toArray([sectionRef.current]);
+
+    ScrollTrigger.create({
+      trigger: sectionRef.current,
+      start: "top 80%",
+      once: true,
+      onEnter: () => {
+        gsap.fromTo(
+          targets,
+          { opacity: 0, y: 30, delay: 0.8 },
+          { opacity: 1, y: 0, delay: 0.8, stagger: 0.2 },
+        );
+      },
+    });
+  }, []);
+
   return (
     <div className="mt-20 bg-white px-4">
-      <section className="appear-animation mx-auto max-w-5xl rounded-2xl border border-[#D5F1F1] bg-gradient-to-b from-[#ECF8F8] to-[#F9FDFD] px-5 py-16 md:px-0 md:py-24">
+      <section
+        ref={sectionRef}
+        className="mx-auto max-w-5xl rounded-2xl border border-[#D5F1F1] bg-gradient-to-b from-[#ECF8F8] to-[#F9FDFD] px-5 py-16 md:px-0 md:py-24"
+      >
         <div className="w-full text-center md:mx-auto md:max-w-xl">
           <h2 className="mb-[10px] font-semibold text-success-base">
             Ready to get started?

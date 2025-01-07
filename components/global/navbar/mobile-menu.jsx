@@ -1,12 +1,10 @@
-"use client";
-
 import { Menu } from "lucide-react";
-import { useState } from "react";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import Link from "next/link";
+import useHash from "@/hooks/useHash";
 
-export default function MobileMenu() {
-  const [openMenuBar, setOpenMenuBar] = useState(false);
+export default function MobileMenu({ openMenuBar, setOpenMenuBar }) {
+  const hash = useHash();
 
   const mobileNavOptions = [
     {
@@ -15,19 +13,23 @@ export default function MobileMenu() {
     },
     {
       name: "Features",
-      href: "/#features",
+      href: "#features",
     },
     {
       name: "Pricing",
-      href: "/#pricing",
+      href: "#pricing",
     },
     {
       name: "How it works",
-      href: "/#how-it-works",
+      href: "#how-it-works",
     },
     {
       name: "FAQ",
-      href: "/#faq",
+      href: "#faq",
+    },
+    {
+      name: "Login",
+      href: "https://dev-admin.flexpoint.store/lookup",
     },
   ];
 
@@ -51,7 +53,7 @@ export default function MobileMenu() {
         aria-label="Mobile navigation menu"
       >
         <SheetContent
-          className="bg-gradient-primary-from-top pt-20"
+          className="bg-gradient-primary-from-top pt-10"
           role="navigation"
         >
           <ul className="space-y-4">
@@ -59,7 +61,7 @@ export default function MobileMenu() {
               <li key={index} onClick={() => setOpenMenuBar(false)}>
                 <Link
                   href={option.href}
-                  className={`text-[40px] font-semibold text-heading ${option.name !== "Home" && "opacity-30"}`}
+                  className={`text-[40px] font-semibold text-heading ${hash === option.href ? "opacity-30" : "opacity-100"}`}
                   aria-label={`Navigate to ${option.name}`}
                 >
                   {option.name}

@@ -9,6 +9,7 @@ import avatarGroupImage from "@/public/assets/img/hero-avatar-group.svg";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Link from "next/link";
+import { timeline } from "../../utils/timeline";
 
 const Hero = () => {
   const sectionRef = useRef();
@@ -17,8 +18,6 @@ const Hero = () => {
   const paragraphRef = useRef();
   const buttonRef = useRef();
   const imageRef = useRef();
-
-  const timeline = gsap.timeline({ paused: true });
 
   useGSAP(
     () => {

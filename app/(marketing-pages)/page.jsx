@@ -20,7 +20,7 @@ export default function Home() {
       <Features />
       <PricingPlans />
       <HowItWorks />
-      {/* <FAQs /> */}
+      <FAQs />
       <CTA />
     </div>
   );

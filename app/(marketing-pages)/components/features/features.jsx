@@ -127,7 +127,7 @@ const Features = () => {
           ))}
         </div>
 
-        <div className="appear-animation mt-10 flex w-full flex-col items-center gap-2 text-center">
+        <div className="mt-10 flex w-full flex-col items-center gap-2 text-center">
           <Image
             src={avatarGroupImage}
             height={32}
