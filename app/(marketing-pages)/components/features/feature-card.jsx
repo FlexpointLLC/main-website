@@ -1,15 +1,41 @@
+"use client";
+
 import { cn } from "@/lib/utils";
-import { CheckCircle, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
+import { ScrollTrigger, gsap } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const FeatureCard = ({ feature }) => {
+  const cardRef = useRef();
+
+  useEffect(() => {
+    const targets = gsap.utils.toArray([cardRef.current]);
+
+    ScrollTrigger.create({
+      trigger: cardRef.current,
+      start: "top 80%",
+      once: true,
+      onEnter: () => {
+        gsap.fromTo(
+          targets,
+          { opacity: 0, y: 30, delay: 0.8 },
+          { opacity: 1, y: 0, delay: 0.8, stagger: 0.2 },
+        );
+      },
+    });
+  }, []);
+
   return (
     <article
+      ref={cardRef}
       style={{
         border: `1px solid ${feature.borderColor}`,
       }}
       className={cn(
-        "appear-animation flex w-full flex-col-reverse gap-3 rounded-2xl bg-gradient-to-b px-5 pt-10 md:flex md:max-h-[460px] md:gap-20 md:px-16 md:pt-0",
+        "flex w-full flex-col-reverse gap-3 rounded-2xl bg-gradient-to-b px-5 pt-10 md:flex md:max-h-[460px] md:gap-20 md:px-16 md:pt-0",
         feature.imgPosition === "RIGHT" ? "md:flex-row" : "md:flex-row-reverse",
         feature.backgroundColor,
       )}

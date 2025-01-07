@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 
 import NoCodeImg from "@/public/assets/img/no-code.svg";
@@ -5,6 +7,11 @@ import SeamlessCheckoutImg from "@/public/assets/img/seamless-checkout.svg";
 import AppIntegrationsImg from "@/public/assets/img/app-integrations.svg";
 
 import SectionHeading from "../section-heading/section-heading";
+
+import { useEffect, useRef } from "react";
+import { ScrollTrigger, gsap } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const workingStrategies = [
   {
@@ -34,6 +41,25 @@ const workingStrategies = [
 ];
 
 const HowItWorks = () => {
+  const cardRef = useRef();
+
+  useEffect(() => {
+    const targets = gsap.utils.toArray([cardRef.current]);
+
+    ScrollTrigger.create({
+      trigger: cardRef.current,
+      start: "top 80%",
+      once: true,
+      onEnter: () => {
+        gsap.fromTo(
+          targets,
+          { opacity: 0, y: 30, delay: 0.8 },
+          { opacity: 1, y: 0, delay: 0.8, stagger: 0.2 },
+        );
+      },
+    });
+  }, []);
+
   return (
     <div className="scroll-smooth bg-white" id="how-it-works">
       <section className="mx-auto max-w-[786px] px-4 pb-28 pt-16 md:pt-32">
@@ -44,11 +70,11 @@ const HowItWorks = () => {
           extraClassNames={"md:mb-10"}
         />
 
-        <div className="flex flex-col gap-6">
+        <div ref={cardRef} className="flex flex-col gap-6">
           {workingStrategies.map((item) => (
             <article
               key={item.id}
-              className="appear-animation flex flex-col-reverse overflow-hidden rounded-2xl border border-[#E1E4EA] md:flex-row"
+              className="flex flex-col-reverse overflow-hidden rounded-2xl border border-[#E1E4EA] md:flex-row"
             >
               <div className="flex flex-col justify-center p-5 md:p-0 md:pl-12">
                 <span className="mb-1 text-[11.8px] font-medium uppercase leading-4 tracking-[0.48px] text-[#5C5C5C]">

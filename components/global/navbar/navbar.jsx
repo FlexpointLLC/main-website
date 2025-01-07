@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import vectorLeft from "@/public/assets/img/vector-left.svg";
 import vectorRight from "@/public/assets/img/vector-right.svg";
@@ -6,6 +8,7 @@ import logoIcon from "@/public/assets/img/logo-icon.svg";
 import Image from "next/image";
 import Link from "next/link";
 import MobileMenu from "./mobile-menu";
+import { useState } from "react";
 
 const navOptions = [
   {
@@ -27,10 +30,14 @@ const navOptions = [
 ];
 
 export default function Navbar() {
+  const [openMenuBar, setOpenMenuBar] = useState(false);
+
   return (
     <header className="sticky top-0 z-[1000]" role="banner">
       <div className="relative max-md:p-4 md:mx-auto md:w-full md:max-w-5xl">
-        <div className="max-md:border-[rgba(255, 255, 255, 0.30)] grid w-full grid-cols-12 items-center justify-between rounded-bl-[20px] rounded-br-[20px] px-4 py-3 shadow-sm max-md:rounded-bl-[12px] max-md:rounded-br-[12px] max-md:rounded-tl-[12px] max-md:rounded-tr-[12px] max-md:border max-md:bg-[#D6EDFE] max-md:shadow max-md:backdrop-blur-[20px] md:bg-white">
+        <div
+          className={`max-md:border-[rgba(255, 255, 255, 0.30)] relative grid w-full grid-cols-12 items-center justify-between rounded-bl-[20px] rounded-br-[20px] px-4 py-3 shadow-sm max-md:rounded-bl-[12px] max-md:rounded-br-[12px] max-md:rounded-tl-[12px] max-md:rounded-tr-[12px] max-md:border max-md:bg-transparent max-md:shadow max-md:backdrop-blur-[20px] md:bg-white ${openMenuBar ? "-top-[70px]" : "top-0"}`}
+        >
           <div className="col-span-2">
             <Link href="/" aria-label="Homepage" className="max-md:hidden">
               <Image
@@ -71,7 +78,10 @@ export default function Navbar() {
           <div className="col-span-8 md:hidden"></div>
 
           <div className="col-span-2 flex justify-end">
-            <MobileMenu />
+            <MobileMenu
+              openMenuBar={openMenuBar}
+              setOpenMenuBar={setOpenMenuBar}
+            />
             <Link href={process.env.NEXT_PUBLIC_LOGIN_URL}>
               <Button
                 variant="secondary"

@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import advancedLinkInBioIcons from "@/public/assets/icon/advanced-link-in-bio-icons.svg";
 import audienceAnalyticsIcons from "@/public/assets/icon/audience-analytics-icons.svg";
@@ -5,6 +7,11 @@ import calendarInvitesAndBookingsIcons from "@/public/assets/icon/calendar-invit
 import engageAndBuildCommunityToolIcons from "@/public/assets/icon/engage-and-build-community-tool-icons.svg";
 import monetizeDigitalContentIcons from "@/public/assets/icon/monetize-digital-content-icons.svg";
 import paidStrategyCoachingIcons from "@/public/assets/icon/paid-strategy-coaching-icons.svg";
+
+import { useEffect, useRef } from "react";
+import { ScrollTrigger, gsap } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const toolsData = [
   {
@@ -52,8 +59,30 @@ const toolsData = [
 ];
 
 export default function ToolsCard() {
+  const sectionRef = useRef();
+
+  useEffect(() => {
+    const targets = gsap.utils.toArray([sectionRef.current]);
+
+    ScrollTrigger.create({
+      trigger: sectionRef.current,
+      start: "top 80%",
+      once: true,
+      onEnter: () => {
+        gsap.fromTo(
+          targets,
+          { opacity: 0, y: 30, delay: 0.8 },
+          { opacity: 1, y: 0, delay: 0.8, stagger: 0.2 },
+        );
+      },
+    });
+  }, []);
+
   return (
-    <div className="appear-animation mb-4 w-full rounded-2xl bg-white shadow-sm">
+    <div
+      ref={sectionRef}
+      className="mb-4 w-full rounded-2xl bg-white shadow-sm"
+    >
       <div className="border-b border-black/5 px-6 py-4">
         <p className="text-lg font-medium leading-6 tracking-[-0.01em]">
           What other tools will cost you
