@@ -10,6 +10,17 @@ export const metadata = {
   title: "Flexpoint - Home",
   description:
     "Stay tuned! Flexpoint is launching soon with innovative solutions to empower creators and elevate their digital businesses.",
+  openGraph: {
+    images: [
+      {
+        url: "https://i.ibb.co.com/bz1qnHV/Flexpoint.png",
+        width: 1200,
+        height: 630,
+        type: "image/png",
+        alt: "OG image of Flexpoint",
+      },
+    ],
+  },
 };
 
 export default function Home() {
