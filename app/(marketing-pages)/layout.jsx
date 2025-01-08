@@ -4,7 +4,7 @@ import { ReactLenis } from "./utils/lenis";
 
 const MarketingPagesLayout = ({ children }) => {
   return (
-    <main className="min-h-screen scroll-smooth bg-white">
+    <main className="min-h-screen bg-white">
       <ReactLenis root>
         <Navbar />
         {children}
