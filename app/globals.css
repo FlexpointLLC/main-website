@@ -119,7 +119,3 @@ body.page-loading::after {
     transform: translateX(calc(100vw - 40%));
   }
 }
-
-html {
-  scroll-behavior: smooth;
-}
