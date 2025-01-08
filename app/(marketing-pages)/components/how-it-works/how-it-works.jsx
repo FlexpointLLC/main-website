@@ -61,7 +61,7 @@ const HowItWorks = () => {
   }, []);
 
   return (
-    <div className="scroll-smooth bg-white" id="how-it-works">
+    <div className="bg-white" id="how-it-works">
       <section className="mx-auto max-w-[786px] px-4 pb-28 pt-16 md:pt-32">
         <SectionHeading
           headingLongText="How Flexpoint Works"

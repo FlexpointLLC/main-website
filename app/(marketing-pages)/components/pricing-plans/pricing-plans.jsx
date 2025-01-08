@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const PricingPlans = () => {
   return (
-    <div className="scroll-smooth bg-[#F3F7FB]" id="pricing">
+    <div className="bg-[#F3F7FB]" id="pricing">
       <section className="mx-auto w-full px-4 py-20 md:max-w-[652px]">
         <SectionHeading
           headingLongText="Flexpoint vs Other Tools"
