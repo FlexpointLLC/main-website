@@ -61,7 +61,7 @@ export default function MobileMenu({ openMenuBar, setOpenMenuBar }) {
               <li key={index} onClick={() => setOpenMenuBar(false)}>
                 <Link
                   href={option.href}
-                  className={`text-[40px] font-semibold text-heading ${hash === option.href ? "opacity-30" : "opacity-100"}`}
+                  className={`text-[40px] font-semibold text-heading ${hash === option.href ? "opacity-100" : "opacity-30"}`}
                   aria-label={`Navigate to ${option.name}`}
                 >
                   {option.name}
