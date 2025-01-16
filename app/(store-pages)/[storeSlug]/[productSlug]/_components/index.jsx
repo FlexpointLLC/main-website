@@ -154,6 +154,9 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
   if (isProductLoading || isCalendarLoading) return <Loader />;
 
   const { productDetails: product } = productData?.data || {};
+
+  console.log(product);
+
   const calendar = calendarData?.data?.calendar || [];
 
   const enabledDates = calendar.map((date) => date.date);
@@ -306,7 +309,10 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
               {productData?.data?.visitor_timezone}
             </p>
           </div>
-          <div className="rounded-lg bg-white">{renderView()}</div>
+
+          {product?.type === "coaching" ? (
+            <div className="rounded-lg bg-white">{renderView()}</div>
+          ) : null}
         </div>
 
         <hr className="h-[2px] bg-black/5" />
