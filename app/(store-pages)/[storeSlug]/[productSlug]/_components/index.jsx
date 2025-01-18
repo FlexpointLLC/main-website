@@ -157,8 +157,6 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
     },
   });
 
-  console.log("formik", formik.values);
-
   if (isProductLoading || isCalendarLoading) return <Loader />;
 
   const { productDetails: product } = productData?.data || {};
