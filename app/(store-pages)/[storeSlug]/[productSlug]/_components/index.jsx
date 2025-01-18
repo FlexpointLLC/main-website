@@ -9,7 +9,12 @@ import { object, string } from "yup";
 import storeFooterLogo from "@/public/assets/img/store-footer-logo.svg";
 import { ArrowLeft, ChevronLeft } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
-import { extractYouTubeId, percentage, rgbaDataURL } from "@/lib/utils";
+import {
+  extractYouTubeId,
+  groupEventsByDate,
+  percentage,
+  rgbaDataURL,
+} from "@/lib/utils";
 import CustomerInfo from "./customer-info";
 import SlotPicker from "./slot-picker";
 import SelectedSlotCard from "./seleted-slot-card";
@@ -29,6 +34,7 @@ import { useGetProductDetailsQuery } from "@/redux/api/productApi";
 import { useGetProductCalendarQuery } from "@/redux/api/scheduleApi";
 import { useCreatePaymentIntentQuery } from "@/redux/api/paymentApi";
 import { useCreateAppointmentMutation } from "@/redux/api/appointmentApi";
+import GroupSlot from "./group-slot";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
@@ -151,11 +157,11 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
     },
   });
 
+  console.log("formik", formik.values);
+
   if (isProductLoading || isCalendarLoading) return <Loader />;
 
   const { productDetails: product } = productData?.data || {};
-
-  console.log(product);
 
   const calendar = calendarData?.data?.calendar || [];
 
@@ -184,7 +190,9 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
       ).toFixed(2)
     : formattedPrice;
 
-  const renderView = () => {
+  const events = groupEventsByDate(product?.events);
+
+  const renderCoachingView = () => {
     switch (viewState) {
       case "CALENDAR":
         return (
@@ -206,6 +214,31 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
             setViewState={setViewState}
             selectedDate={formik.values.picked_date}
             productSlug={productSlug}
+          />
+        );
+      case "RESULT":
+        return (
+          <SelectedSlotCard
+            handleChangeDate={() => setViewState("CALENDAR")}
+            selectedDate={formik.values.picked_date}
+            slotStartTime={formik.values.picked_slot}
+            slotEndTime={formik.values.picked_slot_end}
+            selectedMeridiem={formik.values.picked_meridiem}
+          />
+        );
+      default:
+        return null;
+    }
+  };
+
+  const renderGroupCallView = () => {
+    switch (viewState) {
+      case "CALENDAR":
+        return (
+          <GroupSlot
+            events={events}
+            setViewState={setViewState}
+            formik={formik}
           />
         );
       case "RESULT":
@@ -294,12 +327,19 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
                 <ChevronLeft
                   size={16}
                   className="cursor-pointer"
-                  onClick={() =>
-                    setViewState(viewState === "SLOT" ? "CALENDAR" : "SLOT")
-                  }
+                  onClick={() => {
+                    product?.type === "group-call"
+                      ? setViewState("CALENDAR")
+                      : setViewState(
+                          viewState === "SLOT" ? "CALENDAR" : "SLOT",
+                        );
+                  }}
                 />
               )}
-              <h3 className="text-sm font-semibold text-fl-border">
+              <h3
+                title={product?.bottom_title}
+                className="max-w-64 truncate font-semibold text-fl-border"
+              >
                 {viewState === "SLOT" || viewState === "RESULT"
                   ? moment(formik.values.picked_date).format("MMM DD")
                   : product?.bottom_title}
@@ -311,8 +351,10 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
           </div>
 
           {product?.type === "coaching" ? (
-            <div className="rounded-lg bg-white">{renderView()}</div>
-          ) : null}
+            <div className="rounded-lg bg-white">{renderCoachingView()}</div>
+          ) : (
+            product?.type === "group-call" && <div>{renderGroupCallView()}</div>
+          )}
         </div>
 
         <hr className="h-[2px] bg-black/5" />
