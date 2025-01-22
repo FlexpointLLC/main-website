@@ -1,5 +1,7 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
+
 import { Button } from "@/components/ui/button";
 import vectorLeft from "@/public/assets/img/vector-left.svg";
 import vectorRight from "@/public/assets/img/vector-right.svg";
@@ -31,6 +33,7 @@ const navOptions = [
 
 export default function Navbar() {
   const [openMenuBar, setOpenMenuBar] = useState(false);
+  const referralQueryKey = useSearchParams().get("ref");
 
   return (
     <header className="sticky top-0 z-[1000]" role="banner">
@@ -82,7 +85,13 @@ export default function Navbar() {
               openMenuBar={openMenuBar}
               setOpenMenuBar={setOpenMenuBar}
             />
-            <Link href={process.env.NEXT_PUBLIC_LOGIN_URL}>
+            <Link
+              href={
+                referralQueryKey
+                  ? `${process.env.NEXT_PUBLIC_LOGIN_URL}?ref=${referralQueryKey}`
+                  : process.env.NEXT_PUBLIC_LOGIN_URL
+              }
+            >
               <Button
                 variant="secondary"
                 aria-label="Login button"
