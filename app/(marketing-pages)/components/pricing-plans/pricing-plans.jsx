@@ -1,12 +1,20 @@
+"use client";
+
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import Image from "next/image";
+
+import avatarGroupImage from "@/public/assets/img/hero-avatar-group.svg";
+
 import { Button } from "@/components/ui/button";
+
 import SectionHeading from "../section-heading/section-heading";
 import ToolsCard from "./tools-card";
 import TotalPricingCard from "./total-pricing-card";
-import Image from "next/image";
-import avatarGroupImage from "@/public/assets/img/hero-avatar-group.svg";
-import Link from "next/link";
 
 const PricingPlans = () => {
+  const referralQueryKey = useSearchParams().get("ref");
+
   return (
     <div className="bg-[#F3F7FB]" id="pricing">
       <section className="mx-auto w-full px-4 py-20 md:max-w-[652px]">
@@ -29,7 +37,11 @@ const PricingPlans = () => {
               }
             >
               <Link
-                href="https://dev-admin.flexpoint.store/register"
+                href={
+                  referralQueryKey
+                    ? `https://dev-admin.flexpoint.store/register?ref=${referralQueryKey}`
+                    : "https://dev-admin.flexpoint.store/register"
+                }
                 target="_blank"
                 className="flex items-center gap-2 px-7 py-2 hover:gap-3"
               >

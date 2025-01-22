@@ -1,15 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import lineVector from "@/public/assets/img/line-vector.svg";
-import Marque from "./marque";
-import { useRef } from "react";
-import { Button } from "@/components/ui/button";
-import avatarGroupImage from "@/public/assets/img/hero-avatar-group.svg";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
 import Link from "next/link";
+import gsap from "gsap";
 import { timeline } from "../../utils/timeline";
+import { useSearchParams } from "next/navigation";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+
+import lineVector from "@/public/assets/img/line-vector.svg";
+import avatarGroupImage from "@/public/assets/img/hero-avatar-group.svg";
+
+import { Button } from "@/components/ui/button";
+
+import Marque from "./marque";
 
 const Hero = () => {
   const sectionRef = useRef();
@@ -18,6 +22,7 @@ const Hero = () => {
   const paragraphRef = useRef();
   const buttonRef = useRef();
   const imageRef = useRef();
+  const referralQueryKey = useSearchParams().get("ref");
 
   useGSAP(
     () => {
@@ -80,7 +85,11 @@ const Hero = () => {
         <div ref={buttonRef}>
           <Button className={"h-fit rounded-2xl"}>
             <Link
-              href="https://dev-admin.flexpoint.store/register"
+              href={
+                referralQueryKey
+                  ? `https://dev-admin.flexpoint.store/register?ref=${referralQueryKey}`
+                  : "https://dev-admin.flexpoint.store/register"
+              }
               target="_blank"
               className="flex items-center gap-2 px-7 py-2 text-lg font-semibold leading-6 hover:gap-3"
             >
