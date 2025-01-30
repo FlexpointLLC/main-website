@@ -1,9 +1,730 @@
 "use client";
 
+const defaultCalenderData = {
+  available_slots: {
+    "2025-02-03": [
+      {
+        startTime: "11:00 PM",
+        endTime: "12:00 AM",
+        startDateTime: "2025-02-03 11:00 PM",
+        date: "2025-02-03",
+        timezone: "Asia/Dhaka",
+      },
+    ],
+    "2025-02-04": [
+      {
+        startTime: "12:00 AM",
+        endTime: "1:00 AM",
+        startDateTime: "2025-02-04 12:00 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "12:15 AM",
+        endTime: "1:15 AM",
+        startDateTime: "2025-02-04 12:15 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "12:30 AM",
+        endTime: "1:30 AM",
+        startDateTime: "2025-02-04 12:30 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "12:45 AM",
+        endTime: "1:45 AM",
+        startDateTime: "2025-02-04 12:45 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "1:00 AM",
+        endTime: "2:00 AM",
+        startDateTime: "2025-02-04 1:00 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "1:15 AM",
+        endTime: "2:15 AM",
+        startDateTime: "2025-02-04 1:15 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "1:30 AM",
+        endTime: "2:30 AM",
+        startDateTime: "2025-02-04 1:30 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "1:45 AM",
+        endTime: "2:45 AM",
+        startDateTime: "2025-02-04 1:45 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "2:00 AM",
+        endTime: "3:00 AM",
+        startDateTime: "2025-02-04 2:00 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "2:15 AM",
+        endTime: "3:15 AM",
+        startDateTime: "2025-02-04 2:15 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "2:30 AM",
+        endTime: "3:30 AM",
+        startDateTime: "2025-02-04 2:30 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "2:45 AM",
+        endTime: "3:45 AM",
+        startDateTime: "2025-02-04 2:45 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "3:00 AM",
+        endTime: "4:00 AM",
+        startDateTime: "2025-02-04 3:00 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "3:15 AM",
+        endTime: "4:15 AM",
+        startDateTime: "2025-02-04 3:15 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "3:30 AM",
+        endTime: "4:30 AM",
+        startDateTime: "2025-02-04 3:30 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "3:45 AM",
+        endTime: "4:45 AM",
+        startDateTime: "2025-02-04 3:45 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "4:00 AM",
+        endTime: "5:00 AM",
+        startDateTime: "2025-02-04 4:00 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "4:15 AM",
+        endTime: "5:15 AM",
+        startDateTime: "2025-02-04 4:15 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "4:30 AM",
+        endTime: "5:30 AM",
+        startDateTime: "2025-02-04 4:30 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "4:45 AM",
+        endTime: "5:45 AM",
+        startDateTime: "2025-02-04 4:45 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "5:00 AM",
+        endTime: "6:00 AM",
+        startDateTime: "2025-02-04 5:00 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "5:15 AM",
+        endTime: "6:15 AM",
+        startDateTime: "2025-02-04 5:15 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "5:30 AM",
+        endTime: "6:30 AM",
+        startDateTime: "2025-02-04 5:30 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "5:45 AM",
+        endTime: "6:45 AM",
+        startDateTime: "2025-02-04 5:45 AM",
+        date: "2025-02-04",
+        timezone: "Asia/Dhaka",
+      },
+    ],
+    "2025-02-10": [
+      {
+        startTime: "11:00 PM",
+        endTime: "12:00 AM",
+        startDateTime: "2025-02-10 11:00 PM",
+        date: "2025-02-10",
+        timezone: "Asia/Dhaka",
+      },
+    ],
+    "2025-02-11": [
+      {
+        startTime: "12:00 AM",
+        endTime: "1:00 AM",
+        startDateTime: "2025-02-11 12:00 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "12:15 AM",
+        endTime: "1:15 AM",
+        startDateTime: "2025-02-11 12:15 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "12:30 AM",
+        endTime: "1:30 AM",
+        startDateTime: "2025-02-11 12:30 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "12:45 AM",
+        endTime: "1:45 AM",
+        startDateTime: "2025-02-11 12:45 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "1:00 AM",
+        endTime: "2:00 AM",
+        startDateTime: "2025-02-11 1:00 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "1:15 AM",
+        endTime: "2:15 AM",
+        startDateTime: "2025-02-11 1:15 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "1:30 AM",
+        endTime: "2:30 AM",
+        startDateTime: "2025-02-11 1:30 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "1:45 AM",
+        endTime: "2:45 AM",
+        startDateTime: "2025-02-11 1:45 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "2:00 AM",
+        endTime: "3:00 AM",
+        startDateTime: "2025-02-11 2:00 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "2:15 AM",
+        endTime: "3:15 AM",
+        startDateTime: "2025-02-11 2:15 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "2:30 AM",
+        endTime: "3:30 AM",
+        startDateTime: "2025-02-11 2:30 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "2:45 AM",
+        endTime: "3:45 AM",
+        startDateTime: "2025-02-11 2:45 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "3:00 AM",
+        endTime: "4:00 AM",
+        startDateTime: "2025-02-11 3:00 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "3:15 AM",
+        endTime: "4:15 AM",
+        startDateTime: "2025-02-11 3:15 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "3:30 AM",
+        endTime: "4:30 AM",
+        startDateTime: "2025-02-11 3:30 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "3:45 AM",
+        endTime: "4:45 AM",
+        startDateTime: "2025-02-11 3:45 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "4:00 AM",
+        endTime: "5:00 AM",
+        startDateTime: "2025-02-11 4:00 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "4:15 AM",
+        endTime: "5:15 AM",
+        startDateTime: "2025-02-11 4:15 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "4:30 AM",
+        endTime: "5:30 AM",
+        startDateTime: "2025-02-11 4:30 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "4:45 AM",
+        endTime: "5:45 AM",
+        startDateTime: "2025-02-11 4:45 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "5:00 AM",
+        endTime: "6:00 AM",
+        startDateTime: "2025-02-11 5:00 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "5:15 AM",
+        endTime: "6:15 AM",
+        startDateTime: "2025-02-11 5:15 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "5:30 AM",
+        endTime: "6:30 AM",
+        startDateTime: "2025-02-11 5:30 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "5:45 AM",
+        endTime: "6:45 AM",
+        startDateTime: "2025-02-11 5:45 AM",
+        date: "2025-02-11",
+        timezone: "Asia/Dhaka",
+      },
+    ],
+    "2025-02-17": [
+      {
+        startTime: "11:00 PM",
+        endTime: "12:00 AM",
+        startDateTime: "2025-02-17 11:00 PM",
+        date: "2025-02-17",
+        timezone: "Asia/Dhaka",
+      },
+    ],
+    "2025-02-18": [
+      {
+        startTime: "12:00 AM",
+        endTime: "1:00 AM",
+        startDateTime: "2025-02-18 12:00 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "12:15 AM",
+        endTime: "1:15 AM",
+        startDateTime: "2025-02-18 12:15 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "12:30 AM",
+        endTime: "1:30 AM",
+        startDateTime: "2025-02-18 12:30 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "12:45 AM",
+        endTime: "1:45 AM",
+        startDateTime: "2025-02-18 12:45 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "1:00 AM",
+        endTime: "2:00 AM",
+        startDateTime: "2025-02-18 1:00 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "1:15 AM",
+        endTime: "2:15 AM",
+        startDateTime: "2025-02-18 1:15 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "1:30 AM",
+        endTime: "2:30 AM",
+        startDateTime: "2025-02-18 1:30 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "1:45 AM",
+        endTime: "2:45 AM",
+        startDateTime: "2025-02-18 1:45 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "2:00 AM",
+        endTime: "3:00 AM",
+        startDateTime: "2025-02-18 2:00 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "2:15 AM",
+        endTime: "3:15 AM",
+        startDateTime: "2025-02-18 2:15 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "2:30 AM",
+        endTime: "3:30 AM",
+        startDateTime: "2025-02-18 2:30 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "2:45 AM",
+        endTime: "3:45 AM",
+        startDateTime: "2025-02-18 2:45 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "3:00 AM",
+        endTime: "4:00 AM",
+        startDateTime: "2025-02-18 3:00 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "3:15 AM",
+        endTime: "4:15 AM",
+        startDateTime: "2025-02-18 3:15 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "3:30 AM",
+        endTime: "4:30 AM",
+        startDateTime: "2025-02-18 3:30 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "3:45 AM",
+        endTime: "4:45 AM",
+        startDateTime: "2025-02-18 3:45 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "4:00 AM",
+        endTime: "5:00 AM",
+        startDateTime: "2025-02-18 4:00 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "4:15 AM",
+        endTime: "5:15 AM",
+        startDateTime: "2025-02-18 4:15 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "4:30 AM",
+        endTime: "5:30 AM",
+        startDateTime: "2025-02-18 4:30 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "4:45 AM",
+        endTime: "5:45 AM",
+        startDateTime: "2025-02-18 4:45 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "5:00 AM",
+        endTime: "6:00 AM",
+        startDateTime: "2025-02-18 5:00 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "5:15 AM",
+        endTime: "6:15 AM",
+        startDateTime: "2025-02-18 5:15 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "5:30 AM",
+        endTime: "6:30 AM",
+        startDateTime: "2025-02-18 5:30 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "5:45 AM",
+        endTime: "6:45 AM",
+        startDateTime: "2025-02-18 5:45 AM",
+        date: "2025-02-18",
+        timezone: "Asia/Dhaka",
+      },
+    ],
+    "2025-02-24": [
+      {
+        startTime: "11:00 PM",
+        endTime: "12:00 AM",
+        startDateTime: "2025-02-24 11:00 PM",
+        date: "2025-02-24",
+        timezone: "Asia/Dhaka",
+      },
+    ],
+    "2025-02-25": [
+      {
+        startTime: "12:00 AM",
+        endTime: "1:00 AM",
+        startDateTime: "2025-02-25 12:00 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "12:15 AM",
+        endTime: "1:15 AM",
+        startDateTime: "2025-02-25 12:15 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "12:30 AM",
+        endTime: "1:30 AM",
+        startDateTime: "2025-02-25 12:30 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "12:45 AM",
+        endTime: "1:45 AM",
+        startDateTime: "2025-02-25 12:45 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "1:00 AM",
+        endTime: "2:00 AM",
+        startDateTime: "2025-02-25 1:00 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "1:15 AM",
+        endTime: "2:15 AM",
+        startDateTime: "2025-02-25 1:15 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "1:30 AM",
+        endTime: "2:30 AM",
+        startDateTime: "2025-02-25 1:30 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "1:45 AM",
+        endTime: "2:45 AM",
+        startDateTime: "2025-02-25 1:45 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "2:00 AM",
+        endTime: "3:00 AM",
+        startDateTime: "2025-02-25 2:00 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "2:15 AM",
+        endTime: "3:15 AM",
+        startDateTime: "2025-02-25 2:15 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "2:30 AM",
+        endTime: "3:30 AM",
+        startDateTime: "2025-02-25 2:30 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "2:45 AM",
+        endTime: "3:45 AM",
+        startDateTime: "2025-02-25 2:45 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "3:00 AM",
+        endTime: "4:00 AM",
+        startDateTime: "2025-02-25 3:00 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "3:15 AM",
+        endTime: "4:15 AM",
+        startDateTime: "2025-02-25 3:15 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "3:30 AM",
+        endTime: "4:30 AM",
+        startDateTime: "2025-02-25 3:30 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "3:45 AM",
+        endTime: "4:45 AM",
+        startDateTime: "2025-02-25 3:45 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "4:00 AM",
+        endTime: "5:00 AM",
+        startDateTime: "2025-02-25 4:00 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "4:15 AM",
+        endTime: "5:15 AM",
+        startDateTime: "2025-02-25 4:15 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "4:30 AM",
+        endTime: "5:30 AM",
+        startDateTime: "2025-02-25 4:30 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "4:45 AM",
+        endTime: "5:45 AM",
+        startDateTime: "2025-02-25 4:45 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "5:00 AM",
+        endTime: "6:00 AM",
+        startDateTime: "2025-02-25 5:00 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "5:15 AM",
+        endTime: "6:15 AM",
+        startDateTime: "2025-02-25 5:15 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "5:30 AM",
+        endTime: "6:30 AM",
+        startDateTime: "2025-02-25 5:30 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+      {
+        startTime: "5:45 AM",
+        endTime: "6:45 AM",
+        startDateTime: "2025-02-25 5:45 AM",
+        date: "2025-02-25",
+        timezone: "Asia/Dhaka",
+      },
+    ],
+  },
+};
+
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { object, string } from "yup";
 import storeFooterLogo from "@/public/assets/img/store-footer-logo.svg";
@@ -31,10 +752,32 @@ import {
 import moment from "moment";
 import { toast } from "sonner";
 import { useGetProductDetailsQuery } from "@/redux/api/productApi";
-import { useGetProductCalendarQuery } from "@/redux/api/scheduleApi";
+
 import { useCreatePaymentIntentQuery } from "@/redux/api/paymentApi";
 import { useCreateAppointmentMutation } from "@/redux/api/appointmentApi";
+
+import { useGetAvailableSlotsQuery } from "@/redux/api/scheduleApi";
+
+const generateSlotForSelectedDate = (date, availableSlots) => {
+  const selectedFormattedDate = moment(date).format("YYYY-MM-DD");
+
+  const formattedSlots = availableSlots.available_slots[
+    selectedFormattedDate
+  ]?.map((slot) => {
+    const formattedSlot = {
+      start: slot.startTime,
+      end: slot.endTime,
+      meridiem: slot.startTime.slice("-2"),
+    };
+
+    return formattedSlot;
+  });
+
+  return formattedSlots;
+};
+
 import GroupSlot from "./group-slot";
+
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
@@ -69,11 +812,15 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
   const [viewState, setViewState] = useState("CALENDAR");
   const [appliedCoupon, setAppliedCoupon] = useState("");
   const [error, setError] = useState(null);
+  const [formattedSlots, setFormattedSlots] = useState([]);
 
   const { data: productData, isLoading: isProductLoading } =
     useGetProductDetailsQuery({ storeSlug, productSlug });
-  const { data: calendarData, isLoading: isCalendarLoading } =
-    useGetProductCalendarQuery({ productSlug });
+  const { data: availableSlots, isLoading: isSlotsLoading } =
+    useGetAvailableSlotsQuery({
+      productSlug,
+    });
+
   const [createAppointment] = useCreateAppointmentMutation();
 
   const formik = useFormik({
@@ -131,7 +878,7 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
           date: moment(values.picked_date).format("YYYY-MM-DD"),
           start_at: values.picked_slot,
           end_at: values.picked_slot_end,
-          meridiem: values.picked_meridiem,
+          // meridiem: values.picked_meridiem,
           type: product?.platform,
           product_id: product?.id,
           applied_coupon: appliedCoupon,
@@ -157,13 +904,22 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
     },
   });
 
-  if (isProductLoading || isCalendarLoading) return <Loader />;
+  useEffect(() => {
+    if (!isSlotsLoading) {
+      setFormattedSlots(
+        generateSlotForSelectedDate(formik.values.picked_date, availableSlots),
+      );
+    }
+  }, [formik.values.picked_date, availableSlots, isSlotsLoading]);
+
+  if (isProductLoading | isSlotsLoading) return <Loader />;
+
+  console.log(availableSlots, "available slot");
 
   const { productDetails: product } = productData?.data || {};
 
-  const calendar = calendarData?.data?.calendar || [];
-
-  const enabledDates = calendar.map((date) => date.date);
+  const enabledDates = Object.keys(availableSlots?.available_slots);
+  
   const isDateDisabled = (date) =>
     !enabledDates.includes(moment(date).format("YYYY-MM-DD"));
 
@@ -212,6 +968,7 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
             setViewState={setViewState}
             selectedDate={formik.values.picked_date}
             productSlug={productSlug}
+            availableSlots={formattedSlots}
           />
         );
       case "RESULT":
