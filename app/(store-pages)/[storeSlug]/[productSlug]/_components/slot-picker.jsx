@@ -12,12 +12,6 @@ const SlotPicker = ({
   productSlug,
   availableSlots: formattedAvailableSlots,
 }) => {
-  // const { data: availableSlots, isLoading: isSlotsLoading } =
-  //   useGetAvailableSlotsQuery({
-  //     productSlug,
-  //     selectedDate: moment(selectedDate).format("YYYY-MM-DD"),
-  //   });
-
   if (!formattedAvailableSlots) {
     return (
       <div className="max-h-[280px] animate-pulse overflow-y-auto rounded-lg border border-[#F2F5F8] bg-white p-4 scrollbar-none">
