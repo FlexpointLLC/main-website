@@ -12,11 +12,11 @@ const SlotPicker = ({
   productSlug,
   availableSlots: formattedAvailableSlots,
 }) => {
-  const { data: availableSlots, isLoading: isSlotsLoading } =
-    useGetAvailableSlotsQuery({
-      productSlug,
-      selectedDate: moment(selectedDate).format("YYYY-MM-DD"),
-    });
+  // const { data: availableSlots, isLoading: isSlotsLoading } =
+  //   useGetAvailableSlotsQuery({
+  //     productSlug,
+  //     selectedDate: moment(selectedDate).format("YYYY-MM-DD"),
+  //   });
 
   if (!formattedAvailableSlots) {
     return (

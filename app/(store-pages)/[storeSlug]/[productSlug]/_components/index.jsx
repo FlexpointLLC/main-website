@@ -747,17 +747,15 @@ import {
 import moment from "moment";
 import { toast } from "sonner";
 import { useGetProductDetailsQuery } from "@/redux/api/productApi";
-import {
-  useGetAvailableSlotsQuery,
-  useGetProductCalendarQuery,
-} from "@/redux/api/scheduleApi";
+
 import { useCreatePaymentIntentQuery } from "@/redux/api/paymentApi";
 import { useCreateAppointmentMutation } from "@/redux/api/appointmentApi";
+import { useGetAvailableSlotsQuery } from "@/redux/api/scheduleApi";
 
-const generateSlotForSelectedDate = (date) => {
+const generateSlotForSelectedDate = (date, availableSlots) => {
   const selectedFormattedDate = moment(date).format("YYYY-MM-DD");
 
-  const formattedSlots = defaultCalenderData.available_slots[
+  const formattedSlots = availableSlots.available_slots[
     selectedFormattedDate
   ]?.map((slot) => {
     const formattedSlot = {
@@ -806,16 +804,14 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
   const [appliedCoupon, setAppliedCoupon] = useState("");
   const [error, setError] = useState(null);
   const [formattedSlots, setFormattedSlots] = useState([]);
-  const { data: availableSlots, isLoading: isSlotsLoading } =
-    useGetAvailableSlotsQuery({
-      productSlug,
-      // selectedDate: moment(selectedDate).format("YYYY-MM-DD"),
-    });
 
   const { data: productData, isLoading: isProductLoading } =
     useGetProductDetailsQuery({ storeSlug, productSlug });
-  const { data: calendarData, isLoading: isCalendarLoading } =
-    useGetProductCalendarQuery({ productSlug });
+  const { data: availableSlots, isLoading: isSlotsLoading } =
+    useGetAvailableSlotsQuery({
+      productSlug,
+    });
+
   const [createAppointment] = useCreateAppointmentMutation();
 
   const formik = useFormik({
@@ -829,9 +825,6 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
     },
     validationSchema: createValidationSchema(fields),
     onSubmit: async (values, { setSubmitting }) => {
-      console.log(values);
-      return;
-
       if (!values.picked_slot) {
         toast.error("Please select a date and slot.");
         return;
@@ -876,7 +869,7 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
           date: moment(values.picked_date).format("YYYY-MM-DD"),
           start_at: values.picked_slot,
           end_at: values.picked_slot_end,
-          meridiem: values.picked_meridiem,
+          // meridiem: values.picked_meridiem,
           type: product?.platform,
           product_id: product?.id,
           applied_coupon: appliedCoupon,
@@ -903,16 +896,19 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
   });
 
   useEffect(() => {
-    setFormattedSlots(generateSlotForSelectedDate(formik.values.picked_date));
-  }, [formik.values.picked_date]);
+    if (!isSlotsLoading) {
+      setFormattedSlots(
+        generateSlotForSelectedDate(formik.values.picked_date, availableSlots),
+      );
+    }
+  }, [formik.values.picked_date, availableSlots, isSlotsLoading]);
 
-  if (isProductLoading || isCalendarLoading) return <Loader />;
+  if (isProductLoading | isSlotsLoading) return <Loader />;
+
+  console.log(availableSlots, "available slot");
 
   const { productDetails: product } = productData?.data || {};
-  const calendar = calendarData?.data?.calendar || [];
-
-  // const enabledDates = calendar.map((date) => date.date);
-  const enabledDates = Object.keys(defaultCalenderData.available_slots);
+  const enabledDates = Object.keys(availableSlots?.available_slots);
 
   const isDateDisabled = (date) =>
     !enabledDates.includes(moment(date).format("YYYY-MM-DD"));
