@@ -18,6 +18,14 @@ export const categoryApi = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.schedules],
     }),
+
+    // getAvailableSlots: build.query({
+    //   query: ({ productSlug }) => ({
+    //     url: `/available-slot/${productSlug}`,
+    //     method: "GET",
+    //   }),
+    //   providesTags: [tagTypes.schedules],
+    // }),
   }),
 });
 

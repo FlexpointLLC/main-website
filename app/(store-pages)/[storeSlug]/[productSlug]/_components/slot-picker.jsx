@@ -10,6 +10,7 @@ const SlotPicker = ({
   setViewState,
   selectedDate,
   productSlug,
+  availableSlots: formattedAvailableSlots,
 }) => {
   const { data: availableSlots, isLoading: isSlotsLoading } =
     useGetAvailableSlotsQuery({
@@ -17,7 +18,7 @@ const SlotPicker = ({
       selectedDate: moment(selectedDate).format("YYYY-MM-DD"),
     });
 
-  if (isSlotsLoading) {
+  if (!formattedAvailableSlots) {
     return (
       <div className="max-h-[280px] animate-pulse overflow-y-auto rounded-lg border border-[#F2F5F8] bg-white p-4 scrollbar-none">
         <div className="h-9 w-full rounded bg-gray-200"></div>
@@ -35,7 +36,7 @@ const SlotPicker = ({
     );
   }
 
-  const slots = availableSlots.data.slots;
+  const slots = formattedAvailableSlots;
 
   return (
     <div className="max-h-[280px] overflow-y-auto rounded-lg border border-[#F2F5F8] bg-white p-4 scrollbar-none">
@@ -85,9 +86,9 @@ const SlotPicker = ({
                   onClick={() => {
                     onSlotChange("picked_slot", slot.start);
                     onSlotChange("picked_slot_end", slot.end);
-                    onSlotChange("picked_slot_end", slot.end);
                     onSlotChange("picked_meridiem", "AM");
                     setViewState("RESULT");
+                    console.log(slot.start);
                   }}
                 >
                   {slot.start}
@@ -125,7 +126,7 @@ const SlotPicker = ({
                   onClick={() => {
                     onSlotChange("picked_slot", slot.start);
                     onSlotChange("picked_slot_end", slot.end);
-                    onSlotChange("picked_slot_end", slot.end);
+                    // onSlotChange("picked_slot_end", slot.end);
                     onSlotChange("picked_meridiem", "PM");
                     setViewState("RESULT");
                   }}
