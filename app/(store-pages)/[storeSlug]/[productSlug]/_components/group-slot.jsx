@@ -1,5 +1,6 @@
-import { cn } from "@/lib/utils";
 import moment from "moment";
+
+import { cn } from "@/lib/utils";
 
 export default function GroupSlot({ events, setViewState, formik }) {
   return (
@@ -29,22 +30,15 @@ export default function GroupSlot({ events, setViewState, formik }) {
                       {
                         "bg-primary text-white hover:bg-primary hover:text-white":
                           formik.values.picked_date === event.date &&
-                          formik.values.picked_slot ===
-                            slot.start_time.slice(0, 5) &&
+                          formik.values.picked_slot === slot.start_time &&
                           formik.values.picked_meridiem ===
                             slot.start_time.slice(-2),
                       },
                     )}
                     onClick={() => {
                       formik.setFieldValue("picked_date", event.date);
-                      formik.setFieldValue(
-                        "picked_slot",
-                        slot.start_time.slice(0, 5),
-                      );
-                      formik.setFieldValue(
-                        "picked_slot_end",
-                        slot.end_time.slice(0, 5),
-                      );
+                      formik.setFieldValue("picked_slot", slot.start_time);
+                      formik.setFieldValue("picked_slot_end", slot.end_time);
                       formik.setFieldValue(
                         "picked_meridiem",
                         slot.start_time.slice(-2),

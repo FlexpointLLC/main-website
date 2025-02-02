@@ -5,7 +5,6 @@ const SelectedSlotCard = ({
   selectedDate,
   slotStartTime,
   slotEndTime,
-  selectedMeridiem,
 }) => {
   return (
     <div className="max-h-[280px] overflow-y-auto rounded-lg border border-[#F2F5F8] bg-white pt-4">
