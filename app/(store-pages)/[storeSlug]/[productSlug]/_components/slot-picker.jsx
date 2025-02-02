@@ -1,15 +1,14 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { cn } from "@/lib/utils";
-import { useGetAvailableSlotsQuery } from "@/redux/api/scheduleApi";
-import moment from "moment";
 import Image from "next/image";
+
+import { cn } from "@/lib/utils";
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const SlotPicker = ({
   picked_slot,
   onSlotChange,
   setViewState,
-  selectedDate,
-  productSlug,
+
   availableSlots: formattedAvailableSlots,
 }) => {
   if (!formattedAvailableSlots) {
@@ -39,7 +38,7 @@ const SlotPicker = ({
           slots.find((slot) => slot.start === picked_slot)?.meridiem || "AM"
         }
       >
-        <TabsList className="sticky -top-2 w-full">
+        <TabsList className="sticky -top-[15px] w-full">
           <TabsTrigger value="AM" className="w-full">
             AM
           </TabsTrigger>
@@ -90,7 +89,10 @@ const SlotPicker = ({
               ))
           )}
         </TabsContent>
-        <TabsContent value="PM" className="grid grid-cols-3 items-center gap-2">
+        <TabsContent
+          value="PM"
+          className="mt-2 grid grid-cols-3 items-center gap-2"
+        >
           {slots.filter((slot) => slot.meridiem === "PM").length === 0 ? (
             <div className="col-span-3 flex flex-col items-center justify-center gap-2 p-4 pt-6">
               <Image

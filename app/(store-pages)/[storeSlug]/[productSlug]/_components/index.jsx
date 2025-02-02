@@ -156,7 +156,6 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
           date: moment(values.picked_date).format("YYYY-MM-DD"),
           start_at: values.picked_slot,
           end_at: values.picked_slot_end,
-          // meridiem: values.picked_meridiem,
           type: product?.platform,
           product_id: product?.id,
           applied_coupon: appliedCoupon,
