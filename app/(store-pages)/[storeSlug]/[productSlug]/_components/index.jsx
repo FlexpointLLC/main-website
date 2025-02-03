@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { object, string } from "yup";
 import storeFooterLogo from "@/public/assets/img/store-footer-logo.svg";
-import { ArrowLeft, ChevronLeft } from "lucide-react";
+import { ArrowLeft, BadgeCheck, ChevronLeft } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import {
   extractYouTubeId,
@@ -428,13 +428,18 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
         )}
 
         <Button
-          className="mt-6 w-full"
+          className="mt-2 w-full"
           type="submit"
           variant="primaryDefault"
           disabled={!stripe || !elements || formik.isSubmitting}
         >
           {formik.isSubmitting ? "Processing..." : product?.bottom_button_text}
         </Button>
+
+        <div className="mt-[10px] flex items-center justify-center gap-[2px] text-center text-xs text-[#525866]">
+          <BadgeCheck size={16} color="#1FC16B" />
+          <p>This is a secure 256-bit SSL encrypted payment</p>
+        </div>
       </form>
 
       <footer className="my-6 flex items-center justify-center gap-[7px]">
