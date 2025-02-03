@@ -168,7 +168,7 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
         const orderId = response?.appointment?.orderId;
 
         if (orderId) {
-          router.push(`/${storeSlug}/success?order_id=${orderId}`);
+          router.push(`/${storeSlug}/success?order-id=${orderId}`);
         } else {
           router.push(`/${storeSlug}/success`);
         }
