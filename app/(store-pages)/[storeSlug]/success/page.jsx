@@ -14,7 +14,7 @@ import moment from "moment";
 export default function ConfirmationModal({ params }) {
   const router = useRouter();
   const storeSlug = params.storeSlug;
-  const order_id = useSearchParams().get("order_id");
+  const order_id = useSearchParams().get("order-id");
 
   const { data, isLoading } = useSuccessAppointmentQuery(
     { storeSlug, order_id },
