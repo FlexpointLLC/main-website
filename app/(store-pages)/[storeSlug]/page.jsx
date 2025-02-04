@@ -3,6 +3,7 @@ import ProductList from "./_components/product-list";
 import ProfileCard from "./_components/profile-card";
 import Image from "next/image";
 import storeFooterLogo from "@/public/assets/img/store-footer-logo.svg";
+import EmptyStore from "./_components/empty-store";
 
 const base_url = process.env.NEXT_PUBLIC_API_URL;
 
@@ -69,7 +70,11 @@ export default async function StorePage({ params }) {
   return (
     <div className="mx-auto max-w-[375px] px-4 py-12">
       <ProfileCard store={store} />
-      <ProductList store={store} />
+      {store.products.length === 0 ? (
+        <EmptyStore />
+      ) : (
+        <ProductList store={store} />
+      )}
 
       <footer className="mt-6 flex items-center justify-center gap-[7px]">
         <p className="pl-4 text-xs font-medium text-para">Powered by</p>

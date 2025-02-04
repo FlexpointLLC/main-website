@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 
@@ -26,9 +27,20 @@ export default function GlobalError({ error, reset }) {
               </p>
             </div>
 
-            <Button variant="outline" className="w-full" onClick={reset}>
-              Refresh Page
-            </Button>
+            <div className="flex w-full flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <Button variant="outline" className="w-full" asChild>
+                <Link href="/">Back to Homepage</Link>
+              </Button>
+              <Button
+                variant="outline"
+                className="w-full"
+                onClick={() => {
+                  location.reload();
+                }}
+              >
+                Refresh Page
+              </Button>
+            </div>
           </div>
         </div>
       </body>
