@@ -14,7 +14,7 @@ export default function GlobalError({ error, reset }) {
         <div className="flex min-h-screen w-full flex-col items-center justify-center bg-gradient-primary-from-top">
           <div className="flex max-w-sm flex-col items-center justify-center gap-6 px-4">
             <div>
-              <Image src={ErrorImage} alt="Flexpoint logo" className="mb-6" />
+              <Image src={ErrorImage} alt="Error Page Illustration" />
             </div>
             <div className="space-y-1 text-center">
               <h3 className="font-medium text-[#0E121B]">
