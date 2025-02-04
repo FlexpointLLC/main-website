@@ -1,0 +1,37 @@
+"use client";
+
+import Image from "next/image";
+
+import { Button } from "@/components/ui/button";
+
+import ErrorImage from "@/public/assets/img/error-page.svg";
+
+export default function GlobalError({ error, reset }) {
+  console.error("🔥🔥🔥", error);
+  return (
+    <html>
+      <body>
+        <div className="flex min-h-screen w-full flex-col items-center justify-center bg-gradient-primary-from-top">
+          <div className="flex max-w-sm flex-col items-center justify-center gap-6 px-4">
+            <div>
+              <Image src={ErrorImage} alt="Flexpoint logo" className="mb-6" />
+            </div>
+            <div className="space-y-1 text-center">
+              <h3 className="font-medium text-[#0E121B]">
+                Oops! The internet tripped.
+              </h3>
+              <p className="text-xs text-[#525866]">
+                Try refreshing the page—If the page still plays dead like a
+                dramatic possum, don’t panic—it’s not you, it’s definitely us.
+              </p>
+            </div>
+
+            <Button variant="outline" className="w-full" onClick={reset}>
+              Refresh Page
+            </Button>
+          </div>
+        </div>
+      </body>
+    </html>
+  );
+}
