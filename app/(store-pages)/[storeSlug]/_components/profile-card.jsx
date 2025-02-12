@@ -28,7 +28,7 @@ export default function ProfileCard({ store }) {
                 alt="Verified Badge "
                 width={50}
                 height={50}
-                className="inline size-6"
+                className="-ml-1 inline size-6"
                 loading="lazy"
               />
             ) : null}
