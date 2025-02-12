@@ -82,7 +82,7 @@ export default function Content({ appointment }) {
     case "community": {
       return (
         <>
-          <div className="mx-4 mx-5 my-4 my-6 space-y-2 rounded-[8px]">
+          <div className="mx-4 my-6 space-y-2 rounded-[8px]">
             <div className="rounded-lg text-xs font-medium text-black/40">
               Contact Details
             </div>
