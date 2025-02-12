@@ -2,7 +2,7 @@ import FacebookIcon from "@/public/assets/icon/facebook";
 import InstagramIcon from "@/public/assets/icon/instagram";
 import TiktokIcon from "@/public/assets/icon/tiktok";
 import YoutubeIcon from "@/public/assets/icon/youtube";
-import VarifiedBadge from "@/public/assets/icon/varified_badge.svg";
+import VerifiedBadge from "@/public/assets/icon/varified_badge.svg";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -22,9 +22,9 @@ export default function ProfileCard({ store }) {
         <div>
           <h1 className="w-full break-all text-2xl font-medium text-[#111928]">
             <span className="inline">{store?.user?.name}</span>{" "}
-            {store?.user?.is_varified ? (
+            {store?.user?.is_verified ? (
               <Image
-                src={VarifiedBadge}
+                src={VerifiedBadge}
                 alt="Verified Badge "
                 width={50}
                 height={50}
