@@ -112,7 +112,10 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
     },
     validationSchema: createValidationSchema(fields),
     onSubmit: async (values, { setSubmitting }) => {
-      if (!values.picked_slot) {
+      if (
+        (product?.type === "coaching" || product?.type === "group-call") &&
+        !values.picked_slot
+      ) {
         toast.error("Please select a date and slot.");
         return;
       }
@@ -153,15 +156,21 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
             acc[field] = values[field];
             return acc;
           }, {}),
-          date: moment(values.picked_date).format("YYYY-MM-DD"),
-          start_at: moment(values.picked_slot, ["HH:mm"]).format("hh:mm A"),
-          end_at: moment(values.picked_slot_end, ["HH:mm"]).format("hh:mm A"),
+          date: moment(values?.picked_date).format("YYYY-MM-DD"),
+          start_at: moment(values?.picked_slot, ["HH:mm"]).format("hh:mm A"),
+          end_at: moment(values?.picked_slot_end, ["HH:mm"]).format("hh:mm A"),
           type: product?.platform,
           product_id: product?.id,
           applied_coupon: appliedCoupon,
           dynamic_fields: dynamicFields.length ? dynamicFields : null,
           card_token: product?.price !== "0.00" ? tokenId : "",
         };
+
+        if (product?.type !== "group-call" || product?.type !== "coaching") {
+          payload.date = null;
+          payload.start_at = null;
+          payload.end_at = null;
+        }
 
         const response = await createAppointment(payload).unwrap();
 
@@ -350,44 +359,52 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
 
         <hr className="h-[2px] bg-black/5" />
 
-        <div className="space-y-4 py-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-[2px]">
-              {(viewState === "SLOT" || viewState === "RESULT") && (
-                <ChevronLeft
-                  size={16}
-                  className="cursor-pointer"
-                  onClick={() => {
-                    product?.type === "group-call"
-                      ? setViewState("CALENDAR")
-                      : setViewState(
-                          viewState === "SLOT" ? "CALENDAR" : "SLOT",
-                        );
-                  }}
-                />
+        {(product?.type === "coaching" || product?.type === "group-call") && (
+          <>
+            <div className="space-y-4 py-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-[2px]">
+                  {(viewState === "SLOT" || viewState === "RESULT") && (
+                    <ChevronLeft
+                      size={16}
+                      className="cursor-pointer"
+                      onClick={() => {
+                        product?.type === "group-call"
+                          ? setViewState("CALENDAR")
+                          : setViewState(
+                              viewState === "SLOT" ? "CALENDAR" : "SLOT",
+                            );
+                      }}
+                    />
+                  )}
+                  <h3
+                    title={product?.bottom_title}
+                    className="max-w-64 truncate font-semibold text-fl-border"
+                  >
+                    {viewState === "SLOT" || viewState === "RESULT"
+                      ? moment(formik.values.picked_date).format("MMM DD")
+                      : product?.bottom_title}
+                  </h3>
+                </div>
+                <p className="text-xs text-para">
+                  {productData?.data?.visitor_timezone}
+                </p>
+              </div>
+
+              {product?.type === "coaching" ? (
+                <div className="rounded-lg bg-white">
+                  {renderCoachingView()}
+                </div>
+              ) : (
+                product?.type === "group-call" && (
+                  <div>{renderGroupCallView()}</div>
+                )
               )}
-              <h3
-                title={product?.bottom_title}
-                className="max-w-64 truncate font-semibold text-fl-border"
-              >
-                {viewState === "SLOT" || viewState === "RESULT"
-                  ? moment(formik.values.picked_date).format("MMM DD")
-                  : product?.bottom_title}
-              </h3>
             </div>
-            <p className="text-xs text-para">
-              {productData?.data?.visitor_timezone}
-            </p>
-          </div>
 
-          {product?.type === "coaching" ? (
-            <div className="rounded-lg bg-white">{renderCoachingView()}</div>
-          ) : (
-            product?.type === "group-call" && <div>{renderGroupCallView()}</div>
-          )}
-        </div>
-
-        <hr className="h-[2px] bg-black/5" />
+            <hr className="h-[2px] bg-black/5" />
+          </>
+        )}
 
         <CustomerInfo formik={formik} fields={fields} />
 
