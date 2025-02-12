@@ -30,23 +30,18 @@ export default function GroupSlot({ events, setViewState, formik }) {
                       {
                         "bg-primary text-white hover:bg-primary hover:text-white":
                           formik.values.picked_date === event.date &&
-                          formik.values.picked_slot === slot.start_time &&
-                          formik.values.picked_meridiem ===
-                            slot.start_time.slice(-2),
+                          formik.values.picked_slot === slot.start_time,
                       },
                     )}
                     onClick={() => {
                       formik.setFieldValue("picked_date", event.date);
                       formik.setFieldValue("picked_slot", slot.start_time);
                       formik.setFieldValue("picked_slot_end", slot.end_time);
-                      formik.setFieldValue(
-                        "picked_meridiem",
-                        slot.start_time.slice(-2),
-                      );
                       setViewState("RESULT");
                     }}
                   >
-                    {formatTime(slot.start_time)} - {formatTime(slot.end_time)}
+                    {moment(slot.start_time, ["HH:mm"]).format("hh:mm A")} -{" "}
+                    {moment(slot.end_time, ["HH:mm"]).format("hh:mm A")}
                   </button>
                 );
               })}

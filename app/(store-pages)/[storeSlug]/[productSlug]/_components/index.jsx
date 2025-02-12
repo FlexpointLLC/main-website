@@ -154,8 +154,8 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
             return acc;
           }, {}),
           date: moment(values.picked_date).format("YYYY-MM-DD"),
-          start_at: values.picked_slot,
-          end_at: values.picked_slot_end,
+          start_at: moment(values.picked_slot, ["HH:mm"]).format("hh:mm A"),
+          end_at: moment(values.picked_slot_end, ["HH:mm"]).format("hh:mm A"),
           type: product?.platform,
           product_id: product?.id,
           applied_coupon: appliedCoupon,
