@@ -177,9 +177,11 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
         const orderId = response?.appointment?.orderId;
 
         if (orderId) {
-          router.push(`/${storeSlug}/success?order-id=${orderId}`);
+          router.push(
+            `/${storeSlug}/success?order-id=${orderId}&type=${product?.type}`,
+          );
         } else {
-          router.push(`/${storeSlug}/success`);
+          router.push(`/${storeSlug}/success?type=${product?.type}`);
         }
       } catch (err) {
         console.error("Unexpected error:", err);

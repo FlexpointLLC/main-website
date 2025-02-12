@@ -7,11 +7,13 @@ import FacebookIcon from "./facebook";
 import YoutubeIcon from "./youtube";
 import Link from "next/link";
 import { toast } from "sonner";
+import { useSearchParams } from "next/navigation";
 
 export default function Content({ appointment }) {
-  // "coaching" | "group-call" | "community"
+  const searchParams = useSearchParams();
 
-  const productType = appointment?.type || "community";
+  const productType = searchParams.get("type");
+
   const date = new Date(appointment?.date);
 
   switch (productType) {
