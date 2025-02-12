@@ -2,7 +2,6 @@
 
 import storeFooterLogo from "@/public/assets/img/store-footer-logo.svg";
 import { AlertDialog, AlertDialogContent } from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
 
 import congratulationSvg from "@/public/assets/success/congratulations.svg";
 import Image from "next/image";
@@ -10,6 +9,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useSuccessAppointmentQuery } from "@/redux/api/appointmentApi";
 import Loader from "@/components/global/loader/loader";
 import moment from "moment";
+import Content from "@/public/assets/success/_component/content";
 
 export default function ConfirmationModal({ params }) {
   const router = useRouter();
@@ -28,7 +28,6 @@ export default function ConfirmationModal({ params }) {
   }
 
   const appointment = data?.data;
-  const date = new Date(appointment?.date);
 
   return (
     <div className="relative h-screen">
@@ -49,30 +48,7 @@ export default function ConfirmationModal({ params }) {
             </p>
           </div>
           <hr />
-          <div className="mx-4 my-6 space-y-1 rounded-[8px] bg-[#F5F7FA] px-4 py-3">
-            <div className="flex items-center justify-between">
-              <h2 className="text-sm font-medium text-[#0E121B]">
-                {appointment?.title}
-              </h2>
-              <h2 className="text-sm font-medium text-[#0E121B]">
-                {moment(date).format("MMM DD, YYYY")}
-              </h2>
-            </div>
-            <div className="flex items-center justify-between">
-              <p className="text-xs text-[#525866]">Purchased</p>
-              <p className="text-xs text-[#525866]">{appointment?.time}</p>
-            </div>
-          </div>
-          <hr />
-          <div className="px-5 py-4">
-            <Button
-              onClick={() => router.push(`/${storeSlug}`)}
-              className="w-full"
-              variant={"outline"}
-            >
-              Return to home
-            </Button>
-          </div>
+          <Content appointment={appointment} />
         </AlertDialogContent>
       </AlertDialog>
       <footer className="absolute bottom-0 my-6 flex w-full items-center justify-center gap-[7px]">
