@@ -8,7 +8,6 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useSuccessAppointmentQuery } from "@/redux/api/appointmentApi";
 import Loader from "@/components/global/loader/loader";
-import moment from "moment";
 import Content from "@/public/assets/success/_component/content";
 
 export default function ConfirmationModal({ params }) {

@@ -82,7 +82,7 @@ export default function Content({ appointment }) {
     case "community": {
       return (
         <>
-          <div className="mx-5 my-4 space-y-2 rounded-[8px]">
+          <div className="mx-4 mx-5 my-4 my-6 space-y-2 rounded-[8px]">
             <div className="rounded-lg text-xs font-medium text-black/40">
               Contact Details
             </div>
@@ -110,7 +110,10 @@ export default function Content({ appointment }) {
               </div>
             </div>
 
-            <div className="flex items-center justify-between gap-2 self-stretch rounded-lg border border-[#f2f5f8] p-2">
+            <div
+              className="flex items-center justify-between self-stretch rounded-lg border border-[#f2f5f8]"
+              style={{ padding: "8px" }}
+            >
               <div className="flex flex-wrap content-center items-center gap-2 rounded-lg">
                 <div className="flex items-center justify-center rounded-lg">
                   <svg
@@ -143,7 +146,10 @@ export default function Content({ appointment }) {
               </Button>
             </div>
 
-            <div className="flex items-center justify-between gap-2 self-stretch rounded-lg border border-[#f2f5f8] p-2">
+            <div
+              className="flex items-center justify-between gap-2 self-stretch rounded-lg border border-[#f2f5f8]"
+              style={{ padding: "8px" }}
+            >
               <div className="flex flex-wrap content-center items-center gap-2 rounded-lg">
                 <div className="flex items-center justify-center rounded-lg">
                   <svg
@@ -176,7 +182,7 @@ export default function Content({ appointment }) {
               </Button>
             </div>
 
-            <div className="flex items-center justify-center gap-2.5 p-0">
+            <div className="flex items-center justify-center gap-2 p-0">
               <Link
                 href={"#"}
                 target="_blank"
