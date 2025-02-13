@@ -86,6 +86,79 @@ export default function Content({ appointment }) {
         <>
           <div className="mx-4 my-6 space-y-2 rounded-[8px]">
             <div className="rounded-lg text-xs font-medium text-black/40">
+              Community Details
+            </div>
+
+            <div className="flex items-center gap-2 self-stretch">
+              <div className="flex h-16 w-16 items-center justify-center">
+                <div className="flex h-16 w-16 flex-shrink-0 items-center justify-end rounded-full bg-white">
+                  <Image
+                    src={"/assets/success/community.png"}
+                    alt="avatar"
+                    width={100}
+                    height={100}
+                    className="size-16 rounded-full object-cover shadow-sm"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col items-start justify-center">
+                <div className="self-stretch text-lg font-medium leading-6 text-[#111928]">
+                  {appointment?.community_name}
+                </div>
+                <div className="flex flex-col items-start self-stretch overflow-hidden text-sm leading-5 text-gray-500">
+                  {appointment?.community_members}
+                </div>
+              </div>
+            </div>
+
+            <div
+              className="flex items-center justify-between self-stretch rounded-lg border border-[#f2f5f8]"
+              style={{ padding: "8px" }}
+            >
+              <div className="flex flex-wrap content-center items-center gap-2 rounded-lg">
+                <div className="flex items-center justify-center rounded-lg">
+                  <svg
+                    width={20}
+                    height={20}
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M10.7449 14.5593C10.862 14.6765 10.9278 14.8354 10.9278 15.0011C10.9278 15.1668 10.862 15.3257 10.7449 15.4429L9.96833 16.2241C9.1471 17.0449 8.03346 17.5057 6.87242 17.5054C5.71138 17.505 4.59804 17.0434 3.77732 16.2222C2.9566 15.401 2.49573 14.2873 2.49609 13.1263C2.49646 11.9652 2.95803 10.8519 3.77927 10.0312L5.66365 8.1468C6.45247 7.35735 7.51315 6.8992 8.62866 6.86609C9.74418 6.83297 10.8302 7.22741 11.6644 7.96868C11.726 8.02326 11.7762 8.08943 11.8122 8.16341C11.8482 8.23739 11.8692 8.31774 11.8742 8.39986C11.8791 8.48198 11.8678 8.56427 11.8409 8.64203C11.8141 8.71979 11.7721 8.7915 11.7176 8.85305C11.663 8.91461 11.5968 8.96481 11.5228 9.0008C11.4488 9.03678 11.3685 9.05784 11.2864 9.06278C11.2042 9.06771 11.122 9.05642 11.0442 9.02955C10.9664 9.00268 10.8947 8.96076 10.8332 8.90618C10.2373 8.37704 9.46185 8.09552 8.66532 8.11919C7.86879 8.14286 7.1114 8.46994 6.54802 9.03352L4.66365 10.9156C4.07748 11.5017 3.74817 12.2967 3.74817 13.1257C3.74817 13.9547 4.07748 14.7497 4.66365 15.3359C5.24982 15.922 6.04483 16.2513 6.8738 16.2513C7.70277 16.2513 8.49779 15.922 9.08396 15.3359L9.86052 14.5593C9.91857 14.5012 9.9875 14.4551 10.0634 14.4236C10.1392 14.3922 10.2206 14.376 10.3027 14.376C10.3848 14.376 10.4662 14.3922 10.542 14.4236C10.6179 14.4551 10.6869 14.5012 10.7449 14.5593ZM16.2199 3.77805C15.3985 2.95854 14.2856 2.49829 13.1254 2.49829C11.9651 2.49829 10.8522 2.95854 10.0308 3.77805L9.25427 4.5554C9.1371 4.67267 9.07131 4.83169 9.07139 4.99747C9.07146 5.16325 9.13739 5.32221 9.25466 5.43938C9.37194 5.55655 9.53096 5.62234 9.69674 5.62226C9.86251 5.62219 10.0215 5.55627 10.1386 5.43899L10.9152 4.66243C11.5014 4.07626 12.2964 3.74695 13.1254 3.74695C13.9543 3.74695 14.7494 4.07626 15.3355 4.66243C15.9217 5.2486 16.251 6.04362 16.251 6.87258C16.251 7.70155 15.9217 8.49657 15.3355 9.08274L13.4511 10.9687C12.8875 11.5319 12.1299 11.8586 11.3334 11.8818C10.5369 11.9051 9.76154 11.6231 9.16599 11.0937C9.10443 11.0391 9.03273 10.9972 8.95497 10.9703C8.87721 10.9434 8.79492 10.9321 8.7128 10.9371C8.54695 10.947 8.39185 11.0225 8.28162 11.1468C8.22704 11.2084 8.18511 11.2801 8.15824 11.3578C8.13138 11.4356 8.12009 11.5179 8.12502 11.6C8.13498 11.7658 8.21042 11.9209 8.33474 12.0312C9.1688 12.7727 10.2547 13.1674 11.3702 13.1345C12.4857 13.1017 13.5465 12.6438 14.3355 11.8546L16.2199 9.97024C17.0399 9.14882 17.5004 8.03559 17.5004 6.87493C17.5004 5.71427 17.0399 4.60104 16.2199 3.77962V3.77805Z"
+                      fill="#525866"
+                    />
+                  </svg>
+                </div>
+                <div className="flex flex-col items-start justify-center self-stretch rounded-lg text-sm leading-5 text-[#0e121b]">
+                  {appointment?.community_url}
+                </div>
+              </div>
+              <Link
+                href={appointment?.community_url}
+                target="_blank"
+                className="!cursor-pointer"
+              >
+                <Button
+                  variant={"outline"}
+                  size="sm"
+                  className={"h-8 px-4 py-2 text-xs"}
+                >
+                  Join
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </>
+      );
+    }
+
+    case "service": {
+      return (
+        <>
+          <div className="mx-4 my-6 space-y-2 rounded-[8px]">
+            <div className="rounded-lg text-xs font-medium text-black/40">
               Contact Details
             </div>
 
