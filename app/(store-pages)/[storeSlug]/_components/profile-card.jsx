@@ -15,7 +15,7 @@ export default function ProfileCard({ store }) {
           alt={store?.user?.name}
           width={100}
           height={100}
-          className="size-16 rounded-full shadow-sm"
+          className="size-16 rounded-full object-cover shadow-sm"
           loading="lazy"
         />
 
