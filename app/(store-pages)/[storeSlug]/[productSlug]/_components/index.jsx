@@ -166,7 +166,7 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
           card_token: product?.price !== "0.00" ? tokenId : "",
         };
 
-        if (product?.type !== "group-call" || product?.type !== "coaching") {
+        if (product?.type === "community") {
           payload.date = null;
           payload.start_at = null;
           payload.end_at = null;

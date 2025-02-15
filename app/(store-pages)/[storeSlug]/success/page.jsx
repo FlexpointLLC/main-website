@@ -11,7 +11,6 @@ import Loader from "@/components/global/loader/loader";
 import Content from "./_component/content";
 
 export default function ConfirmationModal({ params }) {
-  const router = useRouter();
   const storeSlug = params.storeSlug;
   const order_id = useSearchParams().get("order-id");
 
@@ -47,7 +46,7 @@ export default function ConfirmationModal({ params }) {
             </p>
           </div>
           <hr />
-          <Content appointment={appointment} />
+          <Content appointment={appointment} storeSlug={storeSlug} />
         </AlertDialogContent>
       </AlertDialog>
       <footer className="absolute bottom-0 my-6 flex w-full items-center justify-center gap-[7px]">

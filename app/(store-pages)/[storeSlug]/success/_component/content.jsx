@@ -7,10 +7,12 @@ import FacebookIcon from "./facebook";
 import YoutubeIcon from "./youtube";
 import Link from "next/link";
 import { toast } from "sonner";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
-export default function Content({ appointment }) {
+export default function Content({ appointment, storeSlug }) {
   const searchParams = useSearchParams();
+
+  const router = useRouter();
 
   const productType = searchParams.get("type");
 
