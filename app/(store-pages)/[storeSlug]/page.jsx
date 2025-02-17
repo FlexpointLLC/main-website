@@ -76,10 +76,12 @@ export default async function StorePage({ params }) {
         <ProductList store={store} />
       )}
 
-      <footer className="mt-6 flex items-center justify-center gap-[7px]">
-        <p className="pl-4 text-xs font-medium text-para">Powered by</p>
-        <Image src={storeFooterLogo} alt="Flexpoint footer logo" />
-      </footer>
+      {store.user.branding ? (
+        <footer className="mt-6 flex items-center justify-center gap-[7px]">
+          <p className="pl-4 text-xs font-medium text-para">Powered by</p>
+          <Image src={storeFooterLogo} alt="Flexpoint footer logo" />
+        </footer>
+      ) : null}
     </div>
   );
 }

@@ -83,7 +83,12 @@ const createValidationSchema = (fields) =>
     ),
   );
 
-const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
+const ProductDetailsContent = ({
+  productSlug,
+  storeSlug,
+  fields,
+  branding,
+}) => {
   const router = useRouter();
   const stripe = useStripe();
   const elements = useElements();
@@ -461,10 +466,14 @@ const ProductDetailsContent = ({ productSlug, storeSlug, fields }) => {
         </div>
       </form>
 
-      <footer className="my-6 flex items-center justify-center gap-[7px]">
-        <p className="pl-4 text-xs font-medium text-para">Powered by</p>
-        <Image src={storeFooterLogo} alt="store footer logo" />
-      </footer>
+      {branding ? (
+        <footer className="my-6 flex items-center justify-center gap-[7px]">
+          <p className="pl-4 text-xs font-medium text-para">Powered by</p>
+          <Image src={storeFooterLogo} alt="store footer logo" />
+        </footer>
+      ) : (
+        <div className="my-6"></div>
+      )}
     </>
   );
 };

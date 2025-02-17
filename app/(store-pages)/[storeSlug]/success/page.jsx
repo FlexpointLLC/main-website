@@ -49,10 +49,12 @@ export default function ConfirmationModal({ params }) {
           <Content appointment={appointment} storeSlug={storeSlug} />
         </AlertDialogContent>
       </AlertDialog>
-      <footer className="absolute bottom-0 my-6 flex w-full items-center justify-center gap-[7px]">
-        <p className="pl-4 text-xs font-medium text-para">Powered by</p>
-        <Image src={storeFooterLogo} alt="store footer logo" />
-      </footer>
+      {appointment.branding ? (
+        <footer className="absolute bottom-0 my-6 flex w-full items-center justify-center gap-[7px]">
+          <p className="pl-4 text-xs font-medium text-para">Powered by</p>
+          <Image src={storeFooterLogo} alt="store footer logo" />
+        </footer>
+      ) : null}
     </div>
   );
 }
