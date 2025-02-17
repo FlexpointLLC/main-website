@@ -197,8 +197,6 @@ const ProductDetailsContent = ({
     },
   });
 
-  console.log(branding);
-
   useEffect(() => {
     if (!isSlotsLoading) {
       setFormattedSlots(
