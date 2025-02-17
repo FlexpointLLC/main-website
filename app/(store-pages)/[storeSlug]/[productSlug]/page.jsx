@@ -26,6 +26,7 @@ export default async function ProductPage({ params }) {
         storeSlug={storeSlug}
         productSlug={productSlug}
         fields={fields}
+        branding={response?.data.branding}
       />
     </div>
   );
