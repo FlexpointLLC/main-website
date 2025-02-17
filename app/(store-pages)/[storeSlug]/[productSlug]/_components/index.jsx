@@ -478,7 +478,12 @@ const ProductDetailsContent = ({
   );
 };
 
-export default function ProductDetails({ productSlug, storeSlug, fields }) {
+export default function ProductDetails({
+  productSlug,
+  storeSlug,
+  fields,
+  branding,
+}) {
   const {
     data: paymentIntentData,
     isFetching,
@@ -496,6 +501,7 @@ export default function ProductDetails({ productSlug, storeSlug, fields }) {
         productSlug={productSlug}
         storeSlug={storeSlug}
         fields={fields}
+        branding={branding}
       />
     </Elements>
   );
