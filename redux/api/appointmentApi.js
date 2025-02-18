@@ -5,7 +5,7 @@ export const appointmentApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     createAppointment: build.mutation({
       query: (data) => ({
-        url: `/appointment`,
+        url: `/purchase`,
         method: "POST",
         data,
       }),
