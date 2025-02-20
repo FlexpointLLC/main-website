@@ -56,7 +56,7 @@ export default function ProductList({ store }) {
                     {product?.title}
                   </p>
                   {product?.thumbnail_description && (
-                    <p className="line-clamp-2 max-w-40 text-xs text-[#99A0AE]">
+                    <p className="line-clamp-2 text-xs text-[#99A0AE]">
                       {product?.thumbnail_description}
                     </p>
                   )}
