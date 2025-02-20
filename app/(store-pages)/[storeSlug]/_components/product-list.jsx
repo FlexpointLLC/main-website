@@ -25,10 +25,21 @@ export default function ProductList({ store }) {
 
           return (
             <Link
-              href={`/${store?.user?.store_name}/${product?.slug}`}
+              href={
+                product.product_type === "affiliate" ||
+                product.product_type === "flexpoint-affiliate"
+                  ? product.product_link || "https://flexpoint.store/"
+                  : `/${store?.user?.store_name}/${product?.slug}`
+              }
               aria-label="View Product"
               className="block rounded-[12px] bg-white p-3 shadow-md"
               key={product?.product_id}
+              target={
+                product.product_type === "affiliate" ||
+                product.product_type === "flexpoint-affiliate"
+                  ? "_blank"
+                  : "_self"
+              }
             >
               <div className="flex items-center gap-1">
                 <Image
@@ -44,39 +55,47 @@ export default function ProductList({ store }) {
                   <p className="text-sm font-semibold text-[#0E121B]">
                     {product?.title}
                   </p>
-                  <div className="flex items-center gap-2">
-                    <p
-                      className={`text-sm ${acutalPrice === "Free" ? "font-medium text-[#FF8447]" : "font-semibold text-[#1FC16B]"}`}
-                    >
-                      {acutalPrice === "Free"
-                        ? null
-                        : store?.user?.currency_symbol}
-                      {acutalPrice}
-                    </p>
-                    {hasDiscount && (
-                      <div className="flex items-center justify-between gap-2">
-                        <p className="text-sm text-[#99A0AE] line-through">
-                          {store?.user?.currency_symbol}
-                          {parseFloat(product?.price).toFixed(2)}
-                        </p>
-                      </div>
-                    )}
-                  </div>
+                  {product.product_type === "affiliate" ||
+                  product.product_type === "flexpoint-affiliate" ? null : (
+                    <div className="flex items-center gap-2">
+                      <p
+                        className={`text-sm ${acutalPrice === "Free" ? "font-medium text-[#FF8447]" : "font-semibold text-[#1FC16B]"}`}
+                      >
+                        {acutalPrice === "Free"
+                          ? null
+                          : store?.user?.currency_symbol}
+                        {acutalPrice}
+                      </p>
+                      {hasDiscount && (
+                        <div className="flex items-center justify-between gap-2">
+                          <p className="text-sm text-[#99A0AE] line-through">
+                            {store?.user?.currency_symbol}
+                            {parseFloat(product?.price).toFixed(2)}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
 
-              <div className="mt-3">
-                <Button
-                  variant={index === 0 ? "primaryDefault" : "secondaryDefault"}
-                  size={"sm"}
-                  className="flex h-7 w-full items-center justify-between"
-                >
-                  <p className="text-xs">{product?.button_text}</p>
-                  <div>
-                    <ArrowRight size={16} />
-                  </div>
-                </Button>
-              </div>
+              {product.product_type === "affiliate" ||
+              product.product_type === "flexpoint-affiliate" ? null : (
+                <div className="mt-3">
+                  <Button
+                    variant={
+                      index === 0 ? "primaryDefault" : "secondaryDefault"
+                    }
+                    size={"sm"}
+                    className="flex h-7 w-full items-center justify-between"
+                  >
+                    <p className="text-xs">{product?.button_text}</p>
+                    <div>
+                      <ArrowRight size={16} />
+                    </div>
+                  </Button>
+                </div>
+              )}
             </Link>
           );
         })}
