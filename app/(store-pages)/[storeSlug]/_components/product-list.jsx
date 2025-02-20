@@ -55,6 +55,12 @@ export default function ProductList({ store }) {
                   <p className="text-sm font-semibold text-[#0E121B]">
                     {product?.title}
                   </p>
+                  {product?.thumbnail_description && (
+                    <p className="line-clamp-2 max-w-40 text-xs text-[#99A0AE]">
+                      {product?.thumbnail_description}
+                    </p>
+                  )}
+
                   {product.product_type === "affiliate" ||
                   product.product_type === "flexpoint-affiliate" ? null : (
                     <div className="flex items-center gap-2">
