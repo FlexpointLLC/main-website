@@ -33,6 +33,15 @@ const Footer = () => {
               </Link>
             </li>
           ))}
+          <li>
+              <Link
+              target="_blank"
+                className="leading-6 tracking-[-0.18px] underline-offset-2 hover:underline"
+                href="https://flexpoint.gitbook.io/flexpoint-docs"
+              >
+                Help
+              </Link>
+            </li>
         </ul>
 
         <p className="col-span-2 leading-6 tracking-[-0.18px]">
