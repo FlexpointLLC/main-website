@@ -169,9 +169,10 @@ const ProductDetailsContent = ({
           applied_coupon: appliedCoupon,
           dynamic_fields: dynamicFields.length ? dynamicFields : null,
           card_token: product?.price !== "0.00" ? tokenId : "",
+          type: product?.type,
         };
 
-        if (product?.type === "community") {
+        if (product?.type === "community" || product?.type === "service") {
           payload.date = null;
           payload.start_at = null;
           payload.end_at = null;
