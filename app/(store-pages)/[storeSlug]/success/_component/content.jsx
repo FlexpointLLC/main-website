@@ -8,6 +8,9 @@ import YoutubeIcon from "./youtube";
 import Link from "next/link";
 import { toast } from "sonner";
 import { useRouter, useSearchParams } from "next/navigation";
+import DocIcon from "./doc";
+import VideoIcon from "./video";
+import AudioIcon from "./audio";
 
 export default function Content({ appointment, storeSlug }) {
   const searchParams = useSearchParams();
@@ -304,6 +307,113 @@ export default function Content({ appointment, storeSlug }) {
                 )}
               </div>
             )}
+          </div>
+        </>
+      );
+    }
+
+    case "digital": {
+      return (
+        <>
+          <div className="mx-4 my-6 space-y-1 rounded-[8px] bg-[#F5F7FA] px-4 py-3">
+            <div className="space-y-1">
+              <div className="flex items-center justify-between text-sm font-medium text-[#0e121b]">
+                My premium course for beginners - Week 1
+              </div>
+              <div className="text-1 flex items-center justify-between text-xs text-[#525866]">
+                Purchased
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div className="space-y-2 px-5 py-4">
+            <div className="text-xs font-medium text-[#1c1c1c]/[.40]">
+              4 assets
+            </div>
+
+            <div
+              className="flex items-center justify-between self-stretch rounded-lg border border-[#f2f5f8]"
+              style={{ padding: "8px" }}
+            >
+              <div className="flex flex-wrap content-center items-center gap-2 rounded-lg">
+                <div className="flex items-center justify-center rounded-lg">
+                  <DocIcon />
+                </div>
+                <div className="flex flex-col items-start justify-center self-stretch rounded-lg text-sm leading-5 text-[#0e121b]">
+                  Differentiation and Integration...isn.pdf
+                </div>
+              </div>
+              <Button
+                variant={"outline"}
+                size="sm"
+                className={"h-8 px-4 py-2 text-xs"}
+              >
+                Download
+              </Button>
+            </div>
+
+            <div
+              className="flex items-center justify-between self-stretch rounded-lg border border-[#f2f5f8]"
+              style={{ padding: "8px" }}
+            >
+              <div className="flex flex-wrap content-center items-center gap-2 rounded-lg">
+                <div className="flex items-center justify-center rounded-lg">
+                  <VideoIcon />
+                </div>
+                <div className="flex flex-col items-start justify-center self-stretch rounded-lg text-sm leading-5 text-[#0e121b]">
+                  Tutorial.mp4
+                </div>
+              </div>
+              <Button
+                variant={"outline"}
+                size="sm"
+                className={"h-8 px-4 py-2 text-xs"}
+              >
+                Download
+              </Button>
+            </div>
+
+            <div
+              className="flex items-center justify-between self-stretch rounded-lg border border-[#f2f5f8]"
+              style={{ padding: "8px" }}
+            >
+              <div className="flex flex-wrap content-center items-center gap-2 rounded-lg">
+                <div className="flex items-center justify-center rounded-lg">
+                  <DocIcon />
+                </div>
+                <div className="flex flex-col items-start justify-center self-stretch rounded-lg text-sm leading-5 text-[#0e121b]">
+                  Differentiation and Integration...isn.pdf
+                </div>
+              </div>
+              <Button
+                variant={"outline"}
+                size="sm"
+                className={"h-8 px-4 py-2 text-xs"}
+              >
+                Download
+              </Button>
+            </div>
+
+            <div
+              className="flex items-center justify-between self-stretch rounded-lg border border-[#f2f5f8]"
+              style={{ padding: "8px" }}
+            >
+              <div className="flex flex-wrap content-center items-center gap-2 rounded-lg">
+                <div className="flex items-center justify-center rounded-lg">
+                  <AudioIcon />
+                </div>
+                <div className="flex flex-col items-start justify-center self-stretch rounded-lg text-sm leading-5 text-[#0e121b]">
+                  Welcome Voice.mp3
+                </div>
+              </div>
+              <Button
+                variant={"outline"}
+                size="sm"
+                className={"h-8 px-4 py-2 text-xs"}
+              >
+                Download
+              </Button>
+            </div>
           </div>
         </>
       );
