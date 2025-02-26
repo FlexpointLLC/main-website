@@ -11,6 +11,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import DocIcon from "./doc";
 import VideoIcon from "./video";
 import AudioIcon from "./audio";
+import { getFileType } from "@/lib/utils";
 
 export default function Content({ appointment, storeSlug }) {
   const searchParams = useSearchParams();
@@ -313,12 +314,41 @@ export default function Content({ appointment, storeSlug }) {
     }
 
     case "digital": {
+      const file_urls = appointment?.file_urls || [];
+
+      const redirect_urls = appointment?.redirect_urls || [];
+
+      const handleDownload = async (url, fileName) => {
+        try {
+          console.log("Downloading file from:", url);
+
+          const response = await fetch(url, { mode: "cors" }); // Ensure CORS is allowed
+          if (!response.ok) throw new Error("File not found or access denied");
+
+          const blob = await response.blob();
+          const downloadUrl = window.URL.createObjectURL(blob);
+
+          const link = document.createElement("a");
+          link.href = downloadUrl;
+          link.setAttribute("download", fileName || "downloaded-file");
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+
+          // Free up memory
+          window.URL.revokeObjectURL(downloadUrl);
+        } catch (error) {
+          console.error("Download failed:", error);
+          alert("Failed to download file. Please check the file URL.");
+        }
+      };
+
       return (
         <>
           <div className="mx-4 my-6 space-y-1 rounded-[8px] bg-[#F5F7FA] px-4 py-3">
             <div className="space-y-1">
               <div className="flex items-center justify-between text-sm font-medium text-[#0e121b]">
-                My premium course for beginners - Week 1
+                {appointment?.title}
               </div>
               <div className="text-1 flex items-center justify-between text-xs text-[#525866]">
                 Purchased
@@ -328,92 +358,45 @@ export default function Content({ appointment, storeSlug }) {
           <hr />
           <div className="space-y-2 px-5 py-4">
             <div className="text-xs font-medium text-[#1c1c1c]/[.40]">
-              4 assets
+              {file_urls.length || redirect_urls.length} assets
             </div>
 
-            <div
-              className="flex items-center justify-between self-stretch rounded-lg border border-[#f2f5f8]"
-              style={{ padding: "8px" }}
-            >
-              <div className="flex flex-wrap content-center items-center gap-2 rounded-lg">
-                <div className="flex items-center justify-center rounded-lg">
-                  <DocIcon />
+            {file_urls &&
+              file_urls.length > 0 &&
+              file_urls.map((file, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-between self-stretch rounded-lg border border-[#f2f5f8]"
+                  style={{ padding: "8px" }}
+                >
+                  <div className="flex flex-wrap content-center items-center gap-2 rounded-lg">
+                    <div className="flex items-center justify-center rounded-lg">
+                      {getFileType(file?.file_url) === "video" ? (
+                        <VideoIcon />
+                      ) : getFileType(file?.file_url) === "audio" ? (
+                        <AudioIcon />
+                      ) : (
+                        <DocIcon />
+                      )}
+                    </div>
+                    <div className="flex flex-col items-start justify-center self-stretch rounded-lg text-sm leading-5 text-[#0e121b]">
+                      <span className="first-letter:uppercase">
+                        {file?.file_name}
+                      </span>
+                    </div>
+                  </div>
+                  <Button
+                    onClick={() =>
+                      handleDownload(file?.file_url, file?.file_name)
+                    }
+                    variant={"outline"}
+                    size="sm"
+                    className={"h-8 px-4 py-2 text-xs"}
+                  >
+                    Download
+                  </Button>
                 </div>
-                <div className="flex flex-col items-start justify-center self-stretch rounded-lg text-sm leading-5 text-[#0e121b]">
-                  Differentiation and Integration...isn.pdf
-                </div>
-              </div>
-              <Button
-                variant={"outline"}
-                size="sm"
-                className={"h-8 px-4 py-2 text-xs"}
-              >
-                Download
-              </Button>
-            </div>
-
-            <div
-              className="flex items-center justify-between self-stretch rounded-lg border border-[#f2f5f8]"
-              style={{ padding: "8px" }}
-            >
-              <div className="flex flex-wrap content-center items-center gap-2 rounded-lg">
-                <div className="flex items-center justify-center rounded-lg">
-                  <VideoIcon />
-                </div>
-                <div className="flex flex-col items-start justify-center self-stretch rounded-lg text-sm leading-5 text-[#0e121b]">
-                  Tutorial.mp4
-                </div>
-              </div>
-              <Button
-                variant={"outline"}
-                size="sm"
-                className={"h-8 px-4 py-2 text-xs"}
-              >
-                Download
-              </Button>
-            </div>
-
-            <div
-              className="flex items-center justify-between self-stretch rounded-lg border border-[#f2f5f8]"
-              style={{ padding: "8px" }}
-            >
-              <div className="flex flex-wrap content-center items-center gap-2 rounded-lg">
-                <div className="flex items-center justify-center rounded-lg">
-                  <DocIcon />
-                </div>
-                <div className="flex flex-col items-start justify-center self-stretch rounded-lg text-sm leading-5 text-[#0e121b]">
-                  Differentiation and Integration...isn.pdf
-                </div>
-              </div>
-              <Button
-                variant={"outline"}
-                size="sm"
-                className={"h-8 px-4 py-2 text-xs"}
-              >
-                Download
-              </Button>
-            </div>
-
-            <div
-              className="flex items-center justify-between self-stretch rounded-lg border border-[#f2f5f8]"
-              style={{ padding: "8px" }}
-            >
-              <div className="flex flex-wrap content-center items-center gap-2 rounded-lg">
-                <div className="flex items-center justify-center rounded-lg">
-                  <AudioIcon />
-                </div>
-                <div className="flex flex-col items-start justify-center self-stretch rounded-lg text-sm leading-5 text-[#0e121b]">
-                  Welcome Voice.mp3
-                </div>
-              </div>
-              <Button
-                variant={"outline"}
-                size="sm"
-                className={"h-8 px-4 py-2 text-xs"}
-              >
-                Download
-              </Button>
-            </div>
+              ))}
           </div>
         </>
       );
