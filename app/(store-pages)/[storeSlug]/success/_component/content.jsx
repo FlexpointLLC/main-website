@@ -397,6 +397,43 @@ export default function Content({ appointment, storeSlug }) {
                   </Button>
                 </div>
               ))}
+
+            {redirect_urls &&
+              redirect_urls.length > 0 &&
+              redirect_urls.map((file, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-between self-stretch rounded-lg border border-[#f2f5f8]"
+                  style={{ padding: "8px" }}
+                >
+                  <div className="flex flex-wrap content-center items-center gap-2 rounded-lg">
+                    <div className="flex items-center justify-center rounded-lg">
+                      {getFileType(file?.url) === "video" ? (
+                        <VideoIcon />
+                      ) : getFileType(file?.url) === "audio" ? (
+                        <AudioIcon />
+                      ) : (
+                        <DocIcon />
+                      )}
+                    </div>
+                    <div className="flex flex-col items-start justify-center self-stretch rounded-lg text-sm leading-5 text-[#0e121b]">
+                      <span className="first-letter:uppercase">
+                        {file?.title}
+                      </span>
+                    </div>
+                  </div>
+                  <Button
+                    asChild
+                    variant={"outline"}
+                    size="sm"
+                    className={"h-8 px-4 py-2 text-xs"}
+                  >
+                    <Link href={decodeURIComponent(file?.url)} target="_blank">
+                      View File
+                    </Link>
+                  </Button>
+                </div>
+              ))}
           </div>
         </>
       );
