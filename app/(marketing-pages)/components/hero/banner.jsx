@@ -24,10 +24,7 @@ const Banner = () => {
             "flex h-fit items-center gap-2 rounded-2xl px-[28px] py-4 text-lg font-semibold leading-6"
           }
         >
-          <Link
-            href="https://dev-admin.flexpoint.store/register"
-            target="_blank"
-          >
+          <Link href="https://admin.flexpoint.store/register" target="_blank">
             <span>Get Started Now</span>
 
             <svg

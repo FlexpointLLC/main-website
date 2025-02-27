@@ -39,8 +39,8 @@ const PricingPlans = () => {
               <Link
                 href={
                   referralQueryKey
-                    ? `https://dev-admin.flexpoint.store/register?ref=${referralQueryKey}`
-                    : "https://dev-admin.flexpoint.store/register"
+                    ? `https://admin.flexpoint.store/register?ref=${referralQueryKey}`
+                    : "https://admin.flexpoint.store/register"
                 }
                 target="_blank"
                 className="flex items-center gap-2 px-7 py-2 hover:gap-3"

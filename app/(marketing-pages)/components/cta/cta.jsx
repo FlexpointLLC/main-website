@@ -54,7 +54,7 @@ const CTA = () => {
               className={"h-fit rounded-2xl text-lg font-semibold leading-6"}
             >
               <Link
-                href="https://dev-admin.flexpoint.store/register"
+                href="https://admin.flexpoint.store/register"
                 target="_blank"
                 className="flex items-center gap-2 px-7 py-2 hover:gap-3"
               >
