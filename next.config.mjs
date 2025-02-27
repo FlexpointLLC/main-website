@@ -5,7 +5,7 @@ const nextConfig = {
     missingSuspenseWithCSRBailout: false,
   },
   images: {
-    domains: ["dev-api.flexpoint.store"],
+    domains: ["dev-api.flexpoint.store", "api.flexpoint.store"],
   },
 };
 
