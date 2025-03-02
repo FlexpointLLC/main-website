@@ -4,9 +4,9 @@ import Navbar from "@/components/global/navbar/navbar";
 const MarketingPagesLayout = ({ children }) => {
   return (
     <main className="min-h-screen bg-white">
-        <Navbar />
-        {children}
-        <Footer />
+      <Navbar />
+      {children}
+      {/* <Footer /> */}
     </main>
   );
 };
