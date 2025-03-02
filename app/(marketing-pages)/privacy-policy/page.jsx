@@ -48,10 +48,10 @@ const PrivacyPolicyPage = () => {
         <section className="flex flex-col gap-8 py-9">
           <div className="space-y-3">
             <h4 className="text-lg font-semibold">
-              <span>1.</span>Information We Collect
+              <span>1. </span>Information We Collect
             </h4>
             <h5 className="font-semibold">
-              <span>1.1</span>Information You Provide to Us:
+              <span>1.1 </span>Information You Provide to Us:
             </h5>
             <ul className="ml-6 list-disc space-y-1">
               <li>
@@ -99,7 +99,7 @@ const PrivacyPolicyPage = () => {
             </ul>
 
             <h5 className="font-semibold">
-              <span>1.2</span>Information We Automatically Collect
+              <span>1.2 </span>Information We Automatically Collect
             </h5>
 
             <ul className="ml-6 list-disc space-y-1">
@@ -144,32 +144,32 @@ const PrivacyPolicyPage = () => {
 
           <div className="space-y-3">
             <h4 className="text-lg font-semibold">
-              <span>2.</span>How We Use Your Information
+              <span>2. </span>How We Use Your Information
             </h4>
             <h5 className="font-medium">
               We may use your personal information to:
             </h5>
             <ul className="ml-6 list-disc space-y-1">
-              <li>Provide and maintain the services.</li>
+              <li>Provide and maintain the services. </li>
 
               <li>Respond to inquiries and feedback</li>
 
-              <li>Communicate updates and changes to our policies.</li>
+              <li>Communicate updates and changes to our policies. </li>
 
-              <li>Improve the service based on user interaction.</li>
+              <li>Improve the service based on user interaction. </li>
 
-              <li>Develop new products and services.</li>
+              <li>Develop new products and services. </li>
 
-              <li>Ensure security and prevent misuse of the platform.</li>
+              <li>Ensure security and prevent misuse of the platform. </li>
 
-              <li>Comply with legal obligations.</li>
+              <li>Comply with legal obligations. </li>
             </ul>
           </div>
 
           <div className="space-y-3">
             <h4>
-              <span className="text-lg font-semibold">3.</span>How We Share Your
-              Information
+              <span className="text-lg font-semibold">3. </span>How We Share
+              Your Information
             </h4>
             <ul className="ml-6 list-disc space-y-1">
               <li>
@@ -194,7 +194,7 @@ const PrivacyPolicyPage = () => {
 
           <div className="space-y-3">
             <h4 className="text-lg font-semibold">
-              <span>4.</span>Children&apos;s Privacy
+              <span>4. </span>Children&apos;s Privacy
             </h4>
             <p>
               Flexpoint is not directed at children under the age of 13. If we
@@ -204,7 +204,7 @@ const PrivacyPolicyPage = () => {
 
           <div className="space-y-3">
             <h4 className="text-lg font-semibold">
-              <span>5.</span>Cookies Policy
+              <span>5. </span>Cookies Policy
             </h4>
             <p>
               Cookies are used for site operation and improvement. You can
@@ -215,7 +215,7 @@ const PrivacyPolicyPage = () => {
 
           <div className="space-y-3">
             <h4 className="text-lg font-semibold">
-              <span>6.</span>Data Security
+              <span>6. </span>Data Security
             </h4>
             <p>
               We use commercially reasonable measures to protect your data but
@@ -225,7 +225,7 @@ const PrivacyPolicyPage = () => {
 
           <div className="space-y-3">
             <h4 className="text-lg font-semibold">
-              <span>7.</span>Changes to This Privacy Policy
+              <span>7. </span>Changes to This Privacy Policy
             </h4>
             <p>
               We may update this Privacy Policy. Changes will be reflected with
@@ -234,9 +234,71 @@ const PrivacyPolicyPage = () => {
             </p>
           </div>
 
+          <div className="space-y-3">
+            <h4 className="text-lg font-semibold">
+              <span>8. </span>Data Retention and Deletion
+            </h4>
+            <p>
+              We retain personal data only as long as necessary to fulfill the
+              purposes outlined in this Privacy Policy, comply with legal
+              obligations, resolve disputes, and enforce our agreements.
+            </p>
+
+            <h5 className="font-medium">Google User Data</h5>
+            <ul className="ml-6 list-disc space-y-1">
+              <li>
+                If you connect your Google account to our services, we retain
+                Google user data only while your account is connected.
+              </li>
+
+              <li>
+                You can disconnect your Google account at any time through your
+                account settings, and we will delete associated Google data
+                within <strong>30 days</strong>, unless retention is required by
+                law.
+              </li>
+            </ul>
+
+            <h5 className="pt-2 font-medium">User Account Data</h5>
+            <ul className="ml-6 list-disc space-y-1">
+              <li>
+                If you delete your Flexpoint account, we will delete or
+                anonymize your personal data within <strong>90 days</strong>,
+                except where retention is required for legal, regulatory, or
+                security purposes.
+              </li>
+
+              <li>
+                Transactional records and payment data may be retained for up to
+                <strong> 7 years</strong> for tax, accounting, and legal
+                compliance.
+              </li>
+            </ul>
+
+            <h5 className="pt-2 font-medium">Requesting Data Deletion</h5>
+            <ul className="ml-6 list-disc space-y-1">
+              <li>
+                You may request the deletion of your personal data at any time
+                by contacting us at{" "}
+                <Link
+                  className="text-[#335CFF]"
+                  href="mailto:info@flexpoint.store"
+                >
+                  info@flexpoint.store
+                </Link>
+              </li>
+
+              <li>
+                Upon verifying your request, we will delete your data within{" "}
+                <strong>30 days</strong>, unless retention is required by
+                applicable laws.
+              </li>
+            </ul>
+          </div>
+
           <div>
             <h4 className="text-lg font-semibold">
-              <span className="mb-3">8.</span>Contact Us
+              <span className="mb-3">9. </span>Contact Us
             </h4>
             <p className="mb-6">
               <span className="font-medium">Email: </span>{" "}
