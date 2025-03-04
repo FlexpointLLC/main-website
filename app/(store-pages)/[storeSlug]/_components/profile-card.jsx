@@ -20,7 +20,7 @@ export default function ProfileCard({ store }) {
         />
 
         <div>
-          <h1 className="w-full break-all text-2xl font-medium text-[#111928]">
+          <h1 className="break-all text-2xl font-medium text-[#111928]">
             <span className="inline">{store?.user?.name}</span>{" "}
             {store?.user?.is_verified ? (
               <Image
@@ -34,7 +34,7 @@ export default function ProfileCard({ store }) {
             ) : null}
           </h1>
           {store?.user?.details?.occupation && (
-            <p className="text-sm text-[#6B7280]">
+            <p className="break-all text-sm text-[#6B7280]">
               {store?.user?.details?.occupation}
             </p>
           )}

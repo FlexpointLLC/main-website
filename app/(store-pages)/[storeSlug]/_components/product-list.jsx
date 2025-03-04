@@ -52,11 +52,11 @@ export default function ProductList({ store }) {
                 />
 
                 <div className="space-y-1">
-                  <p className="text-sm font-semibold text-[#0E121B]">
+                  <p className="break-all text-sm font-semibold text-[#0E121B]">
                     {product?.title}
                   </p>
                   {product?.thumbnail_description && (
-                    <p className="line-clamp-2 text-xs text-[#99A0AE]">
+                    <p className="break-all text-xs text-[#99A0AE]">
                       {product?.thumbnail_description}
                     </p>
                   )}
