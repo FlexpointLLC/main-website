@@ -1,10 +1,11 @@
+import Image from "next/image";
+import Link from "next/link";
+
 import FacebookIcon from "@/public/assets/icon/facebook";
 import InstagramIcon from "@/public/assets/icon/instagram";
 import TiktokIcon from "@/public/assets/icon/tiktok";
 import YoutubeIcon from "@/public/assets/icon/youtube";
 import VerifiedBadge from "@/public/assets/icon/varified_badge.svg";
-import Image from "next/image";
-import Link from "next/link";
 
 export default function ProfileCard({ store }) {
   return (
@@ -85,6 +86,9 @@ export default function ProfileCard({ store }) {
           )}
         </div>
       </div>
+      {store.user.details.bio ? (
+        <p className="mt-3 text-sm text-[#0E121B]">{store.user.details.bio}</p>
+      ) : null}
     </div>
   );
 }
