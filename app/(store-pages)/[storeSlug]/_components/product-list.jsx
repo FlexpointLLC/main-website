@@ -41,7 +41,7 @@ export default function ProductList({ store }) {
                   : "_self"
               }
             >
-              <div className="flex items-center gap-1">
+              <div className="flex items-start gap-1">
                 <Image
                   src={product?.thumbnail || coachingProduct}
                   alt={product?.title}

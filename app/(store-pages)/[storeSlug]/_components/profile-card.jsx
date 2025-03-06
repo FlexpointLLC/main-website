@@ -6,11 +6,24 @@ import InstagramIcon from "@/public/assets/icon/instagram";
 import TiktokIcon from "@/public/assets/icon/tiktok";
 import YoutubeIcon from "@/public/assets/icon/youtube";
 import VerifiedBadge from "@/public/assets/icon/varified_badge.svg";
+import { cn } from "@/lib/utils";
 
 export default function ProfileCard({ store }) {
+  const hasValidSocialLinks =
+    store?.user?.details?.social_links &&
+    Object.keys(store?.user?.details?.social_links).length !== 0 &&
+    Object.values(store?.user?.details?.social_links).some(
+      (link) => link !== null,
+    );
+
   return (
     <div>
-      <div className="flex items-start gap-3">
+      <div
+        className={cn(
+          "flex gap-3",
+          hasValidSocialLinks ? "items-start" : "items-center",
+        )}
+      >
         <Image
           src={store?.user?.avatar}
           alt={store?.user?.name}
@@ -20,7 +33,7 @@ export default function ProfileCard({ store }) {
           loading="lazy"
         />
 
-        <div>
+        <div className="pt-1">
           <h1 className="break-all text-2xl font-medium text-[#111928]">
             <span className="inline">{store?.user?.name}</span>{" "}
             {store?.user?.is_verified ? (
