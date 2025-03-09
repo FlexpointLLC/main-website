@@ -18,12 +18,7 @@ export default function ProfileCard({ store }) {
 
   return (
     <div>
-      <div
-        className={cn(
-          "flex gap-3",
-          hasValidSocialLinks ? "items-start" : "items-center",
-        )}
-      >
+      <div className="flex items-start gap-3">
         <Image
           src={store?.user?.avatar}
           alt={store?.user?.name}

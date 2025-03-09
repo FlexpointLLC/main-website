@@ -87,15 +87,17 @@ export default function ProductList({ store }) {
 
               {product.product_type === "affiliate" ||
               product.product_type === "flexpoint-affiliate" ? null : (
-                <div className="mt-3">
+                <div className="mt-3 w-full">
                   <Button
                     variant={
                       index === 0 ? "primaryDefault" : "secondaryDefault"
                     }
                     size={"sm"}
-                    className="flex h-7 w-full items-center justify-between"
+                    className="h-auto min-h-8 w-full items-center justify-between py-2"
                   >
-                    <p className="text-xs">{product?.button_text}</p>
+                    <p className="w-[270px] break-all text-left text-xs">
+                      {product?.button_text}
+                    </p>
                     <div>
                       <ArrowRight size={16} />
                     </div>
