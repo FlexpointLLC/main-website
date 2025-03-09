@@ -15,8 +15,7 @@ const SelectedSlotCard = ({
       </div>
       <div className="mx-4 mb-4 rounded border border-[#F2F5F8] py-2 text-center text-xs text-heading">
         <p>
-          {moment(slotStartTime, ["HH:mm"]).format("hh:mm A")} -{" "}
-          {moment(slotEndTime, ["HH:mm"]).format("hh:mm A")}
+          {slotStartTime} - {slotEndTime}
         </p>
       </div>
       <button

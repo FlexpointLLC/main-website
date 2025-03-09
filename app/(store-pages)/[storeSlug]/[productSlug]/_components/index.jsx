@@ -162,8 +162,8 @@ const ProductDetailsContent = ({
             return acc;
           }, {}),
           date: moment(values?.picked_date).format("YYYY-MM-DD"),
-          start_at: moment(values?.picked_slot, ["HH:mm"]).format("hh:mm A"),
-          end_at: moment(values?.picked_slot_end, ["HH:mm"]).format("hh:mm A"),
+          start_at: values?.picked_slot,
+          end_at: values?.picked_slot_end,
           type: product?.platform,
           product_id: product?.id,
           applied_coupon: appliedCoupon,
@@ -172,7 +172,11 @@ const ProductDetailsContent = ({
           type: product?.type,
         };
 
-        if (product?.type === "community" || product?.type === "service") {
+        if (
+          product?.type === "community" ||
+          product?.type === "service" ||
+          product?.type === "digital"
+        ) {
           payload.date = null;
           payload.start_at = null;
           payload.end_at = null;

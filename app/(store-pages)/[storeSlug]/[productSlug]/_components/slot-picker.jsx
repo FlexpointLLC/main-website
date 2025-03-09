@@ -81,7 +81,6 @@ const SlotPicker = ({
                     onSlotChange("picked_slot_end", slot.end);
                     onSlotChange("picked_meridiem", "AM");
                     setViewState("RESULT");
-                    console.log(slot.start);
                   }}
                 >
                   {slot.start}
