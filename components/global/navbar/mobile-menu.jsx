@@ -29,7 +29,7 @@ export default function MobileMenu({ openMenuBar, setOpenMenuBar }) {
     },
     {
       name: "Login",
-      href: "https://dev-admin.flexpoint.store/lookup",
+      href: "https://admin.flexpoint.store/lookup",
     },
   ];
 
