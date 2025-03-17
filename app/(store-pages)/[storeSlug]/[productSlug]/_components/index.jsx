@@ -435,7 +435,7 @@ const ProductDetailsContent = ({
           </h4>
         </div>
 
-        {!isFree && (
+        {!isFree && productData?.data.available_purchase && (
           <div className="mt-6">
             <CardElement
               onChange={(e) => setError(e.error?.message)}
@@ -460,7 +460,15 @@ const ProductDetailsContent = ({
           className="mt-2 w-full"
           type="submit"
           variant="primaryDefault"
-          disabled={!stripe || !elements || formik.isSubmitting}
+          title={
+            !productData?.data.available_purchase ? "Product sold out" : null
+          }
+          disabled={
+            !stripe ||
+            !elements ||
+            formik.isSubmitting ||
+            !productData?.data.available_purchase
+          }
         >
           {formik.isSubmitting ? "Processing..." : product?.bottom_button_text}
         </Button>
