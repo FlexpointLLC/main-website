@@ -35,8 +35,14 @@ export default function GroupSlot({ events, setViewState, formik }) {
                     )}
                     onClick={() => {
                       formik.setFieldValue("picked_date", event.date);
-                      formik.setFieldValue("picked_slot", slot.start_time);
-                      formik.setFieldValue("picked_slot_end", slot.end_time);
+                      formik.setFieldValue(
+                        "picked_slot",
+                        moment(slot.start_time, ["HH:mm"]).format("hh:mm A"),
+                      );
+                      formik.setFieldValue(
+                        "picked_slot_end",
+                        moment(slot.end_time, ["HH:mm"]).format("hh:mm A"),
+                      );
                       setViewState("RESULT");
                     }}
                   >
