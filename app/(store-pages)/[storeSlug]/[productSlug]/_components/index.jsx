@@ -332,7 +332,13 @@ const ProductDetailsContent = ({
           </Link>
         </div>
 
-        <div className="pb-4 pt-6">
+        <div className="pt-5">
+          <h1 className="text-2xl font-semibold text-fl-border">
+            {product?.title}
+          </h1>
+        </div>
+
+        <div className="py-4">
           <p className="text-xs text-para">Price</p>
           <div className="flex items-center gap-[6px]">
             <h3 className="text-2xl font-semibold text-fl-border">
