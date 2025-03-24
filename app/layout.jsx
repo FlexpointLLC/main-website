@@ -1,5 +1,6 @@
 // External Dependencies
 import { Inter } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 // Internal Dependencies
 import "./globals.css";
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <body className={cn(inter.className)}>
+        <GoogleAnalytics gaId="G-1D3VFWEEMS" />
         <GlobalProvider>{children}</GlobalProvider>
       </body>
     </html>
