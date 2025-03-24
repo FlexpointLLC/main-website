@@ -29,7 +29,7 @@ export default function ProfileCard({ store }) {
           loading="lazy"
         />
 
-        <div className="pt-1">
+        <div className={cn(hasValidSocialLinks ? "pt-0" : "pt-1")}>
           <h1 className="break-all text-2xl font-medium text-[#111928]">
             <span className="inline">{store?.user?.name}</span>{" "}
             {store?.user?.is_verified ? (
