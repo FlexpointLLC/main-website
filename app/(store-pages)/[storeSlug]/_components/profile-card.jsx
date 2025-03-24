@@ -7,6 +7,7 @@ import TiktokIcon from "@/public/assets/icon/tiktok";
 import YoutubeIcon from "@/public/assets/icon/youtube";
 import VerifiedBadge from "@/public/assets/icon/varified_badge.svg";
 import { cn } from "@/lib/utils";
+import CustomTooltip from "@/components/ui/custom-tooltip";
 
 export default function ProfileCard({ store }) {
   const hasValidSocialLinks =
@@ -32,14 +33,19 @@ export default function ProfileCard({ store }) {
           <h1 className="break-all text-2xl font-medium text-[#111928]">
             <span className="inline">{store?.user?.name}</span>{" "}
             {store?.user?.is_verified ? (
-              <Image
-                src={VerifiedBadge}
-                alt="Verified Badge "
-                width={50}
-                height={50}
-                className="-ml-1 inline size-6"
-                loading="lazy"
-              />
+              <CustomTooltip
+                content="This account is verified"
+                className="max-w-[250px] rounded-[8px] bg-[#494949] p-2 text-white"
+              >
+                <Image
+                  src={VerifiedBadge}
+                  alt="Verified Badge "
+                  width={50}
+                  height={50}
+                  className="-ml-1 inline size-7"
+                  loading="lazy"
+                />
+              </CustomTooltip>
             ) : null}
           </h1>
           {store?.user?.details?.occupation && (
