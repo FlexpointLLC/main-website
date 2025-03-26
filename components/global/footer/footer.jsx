@@ -4,7 +4,7 @@ import Link from "next/link";
 import footerBg from "@/public/assets/img/footer-bg.svg";
 
 const footerLinks = [
-  { label: "Blogs", href: "/blogs" },
+  { label: "Blogs", href: "https://blog.flexpoint.store/" },
   { label: "Terms of Service", href: "/terms" },
   { label: "Privacy Policy", href: "/privacy-policy" },
 ];
@@ -34,14 +34,14 @@ const Footer = () => {
             </li>
           ))}
           <li>
-              <Link
+            <Link
               target="_blank"
-                className="leading-6 tracking-[-0.18px] underline-offset-2 hover:underline"
-                href="https://flexpoint.gitbook.io/flexpoint-docs"
-              >
-                Help
-              </Link>
-            </li>
+              className="leading-6 tracking-[-0.18px] underline-offset-2 hover:underline"
+              href="https://flexpoint.gitbook.io/flexpoint-docs"
+            >
+              Help
+            </Link>
+          </li>
         </ul>
 
         <p className="col-span-2 leading-6 tracking-[-0.18px]">

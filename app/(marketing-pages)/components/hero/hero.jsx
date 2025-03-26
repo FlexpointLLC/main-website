@@ -10,6 +10,7 @@ import { useGSAP } from "@gsap/react";
 
 import lineVector from "@/public/assets/img/line-vector.svg";
 import avatarGroupImage from "@/public/assets/img/hero-avatar-group.svg";
+import TopProductBadge from "@/public/assets/img/top-post-badge.svg";
 
 import { Button } from "@/components/ui/button";
 
@@ -82,7 +83,10 @@ const Hero = () => {
           products, and bookings are now hosted within your link-in-bio.
         </p>
 
-        <div ref={buttonRef}>
+        <div
+          ref={buttonRef}
+          className="flex flex-col items-center justify-center gap-3"
+        >
           <Button className={"h-fit rounded-2xl"}>
             <Link
               href={
@@ -113,6 +117,14 @@ const Hero = () => {
               </svg>
             </Link>
           </Button>
+
+          <Link
+            href={"https://www.producthunt.com/products/flexpoint-2/reviews"}
+            className="flex w-full items-center justify-center"
+            target="_blank"
+          >
+            <Image src={TopProductBadge} alt="Top product badge" />
+          </Link>
         </div>
 
         <div ref={imageRef} className="flex flex-col items-center gap-3">
