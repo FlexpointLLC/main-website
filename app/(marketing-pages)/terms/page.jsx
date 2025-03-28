@@ -52,8 +52,8 @@ const TermsPage = () => {
           <div className="flex flex-col gap-8">
             <p>By using Flexpoint, you also agree to:</p>
             <ul className="list-disc ml-4">
-              <li><Link href="https://flexpoint.store/privacy" target="_blank" className="underline">Privacy Policy</Link></li>
-              <li><Link href="https://flexpoint.store/pricing" target="_blank" className="underline">Pricing Page</Link></li>
+              <li><Link href="https://flexpoint.store/privacy-policy" target="_blank" className="underline">Privacy Policy</Link></li>
+              <li><Link href="https://flexpoint.store/#pricing" target="_blank" className="underline">Pricing Page</Link></li>
             </ul>
           </div>
         </section>
@@ -120,7 +120,7 @@ const TermsPage = () => {
           <div className="flex flex-col gap-8">
             <p>
               Pricing information is available at{' '}
-              <Link href="https://flexpoint.store/pricing" target="_blank" className="underline">
+              <Link href="https://flexpoint.store/#pricing" target="_blank" className="underline">
                 flexpoint.store/pricing
               </Link>. Payments are processed securely through Paddle and other approved providers.
             </p>
