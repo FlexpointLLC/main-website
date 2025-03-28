@@ -18,10 +18,10 @@ const TermsPage = () => {
           <h3 className="mb-3">Welcome to Flexpoint!</h3>
           <div className="flex flex-col gap-8">
             <p>
-              Flexpoint LLC (“Flexpoint,” “we,” “us,” “our”) provides its services through its website located at{" "}
+              Flexpoint LLC (“Flexpoint,” “we,” “us,” “our”) provides its services through its website located at{' '}
               <Link href="https://flexpoint.store/" target="_blank" className="underline">
                 flexpoint.store
-              </Link>{" "} and related services (collectively, such services, including any new features and applications, and the Site, the “Service(s)”).
+              </Link>{' '} and related services (collectively, such services, including any new features and applications, and the Site, the “Service(s)”).
             </p>
             <p>
               Flexpoint LLC is a Delaware Limited Liability Company registered at 131 Continental Dr, Suite 305, Newark, DE 19713, USA. Our operational office is located at Anwer Hossain House, Noakhali Mouza, Noakhali 3804, Bangladesh.
@@ -53,9 +53,25 @@ const TermsPage = () => {
             <p>By using Flexpoint, you also agree to:</p>
             <ul className="list-disc ml-4">
               <li><Link href="https://flexpoint.store/privacy" target="_blank" className="underline">Privacy Policy</Link></li>
-              <li><Link href="https://flexpoint.store/refund-policy" target="_blank" className="underline">Refund & Cancellation Policy</Link></li>
               <li><Link href="https://flexpoint.store/pricing" target="_blank" className="underline">Pricing Page</Link></li>
             </ul>
+          </div>
+        </section>
+
+        <section className="border-b border-fl-border/5 py-9">
+          <h3 className="mb-3 text-lg font-semibold">Refunds & Cancellation</h3>
+          <div className="flex flex-col gap-8">
+            <p>
+              Flexpoint operates as a creator platform and does not directly sell creator content. Refunds are handled as follows:
+            </p>
+            <ul className="list-disc ml-4">
+              <li>For platform service fees: Refund requests must be submitted within 14 days of purchase by contacting info@flexpoint.store.</li>
+              <li>For creator-related purchases: Customers must contact the Creator directly. Flexpoint may, at its sole discretion, assist with disputes if contacted within 14 days.</li>
+              <li>Refunds are not available for completed coaching calls, delivered digital goods, or services already rendered.</li>
+            </ul>
+            <p>
+              Payments on Flexpoint are processed through third-party processors including Paddle and other approved providers.
+            </p>
           </div>
         </section>
 
@@ -106,7 +122,7 @@ const TermsPage = () => {
               Pricing information is available at{' '}
               <Link href="https://flexpoint.store/pricing" target="_blank" className="underline">
                 flexpoint.store/pricing
-              </Link>. Payments are processed securely via Stripe (USD) and bKash/Nagad (BDT).
+              </Link>. Payments are processed securely through Paddle and other approved providers.
             </p>
             <p>
               You agree to pay all fees according to your selected plan and the billing cycle presented at checkout.
