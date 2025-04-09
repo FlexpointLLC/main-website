@@ -131,6 +131,7 @@ const ProductDetailsContent = ({
       try {
         const { productDetails: product } = productData?.data || {};
         let tokenId = "";
+        let paymentMethodId = "";
 
         if (product?.price !== "0.00") {
           if (!stripe || !elements) {
@@ -139,15 +140,23 @@ const ProductDetailsContent = ({
           }
 
           const cardElement = elements.getElement(CardElement);
+
           const { token, error: tokenError } =
             await stripe.createToken(cardElement);
+
+          const paymentMethod = await stripe.createPaymentMethod({
+            type: "card",
+            card: cardElement,
+          });
+
+          paymentMethodId = paymentMethod?.paymentMethod?.id;
+
           if (tokenError) {
             setError(tokenError.message);
             return;
           }
           tokenId = token?.id || "";
         }
-
         const staticFields = fields
           .slice(0, 3)
           .map((f) => f.name.toLowerCase());
@@ -170,6 +179,7 @@ const ProductDetailsContent = ({
           dynamic_fields: dynamicFields.length ? dynamicFields : null,
           card_token: product?.price !== "0.00" ? tokenId : "",
           type: product?.type,
+          payment_method_id: paymentMethodId,
         };
 
         if (
