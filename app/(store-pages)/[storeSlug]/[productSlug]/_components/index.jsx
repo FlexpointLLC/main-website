@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useFormik } from "formik";
 import { object, string } from "yup";
 import storeFooterLogo from "@/public/assets/img/store-footer-logo.svg";
@@ -31,35 +31,23 @@ import {
 import moment from "moment";
 import { toast } from "sonner";
 import { useGetProductDetailsQuery } from "@/redux/api/productApi";
-
 import { useCreatePaymentIntentQuery } from "@/redux/api/paymentApi";
 import { useCreateAppointmentMutation } from "@/redux/api/appointmentApi";
-
 import { useGetAvailableSlotsQuery } from "@/redux/api/scheduleApi";
+import GroupSlot from "./group-slot";
 
 const generateSlotForSelectedDate = (date, availableSlots) => {
   const selectedFormattedDate = moment(date).format("YYYY-MM-DD");
-
-  const formattedSlots = availableSlots.available_slots[
-    selectedFormattedDate
-  ]?.map((slot) => {
-    const formattedSlot = {
+  return (
+    availableSlots.available_slots[selectedFormattedDate]?.map((slot) => ({
       start: slot.startTime,
       end: slot.endTime,
       meridiem: slot.startTime.slice("-2"),
-    };
-
-    return formattedSlot;
-  });
-
-  return formattedSlots;
+    })) || []
+  );
 };
 
-import GroupSlot from "./group-slot";
-
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
-);
+const stripePk = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
 
 const initializeFormValues = (fields) =>
   fields.reduce(
@@ -82,8 +70,9 @@ const createValidationSchema = (fields) =>
       {},
     ),
   );
-
 const ProductDetailsContent = ({
+  productData,
+  product,
   productSlug,
   storeSlug,
   fields,
@@ -97,12 +86,8 @@ const ProductDetailsContent = ({
   const [error, setError] = useState(null);
   const [formattedSlots, setFormattedSlots] = useState([]);
 
-  const { data: productData, isLoading: isProductLoading } =
-    useGetProductDetailsQuery({ storeSlug, productSlug });
   const { data: availableSlots, isLoading: isSlotsLoading } =
-    useGetAvailableSlotsQuery({
-      productSlug,
-    });
+    useGetAvailableSlotsQuery({ productSlug });
 
   const [createAppointment] = useCreateAppointmentMutation();
 
@@ -124,33 +109,24 @@ const ProductDetailsContent = ({
         toast.error("Please select a date and slot.");
         return;
       }
-
       setSubmitting(true);
       setError(null);
-
       try {
-        const { productDetails: product } = productData?.data || {};
         let tokenId = "";
         let paymentMethodId = "";
-
         if (product?.price !== "0.00") {
           if (!stripe || !elements) {
             setError("Stripe.js not loaded.");
             return;
           }
-
           const cardElement = elements.getElement(CardElement);
-
           const { token, error: tokenError } =
             await stripe.createToken(cardElement);
-
           const paymentMethod = await stripe.createPaymentMethod({
             type: "card",
             card: cardElement,
           });
-
           paymentMethodId = paymentMethod?.paymentMethod?.id;
-
           if (tokenError) {
             setError(tokenError.message);
             return;
@@ -164,15 +140,14 @@ const ProductDetailsContent = ({
           name: f.name,
           value: values[f.name.toLowerCase()],
         }));
-
         const payload = {
           ...staticFields.reduce((acc, field) => {
             acc[field] = values[field];
             return acc;
           }, {}),
-          date: moment(values?.picked_date).format("YYYY-MM-DD"),
-          start_at: values?.picked_slot,
-          end_at: values?.picked_slot_end,
+          date: moment(values.picked_date).format("YYYY-MM-DD"),
+          start_at: values.picked_slot,
+          end_at: values.picked_slot_end,
           type: product?.platform,
           product_id: product?.id,
           applied_coupon: appliedCoupon,
@@ -181,28 +156,16 @@ const ProductDetailsContent = ({
           type: product?.type,
           payment_method_id: paymentMethodId,
         };
-
-        if (
-          product?.type === "community" ||
-          product?.type === "service" ||
-          product?.type === "digital"
-        ) {
+        if (["community", "service", "digital"].includes(product?.type)) {
           payload.date = null;
           payload.start_at = null;
           payload.end_at = null;
         }
-
         const response = await createAppointment(payload).unwrap();
-
         const orderId = response?.appointment?.orderId;
-
-        if (orderId) {
-          router.push(
-            `/${storeSlug}/success?order-id=${orderId}&type=${product?.type}`,
-          );
-        } else {
-          router.push(`/${storeSlug}/success?type=${product?.type}`);
-        }
+        router.push(
+          `/${storeSlug}/success?${orderId ? `order-id=${orderId}&` : ""}type=${product?.type}`,
+        );
       } catch (err) {
         console.error("Unexpected error:", err);
         toast.error("Something went wrong. Please try again.");
@@ -220,22 +183,16 @@ const ProductDetailsContent = ({
     }
   }, [formik.values.picked_date, availableSlots, isSlotsLoading]);
 
-  if (isProductLoading | isSlotsLoading) return <Loader />;
-
-  const { productDetails: product } = productData?.data || {};
-
-  const enabledDates = Object.keys(availableSlots?.available_slots);
+  const enabledDates = Object.keys(availableSlots?.available_slots || {});
 
   const isDateDisabled = (date) =>
     !enabledDates.includes(moment(date).format("YYYY-MM-DD"));
 
   const price =
     parseFloat(product?.discount_price) || parseFloat(product?.price);
-
   const isFree = price === 0;
   const hasDiscount =
     product?.discount_price && product?.discount_price !== "0.00";
-
   const formattedPrice = price.toFixed(2);
   const totalPrice = appliedCoupon
     ? (
@@ -513,24 +470,34 @@ export default function ProductDetails({
   fields,
   branding,
 }) {
-  const {
-    data: paymentIntentData,
-    isFetching,
-    isLoading,
-    isError,
-  } = useCreatePaymentIntentQuery();
+  const { data: paymentIntentData, isLoading } = useCreatePaymentIntentQuery();
 
-  if (isFetching || isLoading || isError) return <Loader />;
+  const { data: productData, isLoading: isProductLoading } =
+    useGetProductDetailsQuery({ storeSlug, productSlug });
+
+  const product = productData?.data?.productDetails || null;
+
+  const stripePromise = useMemo(() => {
+    return loadStripe(stripePk, {
+      stripeAccount: productData?.data?.stripe_account_id,
+    });
+  }, [productData?.data?.stripe_account_id]);
 
   const clientSecret = paymentIntentData?.data?.client_secret;
+
+  if (isLoading || isProductLoading || !clientSecret || !stripePromise)
+    return <Loader />;
 
   return (
     <Elements stripe={stripePromise} options={{ clientSecret }}>
       <ProductDetailsContent
+        productData={productData}
+        product={product}
         productSlug={productSlug}
         storeSlug={storeSlug}
         fields={fields}
         branding={branding}
+        clientSecret={clientSecret}
       />
     </Elements>
   );
