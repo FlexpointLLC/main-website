@@ -67,6 +67,8 @@ export default async function StorePage({ params }) {
 
   const store = response?.data;
 
+  console.log(store, "store data");
+
   return (
     <div className="mx-auto max-w-[375px] px-4 py-12">
       <ProfileCard store={store} />
