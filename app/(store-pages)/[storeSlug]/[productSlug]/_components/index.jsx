@@ -70,6 +70,7 @@ const createValidationSchema = (fields) =>
       {},
     ),
   );
+
 const ProductDetailsContent = ({
   productData,
   product,
@@ -408,26 +409,28 @@ const ProductDetailsContent = ({
           </h4>
         </div>
 
-        {!isFree && productData?.data.available_purchase && (
-          <div className="mt-6">
-            <CardElement
-              onChange={(e) => setError(e.error?.message)}
-              options={{
-                style: {
-                  base: {
-                    fontSize: "16px",
-                    color: "#424770",
-                    "::placeholder": { color: "#aab7c4" },
+        {!isFree &&
+          productData?.data.available_purchase &&
+          productData?.data?.stripe_account_id && (
+            <div className="mt-6">
+              <CardElement
+                onChange={(e) => setError(e.error?.message)}
+                options={{
+                  style: {
+                    base: {
+                      fontSize: "16px",
+                      color: "#424770",
+                      "::placeholder": { color: "#aab7c4" },
+                    },
+                    invalid: { color: "#9e2146" },
                   },
-                  invalid: { color: "#9e2146" },
-                },
-                hidePostalCode: true,
-              }}
-              className="mb-4 rounded-md border bg-white p-3"
-            />
-            {error && <div style={{ color: "red" }}>{error}</div>}
-          </div>
-        )}
+                  hidePostalCode: true,
+                }}
+                className="mb-4 rounded-md border bg-white p-3"
+              />
+              {error && <div style={{ color: "red" }}>{error}</div>}
+            </div>
+          )}
 
         <Button
           className="mt-2 w-full"
