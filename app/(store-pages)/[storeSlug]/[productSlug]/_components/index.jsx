@@ -47,8 +47,6 @@ const generateSlotForSelectedDate = (date, availableSlots) => {
   );
 };
 
-const stripePk = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
-
 const initializeFormValues = (fields) =>
   fields.reduce(
     (values, field) => ({ ...values, [field.name.toLowerCase()]: "" }),
@@ -474,22 +472,31 @@ export default function ProductDetails({
   branding,
 }) {
   const { data: paymentIntentData, isLoading } = useCreatePaymentIntentQuery();
-
   const { data: productData, isLoading: isProductLoading } =
     useGetProductDetailsQuery({ storeSlug, productSlug });
 
   const product = productData?.data?.productDetails || null;
+  const publicKey = productData?.data?.stripe_public_key;
+  const stripeAccountId = productData?.data?.stripe_account_id;
+  const isPurchaseAvailable = productData?.data?.available_purchase;
+
+  const areStripeKeysValid =
+    typeof publicKey === "string" &&
+    publicKey.startsWith("pk_") &&
+    typeof stripeAccountId === "string" &&
+    stripeAccountId.length > 10 &&
+    isPurchaseAvailable;
 
   const stripePromise = useMemo(() => {
-    return loadStripe(stripePk, {
-      stripeAccount: productData?.data?.stripe_account_id,
-    });
-  }, [productData?.data?.stripe_account_id]);
+    if (!areStripeKeysValid) return null;
+    return loadStripe(publicKey, { stripeAccount: stripeAccountId });
+  }, [publicKey, stripeAccountId, areStripeKeysValid]);
 
   const clientSecret = paymentIntentData?.data?.client_secret;
 
-  if (isLoading || isProductLoading || !clientSecret || !stripePromise)
+  if (isLoading || isProductLoading || !clientSecret) {
     return <Loader />;
+  }
 
   return (
     <Elements stripe={stripePromise} options={{ clientSecret }}>
@@ -500,7 +507,6 @@ export default function ProductDetails({
         storeSlug={storeSlug}
         fields={fields}
         branding={branding}
-        clientSecret={clientSecret}
       />
     </Elements>
   );
