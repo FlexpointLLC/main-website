@@ -31,7 +31,6 @@ import {
 import moment from "moment";
 import { toast } from "sonner";
 import { useGetProductDetailsQuery } from "@/redux/api/productApi";
-import { useCreatePaymentIntentQuery } from "@/redux/api/paymentApi";
 import { useCreateAppointmentMutation } from "@/redux/api/appointmentApi";
 import { useGetAvailableSlotsQuery } from "@/redux/api/scheduleApi";
 import GroupSlot from "./group-slot";
@@ -90,6 +89,10 @@ const ProductDetailsContent = ({
 
   const [createAppointment] = useCreateAppointmentMutation();
 
+  const price =
+    parseFloat(product?.discount_price) || parseFloat(product?.price);
+  const isFree = price === 0;
+
   const formik = useFormik({
     initialValues: {
       ...initializeFormValues(fields),
@@ -113,7 +116,7 @@ const ProductDetailsContent = ({
       try {
         let tokenId = "";
         let paymentMethodId = "";
-        if (product?.price !== "0.00") {
+        if (!isFree) {
           if (!stripe || !elements) {
             setError("Stripe.js not loaded.");
             return;
@@ -151,7 +154,7 @@ const ProductDetailsContent = ({
           product_id: product?.id,
           applied_coupon: appliedCoupon,
           dynamic_fields: dynamicFields.length ? dynamicFields : null,
-          card_token: product?.price !== "0.00" ? tokenId : "",
+          card_token: !isFree ? tokenId : "",
           type: product?.type,
           payment_method_id: paymentMethodId,
         };
@@ -187,9 +190,6 @@ const ProductDetailsContent = ({
   const isDateDisabled = (date) =>
     !enabledDates.includes(moment(date).format("YYYY-MM-DD"));
 
-  const price =
-    parseFloat(product?.discount_price) || parseFloat(product?.price);
-  const isFree = price === 0;
   const hasDiscount =
     product?.discount_price && product?.discount_price !== "0.00";
   const formattedPrice = price.toFixed(2);
@@ -438,10 +438,9 @@ const ProductDetailsContent = ({
             !productData?.data.available_purchase ? "Product sold out" : null
           }
           disabled={
-            !stripe ||
-            !elements ||
+            !productData?.data.available_purchase ||
             formik.isSubmitting ||
-            !productData?.data.available_purchase
+            (!isFree && !productData?.data?.stripe_client_secret)
           }
         >
           {formik.isSubmitting ? "Processing..." : product?.bottom_button_text}
@@ -471,7 +470,6 @@ export default function ProductDetails({
   fields,
   branding,
 }) {
-  const { data: paymentIntentData, isLoading } = useCreatePaymentIntentQuery();
   const { data: productData, isLoading: isProductLoading } =
     useGetProductDetailsQuery({ storeSlug, productSlug });
 
@@ -479,6 +477,8 @@ export default function ProductDetails({
   const publicKey = productData?.data?.stripe_public_key;
   const stripeAccountId = productData?.data?.stripe_account_id;
   const isPurchaseAvailable = productData?.data?.available_purchase;
+  const isFreeProduct = product?.price === "0.00" && !product?.discount_price;
+  const clientSecret = productData?.data?.stripe_client_secret;
 
   const areStripeKeysValid =
     typeof publicKey === "string" &&
@@ -492,14 +492,30 @@ export default function ProductDetails({
     return loadStripe(publicKey, { stripeAccount: stripeAccountId });
   }, [publicKey, stripeAccountId, areStripeKeysValid]);
 
-  const clientSecret = paymentIntentData?.data?.client_secret;
+  const needsPaymentProcessing = !isFreeProduct && areStripeKeysValid;
 
-  if (isLoading || isProductLoading || !clientSecret) {
+  if (isProductLoading || (needsPaymentProcessing && !clientSecret)) {
     return <Loader />;
   }
 
+  if (isFreeProduct) {
+    return (
+      <ProductDetailsContent
+        productData={productData}
+        product={product}
+        productSlug={productSlug}
+        storeSlug={storeSlug}
+        fields={fields}
+        branding={branding}
+      />
+    );
+  }
+
   return (
-    <Elements stripe={stripePromise} options={{ clientSecret }}>
+    <Elements
+      stripe={stripePromise}
+      options={{ clientSecret: clientSecret || "" }}
+    >
       <ProductDetailsContent
         productData={productData}
         product={product}
