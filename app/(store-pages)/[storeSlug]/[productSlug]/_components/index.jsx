@@ -116,6 +116,7 @@ const PaymentMethodSelector = ({
   onSelect,
   hasStripe,
   hasPayPal,
+  disabled = false,
 }) => {
   if (!hasStripe || !hasPayPal) return null;
 
@@ -124,13 +125,16 @@ const PaymentMethodSelector = ({
       <h3 className="mb-3 text-sm font-medium text-gray-700">
         Choose Payment Method
       </h3>
-      <div className="grid grid-cols-2 gap-3">
+      <div
+        className={`grid grid-cols-2 gap-3 ${disabled ? "pointer-events-none opacity-50" : ""}`}
+      >
         <button
           type="button"
           onClick={() => onSelect("stripe")}
+          disabled={disabled}
           className={`flex items-center justify-center gap-2 rounded-lg border-2 p-3 transition-colors ${
             selectedMethod === "stripe"
-              ? "border-blue-500 bg-blue-50 text-blue-700"
+              ? "border-[#37C390] bg-[#37C390] text-white"
               : "border-gray-200 bg-white text-gray-600 hover:border-gray-300"
           }`}
         >
@@ -140,9 +144,10 @@ const PaymentMethodSelector = ({
         <button
           type="button"
           onClick={() => onSelect("paypal")}
+          disabled={disabled}
           className={`flex items-center justify-center gap-2 rounded-lg border-2 p-3 transition-colors ${
             selectedMethod === "paypal"
-              ? "border-blue-500 bg-blue-50 text-blue-700"
+              ? "border-[#37C390] bg-[#37C390] text-white"
               : "border-gray-200 bg-white text-gray-600 hover:border-gray-300"
           }`}
         >
@@ -275,6 +280,10 @@ const ProductDetailsContent = ({
     }
   }, [hasStripe, hasPayPal, selectedPaymentMethod, isFree]);
 
+  useEffect(() => {
+    setError(null);
+  }, [selectedPaymentMethod]);
+
   const formik = useFormik({
     initialValues: {
       ...initializeFormValues(fields),
@@ -303,6 +312,18 @@ const ProductDetailsContent = ({
       }
     },
   });
+
+  // Check if basic customer info (name and email) is filled
+  const getBasicInfoComplete = () => {
+    // Get the first two required fields (typically name and email)
+    const basicFields = fields.slice(0, 2).filter((field) => field.is_required);
+    return basicFields.every((field) => {
+      const fieldValue = formik.values[field.name.toLowerCase()];
+      return fieldValue && fieldValue.trim() !== "";
+    });
+  };
+
+  const isBasicInfoComplete = getBasicInfoComplete();
 
   const processPayment = async (values, setSubmitting) => {
     let paymentData = { payment_method: selectedPaymentMethod || "free" };
@@ -635,6 +656,15 @@ const ProductDetailsContent = ({
               </div>
             )}
 
+            {!isBasicInfoComplete && (
+              <div className="mb-4 rounded-md border border-amber-300 bg-amber-50 p-3">
+                <p className="text-sm text-amber-700">
+                  Please fill in your name and email above to continue with
+                  payment.
+                </p>
+              </div>
+            )}
+
             <PaymentMethodSelector
               selectedMethod={selectedPaymentMethod}
               onSelect={setSelectedPaymentMethod}
@@ -657,27 +687,38 @@ const ProductDetailsContent = ({
                       invalid: { color: "#9e2146" },
                     },
                     hidePostalCode: true,
+                    disabled: !isBasicInfoComplete,
                   }}
-                  className="mb-4 rounded-md border bg-white p-3"
+                  className={`mb-4 rounded-md border bg-white p-3 ${
+                    !isBasicInfoComplete ? "pointer-events-none opacity-50" : ""
+                  }`}
                 />
               </div>
             )}
 
             {/* PayPal Buttons */}
             {selectedPaymentMethod === "paypal" && hasPayPal && (
-              <div className="mb-4">
+              <div
+                className={`mb-4 ${!isBasicInfoComplete ? "pointer-events-none opacity-50" : ""}`}
+              >
                 <PayPalPaymentButton
                   amount={parseFloat(totalPrice)}
                   currency={product?.currency || "USD"}
                   onSuccess={handlePayPalSuccess}
                   onError={handlePayPalError}
-                  disabled={!isAvailable || formik.isSubmitting}
+                  disabled={
+                    !isAvailable || formik.isSubmitting || !isBasicInfoComplete
+                  }
                   product={product}
                 />
               </div>
             )}
 
-            {error && <div className="mb-4 text-sm text-red-600">{error}</div>}
+            {error && (
+              <div className="mb-4 max-w-[360px] break-all text-sm text-red-600">
+                {error}
+              </div>
+            )}
           </div>
         )}
 
@@ -687,10 +728,17 @@ const ProductDetailsContent = ({
             className="mt-2 w-full"
             type="submit"
             variant="primaryDefault"
-            title={!isAvailable ? "Product sold out" : null}
+            title={
+              !isAvailable
+                ? "Product sold out"
+                : !isBasicInfoComplete && !isFree
+                  ? "Please fill in your name and email"
+                  : null
+            }
             disabled={
               !isAvailable ||
               formik.isSubmitting ||
+              (!isFree && !isBasicInfoComplete) ||
               (!isFree &&
                 selectedPaymentMethod === "stripe" &&
                 !productData?.data?.stripe_client_secret)
