@@ -5,6 +5,11 @@ import reducer from "./reducer";
 
 export const store = configureStore({
   reducer,
+  preloadedState: {
+    auth: {},
+  },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(baseApi.middleware),
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(baseApi.middleware),
 });
