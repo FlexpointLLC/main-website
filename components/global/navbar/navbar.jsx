@@ -88,8 +88,8 @@ export default function Navbar() {
             <Link
               href={
                 referralQueryKey
-                  ? `${process.env.NEXT_PUBLIC_LOGIN_URL}?ref=${referralQueryKey}`
-                  : process.env.NEXT_PUBLIC_LOGIN_URL
+                  ? `${process.env.NEXT_PUBLIC_LOGIN_URL || "https://dev-admin.flexpoint.store/login"}?ref=${referralQueryKey}`
+                  : process.env.NEXT_PUBLIC_LOGIN_URL || "https://dev-admin.flexpoint.store/login"
               }
             >
               <Button
