@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import CTA from "./components/cta/cta";
 import Features from "./components/features/features";
 import FlexpointDescription from "./components/flexpoint-description/flexpoint-description";
@@ -26,10 +27,14 @@ export const metadata = {
 export default function Home() {
   return (
     <div className="min-h-[calc(100vh-210px)]">
-      <Hero />
+      <Suspense fallback={<div className="h-[600px]" />}>
+        <Hero />
+      </Suspense>
       <FlexpointDescription />
       <Features />
-      <PricingPlans />
+      <Suspense fallback={<div className="h-[400px]" />}>
+        <PricingPlans />
+      </Suspense>
       <HowItWorks />
       <FAQs />
       <CTA />

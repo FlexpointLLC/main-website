@@ -2,7 +2,10 @@ import axiosInstance from "./axiosInstance";
 
 const axiosBaseQuery =
   ({ baseUrl } = { baseUrl: "" }) =>
-  async ({ url, method, data, params, headers }) => {
+  async (arg, api) => {
+    const { url, method = "GET", data, params, headers } =
+      typeof arg === "string" ? { url: arg } : arg;
+
     try {
       const result = await axiosInstance({
         url: baseUrl + url,

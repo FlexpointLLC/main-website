@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import storeFooterLogo from "@/public/assets/img/store-footer-logo.svg";
 import { AlertDialog, AlertDialogContent } from "@/components/ui/alert-dialog";
 
@@ -10,7 +11,7 @@ import { useSuccessAppointmentQuery } from "@/redux/api/appointmentApi";
 import Loader from "@/components/global/loader/loader";
 import Content from "./_component/content";
 
-export default function ConfirmationModal({ params }) {
+function ConfirmationModalContent({ params }) {
   const storeSlug = params.storeSlug;
   const order_id = useSearchParams().get("order-id");
 
@@ -56,5 +57,13 @@ export default function ConfirmationModal({ params }) {
         </footer>
       ) : null}
     </div>
+  );
+}
+
+export default function ConfirmationModal({ params }) {
+  return (
+    <Suspense fallback={<Loader />}>
+      <ConfirmationModalContent params={params} />
+    </Suspense>
   );
 }
